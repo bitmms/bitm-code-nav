@@ -121,22 +121,20 @@ onMounted(() => {
     <main ref="contextBoxRef" class="container-right-box" @scroll.capture="mainContentScroll">
       <div class="content-box">
         <main id="main-box">
-          <section
-              v-for="(categoryItem, categoryIndex) in htmlData"
-              :key="categoryIndex"
-              class="main-section"
-          >
+          <section v-for="(categoryItem, categoryIndex) in htmlData" :key="categoryIndex" class="main-section">
+
             <div :id="categoryItem.category" class="section-title">
               <span class="title-icon"><img :src="categoryItem.iconSvg" :alt="categoryItem.category"></span>
               <span class="title-text">{{ categoryItem.category }}</span>
             </div>
+
             <div class="section-item">
               <ul>
                 <li
                     v-for="(websiteItem, websiteIndex) in categoryItem.children"
                     :key="websiteIndex"
                 >
-                  <a :href="websiteItem.href" target="_blank">
+                  <a :href="`/redirect/${websiteItem.slug}`" target="_blank">
                     <div class="item-box">
                       <div class="item-left">
                         <div class="web-logo">{{ websiteItem.name.charAt(0) }}</div>
@@ -150,6 +148,7 @@ onMounted(() => {
                 </li>
               </ul>
             </div>
+
           </section>
         </main>
       </div>
