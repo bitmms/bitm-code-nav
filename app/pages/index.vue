@@ -76,7 +76,7 @@ onMounted(() => {
     <aside class="container-left-box">
       <div class="aside-logo-box">
         <header id="aside-logo-box">
-          <a href="/" class="logo" aria-label="返回首页">
+          <a href="/" class="logo" title="双比特 - 程序员导航站" aria-label="返回首页">
             <img
                 src="@/assets/svg/logo/bits-logo.svg"
                 alt="双比特 - 程序员导航站"
@@ -90,7 +90,7 @@ onMounted(() => {
         <div id="aside-nav-box">
           <ul>
             <li v-for="(item, index) in htmlData" :key="index">
-              <a :href="'#' + item.category">
+              <a :href="'#' + item.category" :title="item.category" :aria-label="item.category">
                 <div
                     class="nav-item-box"
                     :class="
