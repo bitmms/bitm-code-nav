@@ -65,7 +65,7 @@ const mouseLeaveAsideNavItem = (nowNavItem: Category) => {
         <header id="aside-logo-box">
           <a href="/" class="logo" title="双比特 - 程序员导航站" aria-label="返回首页">
             <img
-                :src="'/_nuxt/assets/svg/default/bits-logo.svg'"
+                :src="'/bits-logo.svg'"
                 alt="双比特 - 程序员导航站"
                 loading="eager"
             >
