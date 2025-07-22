@@ -31,145 +31,103 @@ const targetWebSiteInfo = computed(() => {
 </script>
 
 <template>
-  <div class="main-container">
+  <div id="redirect-container">
 
-    <!-- 图标 -->
-    <div class="icon-container">
+    <div class="logo-box">
       <img :src="targetWebSiteInfo.logo" :alt="targetWebSiteInfo.name">
     </div>
 
-    <!-- 标题 -->
-    <h1 class="title text-shadow">{{ targetWebSiteInfo.name }}</h1>
+    <div class="title-box">
+      <h1 class="title">{{ targetWebSiteInfo.name }}</h1>
+    </div>
 
-    <!-- 描述 -->
-    <p class="description">{{ targetWebSiteInfo.desc }}</p>
+    <div class="desc-box">
+      <p class="description">{{ targetWebSiteInfo.desc }}</p>
+    </div>
 
-    <!-- 操作按钮 -->
-    <div class="button-group">
-      <a :href="targetWebSiteInfo.href" class="btn btn-primary">立即前往</a>
-      <a href="/" class="btn btn-secondary">返回首页</a>
+    <div class="button-box">
+      <a :href="targetWebSiteInfo.href" class="btn1">立即前往</a>
+      <a href="/" class="btn2">返回首页</a>
     </div>
 
   </div>
 </template>
 
 <style lang="less" scoped>
-// 混入定义 - 可复用的样式片段
-.rounded-base {
+#redirect-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 500px;
+  padding: 30px;
+  background: #ffffff;
   border-radius: 1rem;
-}
-
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.transition-base {
-  transition: all 0.3s ease;
-}
-
-// 自定义工具类
-.text-shadow {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-// 布局组件样式
-.main-container {
-  max-width: 28rem;
-  width: 100%;
-  margin: 50px auto;
-  background-color: white;
-  .rounded-base;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  padding: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 10px 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  gap: 20px;
 
-  @media (min-width: 768px) {
-    padding: 2.5rem;
-  }
-}
+  .logo-box {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-.icon-container {
-  position: relative;
-  width: 5rem;
-  height: 5rem;
-  border-radius: 50%;
-  margin-bottom: 10px;
-
-  img {
-    display: block;
-    width: 80%;
-    height: 80%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
-
-.title {
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-}
-
-.description {
-  color: #6B7280;
-  margin-bottom: 2rem;
-  max-width: 24rem;
-}
-
-.button-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  width: 100%;
-
-  @media (min-width: 640px) {
-    flex-direction: row;
+    img {
+      height: 80px;
+      object-fit: contain;
+    }
   }
 
-  .btn {
-    flex: 1;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    font-weight: 500;
-    text-decoration: none;
-    .transition-base;
-    .flex-center;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
+  .title-box h1 {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+  }
 
-    &.btn-primary {
-      background-color: #3B82F6;
+  .desc-box p {
+    color: #6b7280;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .button-box {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+
+    .btn1 {
+      background: #3b82f6;
       color: white;
 
-      &:hover {
-        background-color: #60A5FA;
-        transform: scale(1.02);
-      }
+      padding: 10px 20px;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 0.5rem;
+      text-align: center;
+      transition: background 0.3s ease;
 
-      &:active {
-        transform: scale(0.98);
+      &:hover {
+        background: #60a5fa;
       }
     }
 
-    &.btn-secondary {
-      background-color: #F3F4F6;
+    .btn2 {
+      background: #f3f4f6;
       color: #374151;
 
-      &:hover {
-        background-color: #E5E7EB;
-        transform: scale(1.02);
-      }
+      padding: 10px 20px;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 0.5rem;
+      text-align: center;
+      transition: background 0.3s ease;
 
-      &:active {
-        transform: scale(0.98);
+      &:hover {
+        background: #e5e7eb;
       }
     }
   }
