@@ -8,7 +8,18 @@ import data from '~/assets/json/data.json'
 const route = useRoute();
 const slug = route.params.slug as string;
 
-// 直接在服务器渲染
+// ======= 批量预加载指定的 SVG 文件 =======
+const svgAssets = import.meta.glob('~/assets/svg/{nav,website}/*.svg', {eager: true, import: 'default'})
+
+// 根据传入的路径从预加载的 svgAssets 中获取对应的 SVG 资源路径
+const getSvgUrl = (path: string) => {
+  if (Object.prototype.hasOwnProperty.call(svgAssets, path)) {
+    return svgAssets[path] as string;
+  }
+  return '~'
+}
+
+// 从 dataJson 中找到符合要求的 WebSite 对象
 const targetWebSiteInfo = computed(() => {
   const tempWebSIteInfo: WebSite = {
     name: '目标不存在',
@@ -25,14 +36,15 @@ const targetWebSiteInfo = computed(() => {
     }
   }
   return tempWebSIteInfo;
-});
+})
+
 </script>
 
 <template>
   <div id="redirect-container">
 
     <div class="logo-box">
-      <img :src="targetWebSiteInfo.logo" :alt="targetWebSiteInfo.name">
+      <img :src="getSvgUrl(targetWebSiteInfo.logo)" :alt="targetWebSiteInfo.name">
     </div>
 
     <div class="title-box">
