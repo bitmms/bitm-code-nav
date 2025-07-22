@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import type {Category} from "~/assets/ts/Category";
-
-import data from '@/assets/json/data.json'
-import defaultNavSvg from '~/assets/svg/default/defaultNavSvg.svg'
-import defaultLogoSvg from '~/assets/svg/default/bits-logo.svg'
 import toolOfToUp from '~/assets/svg/tool/tool-to-up.svg'
 import toolOfToDown from '~/assets/svg/tool/tool-to-down.svg'
 
-// === DOM Refs ===
+// ======= DOM Refs =======
 const contextBoxRef: Ref<HTMLElement | null> = ref(null)
 
-// === State ===
+// ======= State =======
 const isShowToUp: Ref<boolean> = ref(false)
 const htmlData: Ref<Category[]> = ref([])
+
+// ======= SSR 数据 =======
+const {data} = await useFetch('/api/data')
+
+// 直接在服务器渲染
+{
+  htmlData.value = data.value as Category[];
+}
 
 // 返回顶部、返回底部
 const returnToUpOrDown = () => {
@@ -52,33 +56,6 @@ const mouseEnterAsideNavItem = (nowNavItem: Category) => {
 const mouseLeaveAsideNavItem = (nowNavItem: Category) => {
   nowNavItem.isMouseenter = false
 }
-
-// 初始化 htmlData 数据
-const initHtmlData = async () => {
-  // 1. 加载全部的 json 数据
-  htmlData.value = data;
-  // 2. 加载所有的 svg/nav 文件
-  const navSvgs: Record<string, { default: string }> = import.meta.glob('/assets/svg/nav/*.svg', {eager: true});
-  // 3. 加载所有的 svg/nav 文件
-  const websiteSvgs: Record<string, { default: string }> = import.meta.glob('/assets/svg/website/*.svg', {eager: true});
-  // 4. 封装所有的 svg/website 文件
-  htmlData.value.forEach(categoryItem => {
-    const itemSvg = navSvgs[categoryItem.iconSvg];
-    categoryItem.iconSvg = (itemSvg !== undefined && itemSvg !== null) ? itemSvg.default : defaultNavSvg;
-  })
-  // 5. 封装所有的 svg/website 文件
-  htmlData.value.forEach((categoryItem) => {
-    categoryItem.children.forEach(websiteItem => {
-      const itemSvg = websiteSvgs[websiteItem.logo];
-      websiteItem.logo = (itemSvg !== undefined && itemSvg !== null) ? itemSvg.default : '~';
-    })
-  })
-}
-
-// 声明周期
-onMounted(() => {
-  initHtmlData()
-})
 </script>
 
 <template>
@@ -88,7 +65,7 @@ onMounted(() => {
         <header id="aside-logo-box">
           <a href="/" class="logo" title="双比特 - 程序员导航站" aria-label="返回首页">
             <img
-                :src="defaultLogoSvg"
+                :src="'/_nuxt/assets/svg/default/bits-logo.svg'"
                 alt="双比特 - 程序员导航站"
                 loading="eager"
             >

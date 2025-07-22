@@ -1,31 +1,29 @@
 <script setup lang="ts">
-import data from '@/assets/json/data.json'
 import {useRoute} from 'vue-router';
 import {computed} from 'vue';
 import type WebSite from "~/assets/ts/WebSite";
-import defaultNavSvg from '~/assets/svg/default/defaultNavSvg.svg'
 
+// ======= 路由参数 =======
 const route = useRoute();
 const slug = route.params.slug as string;
 
+// ======= SSR 数据 =======
+const {data} = await useFetch('/api/data')
+
+// 直接在服务器渲染
 const targetWebSiteInfo = computed(() => {
   const tempWebSIteInfo: WebSite = {
     name: '目标不存在',
     desc: '点击返回主页',
-    logo: defaultNavSvg,
+    logo: '/_nuxt/assets/svg/default/defaultNavSvg.svg',
     href: '/',
     slug: '/',
   }
-  for (const item of data) {
-    const site = item.children.find((website: WebSite) => website.slug === slug);
-    if (site) {
-      const websiteInfo: WebSite = site;
-      const websiteSvgs: Record<string, { default: string }> = import.meta.glob('/assets/svg/website/*.svg', {eager: true});
-      const itemSvg = websiteSvgs[websiteInfo.logo];
-      if (itemSvg) {
-        websiteInfo.logo = itemSvg.default;
+  for (const categoryItem of data.value) {
+    for (const websiteItem of categoryItem.children) {
+      if (websiteItem.slug === slug) {
+        return websiteItem;
       }
-      return websiteInfo;
     }
   }
   return tempWebSIteInfo;
