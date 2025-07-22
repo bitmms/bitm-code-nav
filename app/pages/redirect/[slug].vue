@@ -15,7 +15,7 @@ const targetWebSiteInfo = computed(() => {
   const tempWebSIteInfo: WebSite = {
     name: '目标不存在',
     desc: '点击返回主页',
-    logo: '/_nuxt/assets/svg/default/defaultNavSvg.svg',
+    logo: `/_nuxt/assets/svg/default/defaultNotFound-404-${new Date().getSeconds() % 10}.svg`,
     href: '/',
     slug: '/',
   }
