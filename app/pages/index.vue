@@ -3,16 +3,24 @@ import type {Category} from "~/assets/ts/Category";
 import toolOfToUp from '~/assets/svg/tool/tool-to-up.svg'
 import toolOfToDown from '~/assets/svg/tool/tool-to-down.svg'
 import data from '~/assets/json/data.json'
+import searchMap from '~/assets/json/search.json'
+import type {SearchVO} from "~/assets/ts/SearchVO";
+import type SearchEngine from "~/assets/ts/SearchEngine";
+import {computed} from "vue";
 
 // ======= DOM Refs =======
 const contextBoxRef: Ref<HTMLElement | null> = ref(null)
 
 // ======= State =======
-const isShowToUp: Ref<boolean> = ref(false)
 const htmlData: Ref<Category[]> = ref([])
+const searchContent: Ref<string> = ref('')
+const searchType: Ref<string> = ref('bing')
+const isShowToUp: Ref<boolean> = ref(false)
+const searchData: Ref<SearchVO> = ref(searchMap)
+const isShowSwitchSearchEngines: Ref<boolean> = ref(false)
 
 // ======= 批量预加载指定的 SVG 文件 =======
-const svgAssets = import.meta.glob('~/assets/svg/{nav,website}/*.svg', {eager: true, import: 'default'})
+const svgAssets = import.meta.glob('~/assets/svg/{nav,website,search}/*.svg', {eager: true, import: 'default'})
 
 // 根据传入的路径从预加载的 svgAssets 中获取对应的 SVG 资源路径
 const getSvgUrl = (path: string) => {
@@ -65,6 +73,56 @@ const mouseEnterAsideNavItem = (nowNavItem: Category) => {
 const mouseLeaveAsideNavItem = (nowNavItem: Category) => {
   nowNavItem.isMouseenter = false
 }
+
+// 按下回车进行搜素
+const enterToSearch = () => {
+  const searchString = searchContent.value
+  if (searchString.length > 0) {
+    const targetUrl = nowSearchEngineObj.value.url + searchString
+    if (searchData.value.tab) {
+      window.open(targetUrl, '_blank', 'noopener,noreferrer')
+    } else {
+      window.location.href = targetUrl
+    }
+    searchContent.value = ''
+  }
+}
+
+// 是否显示搜索引擎切换选择框
+const showSwitchSearchEngines = () => {
+  isShowSwitchSearchEngines.value = !isShowSwitchSearchEngines.value
+}
+
+// 选择某个搜索引擎
+const selectSearchEngine = (name: string) => {
+  searchType.value = name
+  isShowSwitchSearchEngines.value = false
+  window.localStorage.setItem('searchType', name)
+}
+
+// 获取当前搜索引擎
+const nowSearchEngineObj = computed((): SearchEngine => {
+  let defaultSearchEngine: SearchEngine = {
+    name: searchType.value,
+    url: 'https://cn.bing.com/search?ensearch=0&q=',
+    logo: '/assets/svg/search/search-bing.svg',
+  }
+  for (const searchEngineItem of searchData.value.list) {
+    if (searchEngineItem.name === searchType.value) {
+      defaultSearchEngine = searchEngineItem
+      break
+    }
+  }
+  return defaultSearchEngine
+})
+
+// 客户端查询浏览器缓存进行数据的更新
+onMounted(() => {
+  if (window.localStorage.getItem('searchType') !== null) {
+    searchType.value = window.localStorage.getItem('searchType') as string
+  }
+})
+
 </script>
 
 <template>
@@ -110,6 +168,39 @@ const mouseLeaveAsideNavItem = (nowNavItem: Category) => {
     </aside>
 
     <main ref="contextBoxRef" class="container-right-box" @scroll.capture="mainContentScroll">
+      <div class="header-box">
+        <div id="header-box">·
+          <div class="search-box">
+
+            <div class="search-select">
+              <img
+                  :src="getSvgUrl(nowSearchEngineObj.logo)"
+                  :alt="nowSearchEngineObj.name"
+                  :title="nowSearchEngineObj.name"
+                  @click="showSwitchSearchEngines"
+              >
+            </div>
+
+            <div class="search-input">
+              <input v-model="searchContent" type="text" placeholder="输入并搜索..." title="输入并搜索..." @keydown.enter="enterToSearch">
+            </div>
+
+            <div v-show="isShowSwitchSearchEngines" class="switch-search">
+              <ul>
+                <li v-for="(searchEngineItem, index) in searchData.list" :key="index">
+                  <img
+                      :src="getSvgUrl(searchEngineItem.logo)"
+                      :alt="searchEngineItem.name"
+                      :title="searchEngineItem.name"
+                      @click="selectSearchEngine(searchEngineItem.name)"
+                  >
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
       <div class="content-box">
         <main id="main-box">
           <section v-for="(categoryItem, categoryIndex) in htmlData" :key="categoryIndex" class="main-section">
@@ -224,6 +315,14 @@ const mouseLeaveAsideNavItem = (nowNavItem: Category) => {
       display: flex;
       flex-direction: column;
       overflow-y: scroll;
+
+      .header-box {
+        width: 100%;
+        height: auto;
+        padding-left: 0;
+        padding-right: 0;
+        background: rgba(255, 255, 255, 0.6);
+      }
 
       .content-box {
         width: 100%;
@@ -342,6 +441,101 @@ const mouseLeaveAsideNavItem = (nowNavItem: Category) => {
 
         li:nth-child(n + 2) {
           margin-top: 12px;
+        }
+      }
+    }
+
+    #header-box {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      background: url("~/assets/img/ad/01.png") no-repeat center center fixed;
+
+      .search-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 800px;
+        height: 80px;
+        border-radius: 5px;
+        z-index: 999;
+        display: flex;
+        flex-direction: row;
+        background: #cfd3db;
+
+        .search-select {
+          position: relative;
+          width: 80px;
+          height: 80px;
+
+          img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: block;
+            width: 55%;
+            height: 55%;
+            cursor: pointer;
+          }
+        }
+
+        .search-input {
+          flex: 1;
+
+          input {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            color: #222226;
+            font-size: 20px;
+            font-weight: 400;
+            background: #d0d6de;
+          }
+        }
+
+        .switch-search {
+          position: absolute;
+          top: 85px;
+          left: 0;
+          border-radius: 5px;
+          width: 100%;
+          height: auto;
+          background: #cfd3db;
+
+          ul {
+            width: 100%;
+            height: auto;
+
+            li {
+              position: relative;
+              float: left;
+              display: block;
+              width: 80px;
+              height: 80px;
+              text-align: center;
+              line-height: 80px;
+
+              img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                display: block;
+                width: 60%;
+                height: 60%;
+                transition: all var(--transition-time);
+                cursor: pointer;
+
+                &:hover {
+                  scale: 1.05;
+                }
+              }
+            }
+          }
         }
       }
     }
