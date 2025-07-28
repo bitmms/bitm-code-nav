@@ -151,7 +151,7 @@ onMounted(() => {
 
     <main ref="contextBoxRef" class="container-right-box" @scroll.capture="mainContentScroll">
       <div class="header-box">
-        <div id="header-box">·
+        <div id="header-box">
           <div class="search-box">
 
             <div class="search-select">
