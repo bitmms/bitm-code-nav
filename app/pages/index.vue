@@ -431,7 +431,8 @@ onMounted(() => {
       position: relative;
       width: 100%;
       height: 200px;
-      background: url("/img/header-bg.webp") no-repeat center center fixed;
+      background: url("/img/header-bg.webp") no-repeat center center;
+      background-size: cover;
       display: var(--header-display);
 
       .search-box {
@@ -928,7 +929,8 @@ onMounted(() => {
       position: relative;
       width: 100%;
       height: 200px;
-      background: url("/img/header-bg.webp") no-repeat center center fixed;
+      background: url("/img/header-bg.webp") no-repeat center;
+      background-size: cover;
       display: var(--header-display);
 
       .search-box {
