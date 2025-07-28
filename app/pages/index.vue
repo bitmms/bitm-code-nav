@@ -8,6 +8,7 @@ import type SearchEngine from "~/assets/ts/SearchEngine";
 
 // ======= DOM Refs =======
 const contextBoxRef: Ref<HTMLElement | null> = ref(null)    // 主区域 dom 元素，便于处理滚动事件
+const mainBoxRef: Ref<HTMLElement | null> = ref(null)    // 主区域 dom 元素，便于处理滚动事件
 
 // ======= State =======
 const websiteData: Ref<Category[]> = ref(webSiteJsonData)   // json 数据
@@ -15,6 +16,7 @@ const searchData: Ref<SearchVO> = ref(searchJsonData)       // json 数据
 const searchContent: Ref<string> = ref('')                  // 用户当前等待搜索的字符串
 const searchType: Ref<string> = ref('bing')                 // 用户当前使用的搜索引擎名称
 const isShowToUp: Ref<boolean> = ref(false)                 // 记录当前是否显示返回底部按钮
+const nowThemeType: Ref<string> = ref('light')                   // 记录当前的主题类型：dark、light
 const isShowSwitchSearchEngines: Ref<boolean> = ref(false)  // 记录当前是否显示切换搜索引擎的盒子
 
 // 返回顶部、返回底部
@@ -28,6 +30,20 @@ const returnToUpOrDown = () => {
     isShowToUp.value = true
     contextBoxRef.value.scrollTop = contextBoxRef.value?.scrollHeight
   }
+}
+
+// 切换黑白主题
+const switchToDarkOrLight = () => {
+  if (nowThemeType.value === 'light') {
+    nowThemeType.value = 'dark'
+    mainBoxRef.value?.classList.add("dark")
+    mainBoxRef.value?.classList.remove("light")
+  } else {
+    nowThemeType.value = 'light'
+    mainBoxRef.value?.classList.add("light")
+    mainBoxRef.value?.classList.remove("dark")
+  }
+  window.localStorage.setItem('nowThemeType', nowThemeType.value)
 }
 
 // 监听 main 的滚动事件
@@ -100,15 +116,28 @@ const nowSearchEngineObj = computed((): SearchEngine => {
 
 // 客户端查询浏览器缓存进行数据的更新
 onMounted(() => {
+  // 加载搜索引擎类型
   if (window.localStorage.getItem('searchType') !== null) {
     searchType.value = window.localStorage.getItem('searchType') as string
+  }
+
+  // 加载黑白主题类别
+  if (window.localStorage.getItem('nowThemeType') !== null) {
+    nowThemeType.value = window.localStorage.getItem('nowThemeType') as string
+    if (nowThemeType.value === 'light') {
+      mainBoxRef.value?.classList.add("light")
+      mainBoxRef.value?.classList.remove("dark")
+    } else {
+      mainBoxRef.value?.classList.add("dark")
+      mainBoxRef.value?.classList.remove("light")
+    }
   }
 })
 
 </script>
 
 <template>
-  <div id="container">
+  <div id="container" ref="mainBoxRef">
     <aside class="container-left-box">
       <div class="aside-logo-box">
         <header id="aside-logo-box">
@@ -235,20 +264,39 @@ onMounted(() => {
           <img v-show="!isShowToUp" src="/svg/tool/tool-to-down.svg" alt="滚动到底部">
         </div>
 
+        <div class="tool-item-box" @click="switchToDarkOrLight">
+          <img v-show="nowThemeType === 'light'" src="/svg/tool/tool-to-dark.svg" alt="切换为黑色主题">
+          <img v-show="nowThemeType === 'dark'" src="/svg/tool/tool-to-light.svg" alt="切换为白色主题">
+        </div>
+
       </div>
     </div>
   </div>
 </template>
 
 <style lang="less" scoped>
+// 公共变量
+#container {
+  --transition-time: .5s;
+}
+
+// 白色主题
+#container.light {
+  --container-background: #f1f1f1;
+}
+
+// 黑暗主题
+#container.dark {
+  --container-background: #13181e;
+}
+
+// 大窗口
 @media screen and (min-width: 1201px) {
-  /* 变量 */
+  /* 响应式变量 */
   #container {
     --aside-width: 220px;
     --content-grid: 1fr 1fr 1fr 1fr;
     --header-display: block;
-
-    --transition-time: .2s;
   }
 
   /* 结构 */
@@ -258,7 +306,8 @@ onMounted(() => {
     height: 100vh;
     display: flex;
     flex-direction: row;
-    background: #f5f5f5;
+    background: var(--container-background);
+    transition: all var(--transition-time);
 
     .container-left-box {
       position: relative;
@@ -726,10 +775,6 @@ onMounted(() => {
           left: 50%;
           transform: translate(-50%, -50%);
         }
-      }
-
-      .tool-item-box:hover {
-        scale: 1.1;
       }
 
       .tool-item-box:nth-child(n + 2) {
@@ -739,14 +784,13 @@ onMounted(() => {
   }
 }
 
+// 小窗口
 @media screen and (max-width: 1200px) {
-  /* 变量 */
+  /* 响应式变量 */
   #container {
     --aside-width: 0;
     --content-grid: 1fr 1fr;
     --header-display: none;
-
-    --transition-time: .2s;
   }
 
   /* 结构 */
@@ -756,7 +800,8 @@ onMounted(() => {
     height: 100vh;
     display: flex;
     flex-direction: row;
-    background: #f5f5f5;
+    background: var(--container-background);
+    transition: all var(--transition-time);
 
     .container-left-box {
       position: relative;
@@ -1224,10 +1269,6 @@ onMounted(() => {
           left: 50%;
           transform: translate(-50%, -50%);
         }
-      }
-
-      .tool-item-box:hover {
-        scale: 1.1;
       }
 
       .tool-item-box:nth-child(n + 2) {
