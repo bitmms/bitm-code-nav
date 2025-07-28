@@ -686,7 +686,7 @@
         "href": "https://tdesign.tencent.com",
         "desc": "TDesign 官方文档",
         "slug": "bits-to-tdesign-docs",
-        "logo": ""
+        "logo": "/svg/website/doc-tdesign.svg"
       },
       {
         "name": "Element UI",
