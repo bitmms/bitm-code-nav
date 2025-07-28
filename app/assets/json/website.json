@@ -294,14 +294,14 @@
         "href": "https://www.acwing.com",
         "desc": "程序员刷题与课程学习平台",
         "slug": "bits-to-acwing",
-        "logo": ""
+        "logo": "/svg/website/acm-acwing.svg"
       },
       {
         "name": "董晓算法",
         "href": "https://space.bilibili.com/517494241",
-        "desc": "B站最好的算好学习博主",
+        "desc": "B站最好的算法学习博主",
         "slug": "bits-to-dongxiao-algorithms",
-        "logo": ""
+        "logo": "/svg/website/acm-ds.svg"
       },
       {
         "name": "洛谷",
