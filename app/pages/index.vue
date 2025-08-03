@@ -282,12 +282,14 @@ onMounted(() => {
 
 // 白色主题
 #container.light {
-  --container-background: #f1f1f1;
+  --container-background: #ffffff;
+  --aside-container-right-border-background: #e5e7eb;
 }
 
 // 黑暗主题
 #container.dark {
   --container-background: #13181e;
+  --aside-container-right-border-background: red;
 }
 
 // 大窗口
@@ -307,7 +309,7 @@ onMounted(() => {
     display: flex;
     flex-direction: row;
     background: var(--container-background);
-    transition: all var(--transition-time);
+    transition: background-color var(--transition-time);
 
     .container-left-box {
       position: relative;
@@ -339,7 +341,7 @@ onMounted(() => {
       right: 0;
       width: 4px;
       height: 100%;
-      background: #ffffff;
+      background: var(--aside-container-right-border-background);
     }
 
     .container-right-box {
@@ -583,13 +585,18 @@ onMounted(() => {
         margin-top: 40px;
 
         .section-title {
+          position: relative;
           width: 100%;
-          height: 30px;
-          margin-bottom: 10px;
+          height: 50px;
 
           a {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
             display: inline-block;
             transition: all var(--transition-time);
+            padding: 5px 10px 5px 0;
 
             .title-icon {
               position: relative;
@@ -641,6 +648,7 @@ onMounted(() => {
               transition: all var(--transition-time);
               cursor: pointer;
               overflow: hidden;
+              border: 1px solid #e5e7eb;
 
               a {
                 display: block;
@@ -801,7 +809,7 @@ onMounted(() => {
     display: flex;
     flex-direction: row;
     background: var(--container-background);
-    transition: all var(--transition-time);
+    transition: background-color var(--transition-time);
 
     .container-left-box {
       position: relative;
@@ -833,7 +841,7 @@ onMounted(() => {
       right: 0;
       width: 4px;
       height: 100%;
-      background: #ffffff;
+      background: var(--aside-container-right-border-background);
     }
 
     .container-right-box {
@@ -1077,13 +1085,18 @@ onMounted(() => {
         margin-top: 40px;
 
         .section-title {
+          position: relative;
           width: 100%;
-          height: 30px;
-          margin-bottom: 10px;
+          height: 50px;
 
           a {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
             display: inline-block;
             transition: all var(--transition-time);
+            padding: 5px 10px 5px 0;
 
             .title-icon {
               position: relative;
@@ -1135,6 +1148,7 @@ onMounted(() => {
               transition: all var(--transition-time);
               cursor: pointer;
               overflow: hidden;
+              border: 1px solid #e5e7eb;
 
               a {
                 display: block;
