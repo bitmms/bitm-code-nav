@@ -180,40 +180,41 @@ onMounted(() => {
 
     <main ref="contextBoxRef" class="container-right-box" @scroll.capture="mainContentScroll">
       <div class="header-box">
-        <div id="header-box">
-          <div class="search-box">
+        <div id="header-box"></div>
+      </div>
+      <div class="search-box">
+        <div id="search-box">
 
-            <div class="search-select">
-              <img
-                  :src="nowSearchEngineObj.logo"
-                  :alt="nowSearchEngineObj.name"
-                  :title="nowSearchEngineObj.name"
-                  @click="showSwitchSearchEngines"
-              >
-            </div>
-
-            <div class="search-input">
-              <input v-model="searchContent" type="text" placeholder="输入并搜索..." title="输入并搜索..." @keydown.enter="enterToSearch">
-            </div>
-
-            <div v-show="isShowSwitchSearchEngines" class="switch-search">
-              <ul>
-                <li v-for="(searchEngineItem, index) in searchData.list" :key="index">
-                  <img
-                      :src="searchEngineItem.logo"
-                      :alt="searchEngineItem.name"
-                      :title="searchEngineItem.name"
-                      @click="selectSearchEngine(searchEngineItem.name)"
-                  >
-                </li>
-              </ul>
-            </div>
-
+          <div class="search-select">
+            <img
+                :src="nowSearchEngineObj.logo"
+                :alt="nowSearchEngineObj.name"
+                :title="nowSearchEngineObj.name"
+                @click="showSwitchSearchEngines"
+            >
           </div>
+
+          <div class="search-input">
+            <input v-model="searchContent" type="text" placeholder="输入并搜索..." title="输入并搜索..." @keydown.enter="enterToSearch">
+          </div>
+
+          <div v-show="isShowSwitchSearchEngines" class="switch-search">
+            <ul>
+              <li v-for="(searchEngineItem, index) in searchData.list" :key="index">
+                <img
+                    :src="searchEngineItem.logo"
+                    :alt="searchEngineItem.name"
+                    :title="searchEngineItem.name"
+                    @click="selectSearchEngine(searchEngineItem.name)"
+                >
+              </li>
+            </ul>
+          </div>
+
         </div>
       </div>
       <div class="content-box">
-        <main id="main-box">
+        <main id="content-box">
           <section v-for="(categoryItem, categoryIndex) in websiteData" :key="categoryIndex" class="main-section">
 
             <div :id="categoryItem.category" class="section-title">
@@ -283,13 +284,13 @@ onMounted(() => {
 // 白色主题
 #container.light {
   --container-background: #ffffff;
-  --aside-container-right-border-background: #e5e7eb;
+  --search-box-background: #d0d6de;
 }
 
 // 黑暗主题
 #container.dark {
   --container-background: #13181e;
-  --aside-container-right-border-background: red;
+  --search-box-background: #d0d6de;
 }
 
 // 大窗口
@@ -298,7 +299,7 @@ onMounted(() => {
   #container {
     --aside-width: 220px;
     --content-grid: 1fr 1fr 1fr 1fr;
-    --header-display: block;
+    --search-box-display: block;
   }
 
   /* 结构 */
@@ -317,7 +318,6 @@ onMounted(() => {
       height: 100%;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
 
       .aside-logo-box {
         width: 100%;
@@ -334,41 +334,31 @@ onMounted(() => {
       }
     }
 
-    .container-left-box::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--aside-container-right-border-background);
-    }
-
     .container-right-box {
       flex: 1;
-      display: flex;
-      flex-direction: column;
       overflow-y: scroll;
 
       .header-box {
         width: 100%;
         height: auto;
-        padding-left: 0;
-        padding-right: 0;
+      }
+
+      .search-box {
+        width: 100%;
+        height: auto;
+        padding: 0 3%;
+        display: var(--search-box-display);
       }
 
       .content-box {
         width: 100%;
         height: auto;
-        padding: 3%;
+        padding: 0 3%;
       }
 
       .footer-box {
         width: 100%;
         height: auto;
-        padding-left: 0;
-        padding-right: 0;
-        background: rgba(255, 255, 255, 0.6);
       }
     }
 
@@ -479,95 +469,90 @@ onMounted(() => {
     }
 
     #header-box {
+      width: 100%;
+      height: 80px;
+      background: #00b96b;
+    }
+
+    #search-box {
       position: relative;
       width: 100%;
-      height: 200px;
-      background: url("/img/header-bg.webp") no-repeat center;
-      background-size: cover;
-      display: var(--header-display);
+      height: 80px;
+      display: flex;
+      flex-direction: row;
 
-      .search-box {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 800px;
+      .search-select {
+        position: relative;
+        width: 80px;
         height: 80px;
-        border-radius: 5px;
-        z-index: 999;
-        display: flex;
-        flex-direction: row;
-        background: #cfd3db;
+        background: var(--search-box-background);
+        border-radius: 5px 0 0 5px;
 
-        .search-select {
-          position: relative;
-          width: 80px;
-          height: 80px;
-
-          img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: block;
-            width: 55%;
-            height: 55%;
-            cursor: pointer;
-          }
-        }
-
-        .search-input {
-          flex: 1;
-
-          input {
-            display: block;
-            width: 100%;
-            height: 100%;
-            border: none;
-            outline: none;
-            color: #222226;
-            font-size: 20px;
-            font-weight: 400;
-            background: #d0d6de;
-          }
-        }
-
-        .switch-search {
+        img {
           position: absolute;
-          top: 85px;
-          left: 0;
-          border-radius: 5px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          display: block;
+          width: 50px;
+          height: 50px;
+          cursor: pointer;
+        }
+      }
+
+      .search-input {
+        flex: 1;
+        border-radius: 0 5px 5px 0;
+
+        input {
+          display: block;
+          width: 100%;
+          height: 100%;
+          border: none;
+          outline: none;
+          color: #222226;
+          font-size: 20px;
+          font-weight: 400;
+          background: var(--search-box-background);
+          padding: 0 10px 0 0;
+        }
+      }
+
+      .switch-search {
+        position: absolute;
+        top: calc(80px + 5px);
+        left: 0;
+        z-index: 99;
+        border-radius: 5px;
+
+        width: 100%;
+        height: auto;
+        background: var(--search-box-background);
+
+        ul {
           width: 100%;
           height: auto;
-          background: #cfd3db;
 
-          ul {
-            width: 100%;
-            height: auto;
+          li {
+            position: relative;
+            float: left;
+            display: block;
+            width: 80px;
+            height: 80px;
 
-            li {
-              position: relative;
-              float: left;
-              display: block;
-              width: 80px;
-              height: 80px;
-              text-align: center;
-              line-height: 80px;
+            img {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 50px;
+              height: 50px;
+              transition: all var(--transition-time);
+              cursor: pointer;
 
-              img {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                display: block;
-                width: 60%;
-                height: 60%;
-                transition: all var(--transition-time);
-                cursor: pointer;
-
-                &:hover {
-                  scale: 1.05;
-                }
+              &:hover {
+                scale: 1.05;
               }
             }
           }
@@ -575,7 +560,7 @@ onMounted(() => {
       }
     }
 
-    #main-box {
+    #content-box {
       width: 100%;
       height: auto;
 
@@ -753,7 +738,7 @@ onMounted(() => {
       height: 60px;
       text-align: center;
       line-height: 60px;
-      margin-top: 60px;
+      background: #b3b3b3;
 
       span {
         color: #666666;
@@ -798,7 +783,7 @@ onMounted(() => {
   #container {
     --aside-width: 0;
     --content-grid: 1fr 1fr;
-    --header-display: none;
+    --search-box-display: none;
   }
 
   /* 结构 */
@@ -817,7 +802,6 @@ onMounted(() => {
       height: 100%;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
 
       .aside-logo-box {
         width: 100%;
@@ -834,41 +818,31 @@ onMounted(() => {
       }
     }
 
-    .container-left-box::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--aside-container-right-border-background);
-    }
-
     .container-right-box {
       flex: 1;
-      display: flex;
-      flex-direction: column;
       overflow-y: scroll;
 
       .header-box {
         width: 100%;
         height: auto;
-        padding-left: 0;
-        padding-right: 0;
+      }
+
+      .search-box {
+        width: 100%;
+        height: auto;
+        padding: 0 3%;
+        display: var(--search-box-display);
       }
 
       .content-box {
         width: 100%;
         height: auto;
-        padding: 3%;
+        padding: 0 3%;
       }
 
       .footer-box {
         width: 100%;
         height: auto;
-        padding-left: 0;
-        padding-right: 0;
-        background: rgba(255, 255, 255, 0.6);
       }
     }
 
@@ -979,95 +953,90 @@ onMounted(() => {
     }
 
     #header-box {
+      width: 100%;
+      height: 80px;
+      background: #00b96b;
+    }
+
+    #search-box {
       position: relative;
       width: 100%;
-      height: 200px;
-      background: url("/img/header-bg.webp") no-repeat center;
-      background-size: cover;
-      display: var(--header-display);
+      height: 80px;
+      display: flex;
+      flex-direction: row;
 
-      .search-box {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 800px;
+      .search-select {
+        position: relative;
+        width: 80px;
         height: 80px;
-        border-radius: 5px;
-        z-index: 999;
-        display: flex;
-        flex-direction: row;
-        background: #cfd3db;
+        background: var(--search-box-background);
+        border-radius: 5px 0 0 5px;
 
-        .search-select {
-          position: relative;
-          width: 80px;
-          height: 80px;
-
-          img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: block;
-            width: 55%;
-            height: 55%;
-            cursor: pointer;
-          }
-        }
-
-        .search-input {
-          flex: 1;
-
-          input {
-            display: block;
-            width: 100%;
-            height: 100%;
-            border: none;
-            outline: none;
-            color: #222226;
-            font-size: 20px;
-            font-weight: 400;
-            background: #d0d6de;
-          }
-        }
-
-        .switch-search {
+        img {
           position: absolute;
-          top: 85px;
-          left: 0;
-          border-radius: 5px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          display: block;
+          width: 50px;
+          height: 50px;
+          cursor: pointer;
+        }
+      }
+
+      .search-input {
+        flex: 1;
+        border-radius: 0 5px 5px 0;
+
+        input {
+          display: block;
+          width: 100%;
+          height: 100%;
+          border: none;
+          outline: none;
+          color: #222226;
+          font-size: 20px;
+          font-weight: 400;
+          background: var(--search-box-background);
+          padding: 0 10px 0 0;
+        }
+      }
+
+      .switch-search {
+        position: absolute;
+        top: calc(80px + 5px);
+        left: 0;
+        z-index: 99;
+        border-radius: 5px;
+
+        width: 100%;
+        height: auto;
+        background: var(--search-box-background);
+
+        ul {
           width: 100%;
           height: auto;
-          background: #cfd3db;
 
-          ul {
-            width: 100%;
-            height: auto;
+          li {
+            position: relative;
+            float: left;
+            display: block;
+            width: 80px;
+            height: 80px;
 
-            li {
-              position: relative;
-              float: left;
-              display: block;
-              width: 80px;
-              height: 80px;
-              text-align: center;
-              line-height: 80px;
+            img {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 50px;
+              height: 50px;
+              transition: all var(--transition-time);
+              cursor: pointer;
 
-              img {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                display: block;
-                width: 60%;
-                height: 60%;
-                transition: all var(--transition-time);
-                cursor: pointer;
-
-                &:hover {
-                  scale: 1.05;
-                }
+              &:hover {
+                scale: 1.05;
               }
             }
           }
@@ -1075,7 +1044,7 @@ onMounted(() => {
       }
     }
 
-    #main-box {
+    #content-box {
       width: 100%;
       height: auto;
 
@@ -1253,7 +1222,7 @@ onMounted(() => {
       height: 60px;
       text-align: center;
       line-height: 60px;
-      margin-top: 60px;
+      background: #b3b3b3;
 
       span {
         color: #666666;
