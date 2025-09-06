@@ -69,11 +69,11 @@
         "logo": "/svg/website/chatgpt.svg"
       },
       {
-        "name": "SVG 在线编辑器",
-        "href": "https://pmfans.com/tools/svg-editor",
-        "desc": "免费在线SVG编辑器",
-        "slug": "bits-to-svg-editor",
-        "logo": "/svg/website/online-editor-scg.svg"
+        "name": "Online-GDB",
+        "href": "https://www.onlinegdb.com/",
+        "desc": "GDB online is an online compiler and debugger tool",
+        "slug": "bits-to-onlinegdb",
+        "logo": "/svg/website/onlinegdb.svg"
       }
     ]
   },
@@ -359,6 +359,13 @@
         "desc": "专业 Docker 镜像加速服务",
         "slug": "bits-to-xuanyuan-mirror",
         "logo": "/svg/website/mirrot-xuanyuan.svg"
+      },
+      {
+        "name": "毫秒镜像",
+        "href": "https://1ms.run/",
+        "desc": "告别蜗牛速度！国内专线拉取镜像！",
+        "slug": "bits-to-1ms-mirror",
+        "logo": "/svg/website/1ms-xuanyuan.svg"
       },
       {
         "name": "阿里云镜像站",
@@ -673,6 +680,13 @@
         "desc": "Vue.js v3 官方文档",
         "slug": "bits-to-vue3-docs",
         "logo": "/svg/website/doc-vue3.svg"
+      },
+      {
+        "name": "VueUse 文档",
+        "href": "https://vueuse.org/",
+        "desc": "基础 Vue 组合式工具的集合",
+        "slug": "bits-to-vueuse-docs",
+        "logo": "/svg/website/doc-vueuse.svg"
       },
       {
         "name": "Axios 文档",
