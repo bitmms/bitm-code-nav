@@ -283,7 +283,8 @@ onMounted(() => {
 
 // 白色主题
 #container.light {
-  --container-background: #ffffff;
+  //--container-background: #ffffff;
+  --container-background: url('/img/main-bg.png');
   --search-box-background: #d0d6de;
 }
 
