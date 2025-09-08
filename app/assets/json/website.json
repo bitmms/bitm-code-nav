@@ -78,6 +78,127 @@
     ]
   },
   {
+    "category": "语言模型",
+    "isSelected": false,
+    "isMouseenter": false,
+    "iconSvg": "/svg/nav/llm.svg",
+    "children": [
+      {
+        "name": "腾讯元宝",
+        "href": "https://yuanbao.tencent.com",
+        "desc": "腾讯元宝",
+        "slug": "bits-to-tencent-yuanbao",
+        "logo": "/svg/website/ai-llm-tencent-yuanbao.svg"
+      },
+      {
+        "name": "纳米 AI 搜索",
+        "href": "https://bot.n.cn",
+        "desc": "纳米 AI 搜索",
+        "slug": "bits-to-nami-ai",
+        "logo": "/svg/website/ai-llm-nami.svg"
+      },
+      {
+        "name": "文心一言",
+        "href": "https://yiyan.baidu.com",
+        "desc": "文心一言",
+        "slug": "bits-to-wenxin-yiyan",
+        "logo": "/svg/website/ai-llm-wenxin-yiyan.svg"
+      },
+      {
+        "name": "KIMI AI",
+        "href": "https://www.kimi.com",
+        "desc": "KIMI AI",
+        "slug": "bits-to-kimi-ai",
+        "logo": "/svg/website/ai-llm-kimi.svg"
+      },
+      {
+        "name": "豆包",
+        "href": "https://www.doubao.com",
+        "desc": "豆包",
+        "slug": "bits-to-doubao",
+        "logo": "/svg/website/ai-llm-doubao.svg"
+      },
+      {
+        "name": "DeepSeek",
+        "href": "https://www.deepseek.com",
+        "desc": "DeepSeek",
+        "slug": "bits-to-deepseek",
+        "logo": "/svg/website/ai-llm-deepseek.svg"
+      },
+      {
+        "name": "讯飞星火",
+        "href": "https://xinghuo.xfyun.cn/desk",
+        "desc": "讯飞星火",
+        "slug": "bits-to-xunfei-xinghuo",
+        "logo": "/svg/website/ai-llm-xunfei-xinghuo.svg"
+      },
+      {
+        "name": "ChatGPT",
+        "href": "https://chatgpt.com",
+        "desc": "ChatGPT",
+        "slug": "bits-to-chatgpt",
+        "logo": "/svg/website/ai-llm-chatgpt.svg"
+      }
+    ]
+  },
+  {
+    "category": "公共仓库",
+    "isSelected": false,
+    "isMouseenter": false,
+    "iconSvg": "/svg/nav/repository.svg",
+    "children": [
+      {
+        "name": "Maven Repository",
+        "href": "https://mvnrepository.com",
+        "desc": "Java 依赖库下载中心",
+        "slug": "bits-to-maven-repo",
+        "logo": "/svg/website/maven.svg"
+      },
+      {
+        "name": "Github",
+        "href": "https://github.com",
+        "desc": "全球最大开源项目托管平台",
+        "slug": "bits-to-github",
+        "logo": "/svg/website/github.svg"
+      },
+      {
+        "name": "Gitee",
+        "href": "https://gitee.com",
+        "desc": "国内主流代码托管平台",
+        "slug": "bits-to-gitee",
+        "logo": "/svg/website/gitee.svg"
+      },
+      {
+        "name": "OpenHarmony 三方库中心仓",
+        "href": "https://ohpm.openharmony.cn",
+        "desc": "鸿蒙开发三方库",
+        "slug": "bits-to-openharmony-libs",
+        "logo": "/svg/website/harmonyos-repo.svg"
+      },
+      {
+        "name": "Docker",
+        "href": "https://hub.docker.com",
+        "desc": "容器化部署平台",
+        "slug": "bits-to-docker",
+        "logo": "/svg/website/docker.svg"
+      },
+      {
+        "name": "Ollama",
+        "href": "https://ollama.com",
+        "desc": "本地运行大语言模型的工具",
+        "slug": "bits-to-ollama",
+        "logo": "/svg/website/ollama.svg"
+      },
+      {
+        "name": "Vercel",
+        "href": "https://vercel.com",
+        "desc": "静态页面托管平台",
+        "slug": "bits-to-vercel",
+        "logo": "/svg/website/vercel.svg"
+      }
+    ]
+  },
+  {
     "category": "技术社区",
     "isSelected": false,
     "isMouseenter": false,
@@ -138,63 +259,6 @@
         "desc": "全球最大技术问答平台",
         "slug": "bits-to-stackoverflow",
         "logo": "/svg/website/stackoverflow.svg"
-      }
-    ]
-  },
-  {
-    "category": "公共仓库",
-    "isSelected": false,
-    "isMouseenter": false,
-    "iconSvg": "/svg/nav/repository.svg",
-    "children": [
-      {
-        "name": "Maven Repository",
-        "href": "https://mvnrepository.com",
-        "desc": "Java 依赖库下载中心",
-        "slug": "bits-to-maven-repo",
-        "logo": "/svg/website/maven.svg"
-      },
-      {
-        "name": "Github",
-        "href": "https://github.com",
-        "desc": "全球最大开源项目托管平台",
-        "slug": "bits-to-github",
-        "logo": "/svg/website/github.svg"
-      },
-      {
-        "name": "Gitee",
-        "href": "https://gitee.com",
-        "desc": "国内主流代码托管平台",
-        "slug": "bits-to-gitee",
-        "logo": "/svg/website/gitee.svg"
-      },
-      {
-        "name": "OpenHarmony 三方库中心仓",
-        "href": "https://ohpm.openharmony.cn",
-        "desc": "鸿蒙开发三方库",
-        "slug": "bits-to-openharmony-libs",
-        "logo": "/svg/website/harmonyos-repo.svg"
-      },
-      {
-        "name": "Docker",
-        "href": "https://hub.docker.com",
-        "desc": "容器化部署平台",
-        "slug": "bits-to-docker",
-        "logo": "/svg/website/docker.svg"
-      },
-      {
-        "name": "Ollama",
-        "href": "https://ollama.com",
-        "desc": "本地运行大语言模型的工具",
-        "slug": "bits-to-ollama",
-        "logo": "/svg/website/ollama.svg"
-      },
-      {
-        "name": "Vercel",
-        "href": "https://vercel.com",
-        "desc": "静态页面托管平台",
-        "slug": "bits-to-vercel",
-        "logo": "/svg/website/vercel.svg"
       }
     ]
   },
@@ -579,70 +643,6 @@
         "desc": "魔法工具",
         "slug": "bits-to-yunweiluo",
         "logo": "/svg/website/magic-02.svg"
-      }
-    ]
-  },
-  {
-    "category": "语言模型",
-    "isSelected": false,
-    "isMouseenter": false,
-    "iconSvg": "/svg/nav/llm.svg",
-    "children": [
-      {
-        "name": "腾讯元宝",
-        "href": "https://yuanbao.tencent.com",
-        "desc": "腾讯元宝",
-        "slug": "bits-to-tencent-yuanbao",
-        "logo": "/svg/website/ai-llm-tencent-yuanbao.svg"
-      },
-      {
-        "name": "纳米 AI 搜索",
-        "href": "https://bot.n.cn",
-        "desc": "纳米 AI 搜索",
-        "slug": "bits-to-nami-ai",
-        "logo": "/svg/website/ai-llm-nami.svg"
-      },
-      {
-        "name": "文心一言",
-        "href": "https://yiyan.baidu.com",
-        "desc": "文心一言",
-        "slug": "bits-to-wenxin-yiyan",
-        "logo": "/svg/website/ai-llm-wenxin-yiyan.svg"
-      },
-      {
-        "name": "KIMI AI",
-        "href": "https://www.kimi.com",
-        "desc": "KIMI AI",
-        "slug": "bits-to-kimi-ai",
-        "logo": "/svg/website/ai-llm-kimi.svg"
-      },
-      {
-        "name": "豆包",
-        "href": "https://www.doubao.com",
-        "desc": "豆包",
-        "slug": "bits-to-doubao",
-        "logo": "/svg/website/ai-llm-doubao.svg"
-      },
-      {
-        "name": "DeepSeek",
-        "href": "https://www.deepseek.com",
-        "desc": "DeepSeek",
-        "slug": "bits-to-deepseek",
-        "logo": "/svg/website/ai-llm-deepseek.svg"
-      },
-      {
-        "name": "讯飞星火",
-        "href": "https://xinghuo.xfyun.cn/desk",
-        "desc": "讯飞星火",
-        "slug": "bits-to-xunfei-xinghuo",
-        "logo": "/svg/website/ai-llm-xunfei-xinghuo.svg"
-      },
-      {
-        "name": "ChatGPT",
-        "href": "https://chatgpt.com",
-        "desc": "ChatGPT",
-        "slug": "bits-to-chatgpt",
-        "logo": "/svg/website/ai-llm-chatgpt.svg"
       }
     ]
   },
