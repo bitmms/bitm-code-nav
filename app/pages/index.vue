@@ -77,7 +77,7 @@ const mouseLeaveAsideNavItem = (nowNavItem: Category) => {
 const enterToSearch = () => {
   const searchString = searchContent.value
   if (searchString.length > 0) {
-    const targetUrl = nowSearchEngineObj.value.url + searchString
+    const targetUrl = nowSearchEngineObj.value.url + encodeURIComponent(searchString)
     if (searchData.value.tab) {
       window.open(targetUrl, '_blank', 'noopener,noreferrer')
     } else {
