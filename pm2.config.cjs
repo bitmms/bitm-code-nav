@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "bugu-code-bits",
+      name: "bitm-code-nav",
       script: "./.output/server/index.mjs",
       env: {
         PORT: 47134
