@@ -1,0 +1,9 @@
+git pull origin main
+  
+npm run build
+
+pm2 restart pm2.config.cjs
+
+pm2 save
+
+pm2 startup
