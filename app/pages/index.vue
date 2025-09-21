@@ -267,7 +267,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
             <div class="section-item">
               <ul>
                 <li v-for="(websiteItem, websiteIndex) in categoryItem.children" :key="websiteIndex">
-                  <a :href="`/redirect/${websiteItem.slug}`" :title="websiteItem.desc" target="_blank">
+                  <a :href="`${websiteItem.slug}`" :title="websiteItem.desc" target="_blank">
                     <div class="item-box">
                       <div class="item-left">
                         <div class="web-logo">
