@@ -74,6 +74,20 @@
         "desc": "GDB online is an online compiler and debugger tool",
         "slug": "/redirect/bits-to-onlinegdb",
         "logo": "/svg/website/onlinegdb.svg"
+      },
+      {
+        "name": "微信文件传输助手",
+        "href": "https://filehelper.weixin.qq.com/",
+        "desc": "微信文件传输助手网页版",
+        "slug": "/redirect/bits-to-wx-filehelper",
+        "logo": "/svg/website/wx-filehelper.svg"
+      },
+      {
+        "name": "Lemon live",
+        "href": "https://lemonlive.pages.dev/",
+        "desc": "聚合直播网站，支持虎牙、斗鱼、抖音、B站",
+        "slug": "/redirect/bits-to-lemonlive",
+        "logo": "/svg/website/lemonlive.svg"
       }
     ]
   },
@@ -960,6 +974,41 @@
         "href": "",
         "desc": "冒泡排序可视化",
         "slug": "/tool/10001.html",
+        "logo": "/svg/website/me.svg"
+      },
+      {
+        "name": "照片压缩工具",
+        "href": "",
+        "desc": "照片压缩工具",
+        "slug": "/tool/10002.html",
+        "logo": "/svg/website/me.svg"
+      },
+      {
+        "name": "名单抽奖",
+        "href": "",
+        "desc": "名单抽奖",
+        "slug": "/tool/10003.html",
+        "logo": "/svg/website/me.svg"
+      },
+      {
+        "name": "免费SSL证书申请指南",
+        "href": "",
+        "desc": "免费SSL证书申请指南",
+        "slug": "/tool/10004.html",
+        "logo": "/svg/website/me.svg"
+      },
+      {
+        "name": "单位换算器",
+        "href": "",
+        "desc": "单位换算器",
+        "slug": "/tool/10005.html",
+        "logo": "/svg/website/me.svg"
+      },
+      {
+        "name": "快乐课堂点名系统",
+        "href": "",
+        "desc": "快乐课堂点名系统",
+        "slug": "/tool/10006.html",
         "logo": "/svg/website/me.svg"
       }
     ]
