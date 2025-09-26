@@ -178,21 +178,30 @@ watch(searchContent, (newSearchString, oldSearchString) => {
 
 <template>
   <div id="container" ref="mainBoxRef">
-    <aside class="container-left-box">
-      <div class="aside-logo-box">
-        <header id="aside-logo-box">
-          <a href="/" class="logo" title="双比特 - 程序员导航站" aria-label="返回首页">
+    <div id="container-header">
+      <div id="header-logo">
+        <header id="logo-box">
+          <a href="/" class="logo-link" title="双比特 - 程序员导航站" aria-label="返回首页" rel="home">
             <img
+                class="logo-img"
                 src="/bits-logo.svg"
                 alt="双比特 - 程序员导航站"
-                loading="eager"
-            >
+                loading="eager">
           </a>
         </header>
       </div>
-
-      <div class="aside-nav-box">
-        <div id="aside-nav-box">
+      <div id="header-nav">
+        <header id="nav-box">
+          <div class="tool-item-box" @click="switchToDarkOrLight">
+            <img v-show="nowThemeType === 'light'" src="/svg/tool/tool-to-dark.svg" alt="切换为黑色主题">
+            <img v-show="nowThemeType === 'dark'" src="/svg/tool/tool-to-light.svg" alt="切换为白色主题">
+          </div>
+        </header>
+      </div>
+    </div>
+    <div id="container-content">
+      <div id="content-aside">
+        <div id="aside-box">
           <ul>
             <li v-for="(item, index) in websiteData" :key="index">
               <a :href="`#${item.category}`" :title="item.category" :aria-label="item.category">
@@ -203,7 +212,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
                     @mouseleave="mouseLeaveAsideNavItem(item)"
                 >
                   <div class="nav-icon">
-                    <span>
+              <span>
                       <img :src="item.iconSvg" :alt="item.category">
                     </span>
                   </div>
@@ -216,100 +225,90 @@ watch(searchContent, (newSearchString, oldSearchString) => {
           </ul>
         </div>
       </div>
-    </aside>
+      <div id="content-main" ref="contextBoxRef" @scroll.capture="mainContentScroll">
+        <div class="main-search">
+          <div id="search-box">
 
-    <main ref="contextBoxRef" class="container-right-box" @scroll.capture="mainContentScroll">
-      <div class="header-box">
-        <div id="header-box"/>
-      </div>
-      <div class="search-box">
-        <div id="search-box">
-
-          <div class="search-select">
-            <img
-                :src="nowSearchEngineObj.logo"
-                :alt="nowSearchEngineObj.name"
-                :title="nowSearchEngineObj.name"
-                @click="showSwitchSearchEngines"
-            >
-          </div>
-
-          <div class="search-input">
-            <input ref="searchInputDom" v-model="searchContent" type="text" placeholder="输入并搜索..." title="输入并搜索..." @keydown.enter="enterToSearch">
-          </div>
-
-          <div v-show="isShowSwitchSearchEngines" class="switch-search">
-            <ul>
-              <li v-for="(searchEngineItem, index) in searchData.list" :key="index">
-                <img
-                    :src="searchEngineItem.logo"
-                    :alt="searchEngineItem.name"
-                    :title="searchEngineItem.name"
-                    @click="selectSearchEngine(searchEngineItem.name)"
-                >
-              </li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-      <div class="content-box">
-        <main id="content-box">
-          <section v-for="(categoryItem, categoryIndex) in websiteData" :key="categoryIndex" class="main-section">
-
-            <div :id="categoryItem.category" class="section-title">
-              <a :href="`#${categoryItem.category}`" :title="categoryItem.category" :aria-label="categoryItem.category">
-                <span class="title-icon"><img :src="categoryItem.iconSvg" :alt="categoryItem.category"></span>
-                <span class="title-text">{{ categoryItem.category }}</span>
-              </a>
+            <div class="search-select">
+              <img
+                  :src="nowSearchEngineObj.logo"
+                  :alt="nowSearchEngineObj.name"
+                  :title="nowSearchEngineObj.name"
+                  @click="showSwitchSearchEngines"
+              >
             </div>
 
-            <div class="section-item">
+            <div class="search-input">
+              <input ref="searchInputDom" v-model="searchContent" type="text" placeholder="输入并搜索..." title="输入并搜索..." @keydown.enter="enterToSearch">
+            </div>
+
+            <div v-show="isShowSwitchSearchEngines" class="switch-search">
               <ul>
-                <li v-for="(websiteItem, websiteIndex) in categoryItem.children" :key="websiteIndex">
-                  <a :href="`${websiteItem.slug}`" :title="websiteItem.desc" target="_blank">
-                    <div class="item-box">
-                      <div class="item-left">
-                        <div class="web-logo">
-                          <span v-if="websiteItem.logo === ''">{{ websiteItem.name.charAt(0) }}</span>
-                          <img v-else :src="websiteItem.logo" :alt="websiteItem.name" loading="lazy">
-                        </div>
-                      </div>
-                      <div class="item-right">
-                        <div class="web-title">{{ websiteItem.name }}</div>
-                        <div class="web-desc">{{ websiteItem.desc }}</div>
-                      </div>
-                    </div>
-                  </a>
+                <li v-for="(searchEngineItem, index) in searchData.list" :key="index">
+                  <img
+                      :src="searchEngineItem.logo"
+                      :alt="searchEngineItem.name"
+                      :title="searchEngineItem.name"
+                      @click="selectSearchEngine(searchEngineItem.name)"
+                  >
                 </li>
               </ul>
             </div>
 
-          </section>
-        </main>
-      </div>
-      <div class="footer-box">
-        <footer id="footer-box">
-          <span>Copyright © 2025</span>
-          <span>Hello World</span>
-          <span>粤ICP备10086号</span>
-        </footer>
-      </div>
-    </main>
+          </div>
+        </div>
+        <div class="main-content">
+          <main id="content-box">
+            <section v-for="(categoryItem, categoryIndex) in websiteData" :key="categoryIndex" class="main-section">
 
-    <div class="container-tool-box">
+              <div :id="categoryItem.category" class="section-title">
+                <a :href="`#${categoryItem.category}`" :title="categoryItem.category" :aria-label="categoryItem.category">
+                  <span class="title-icon"><img :src="categoryItem.iconSvg" :alt="categoryItem.category"></span>
+                  <span class="title-text">{{ categoryItem.category }}</span>
+                </a>
+              </div>
+
+              <div class="section-item">
+                <ul>
+                  <li v-for="(websiteItem, websiteIndex) in categoryItem.children" :key="websiteIndex">
+                    <a :href="`${websiteItem.slug}`" :title="websiteItem.desc" target="_blank">
+                      <div class="item-box">
+                        <div class="item-left">
+                          <div class="web-logo">
+                            <span v-if="websiteItem.logo === ''">{{ websiteItem.name.charAt(0) }}</span>
+                            <img v-else :src="websiteItem.logo" :alt="websiteItem.name" loading="lazy">
+                          </div>
+                        </div>
+                        <div class="item-right">
+                          <div class="web-title">{{ websiteItem.name }}</div>
+                          <div class="web-desc">{{ websiteItem.desc }}</div>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+            </section>
+          </main>
+        </div>
+        <div class="main-footer">
+          <footer id="footer-box">
+            <span><a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备2022028266号</a></span>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <div id="container-tool">
       <div id="tool-box">
-
         <div class="tool-item-box" @click="returnToUpOrDown">
           <img v-show="isShowToUp" src="/svg/tool/tool-to-up.svg" alt="返回顶部">
           <img v-show="!isShowToUp" src="/svg/tool/tool-to-down.svg" alt="滚动到底部">
         </div>
-
         <div class="tool-item-box" @click="switchToDarkOrLight">
           <img v-show="nowThemeType === 'light'" src="/svg/tool/tool-to-dark.svg" alt="切换为黑色主题">
           <img v-show="nowThemeType === 'dark'" src="/svg/tool/tool-to-light.svg" alt="切换为白色主题">
         </div>
-
       </div>
     </div>
   </div>
@@ -334,942 +333,474 @@ watch(searchContent, (newSearchString, oldSearchString) => {
   --search-box-background: #d0d6de;
 }
 
-// 大窗口
+// 响应式变量：大窗口
 @media screen and (min-width: 1201px) {
-  /* 响应式变量 */
   #container {
+    --logo-width: 220px;
     --aside-width: 220px;
     --content-grid: 1fr 1fr 1fr 1fr;
-    --search-box-display: block;
-  }
-
-  /* 结构 */
-  #container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-    background: var(--container-background);
-    transition: background-color var(--transition-time);
-
-    .container-left-box {
-      position: relative;
-      width: var(--aside-width);
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-
-      .aside-logo-box {
-        width: 100%;
-        height: 80px;
-      }
-
-      .aside-nav-box {
-        flex: 1;
-        overflow-y: scroll;
-
-        &::-webkit-scrollbar {
-          width: 0;
-        }
-      }
-    }
-
-    .container-right-box {
-      flex: 1;
-      overflow-y: scroll;
-
-      .header-box {
-        width: 100%;
-        height: auto;
-      }
-
-      .search-box {
-        width: 100%;
-        height: auto;
-        padding: 0 3%;
-        display: var(--search-box-display);
-      }
-
-      .content-box {
-        width: 100%;
-        height: auto;
-        padding: 0 3%;
-      }
-
-      .footer-box {
-        width: 100%;
-        height: auto;
-      }
-    }
-
-    .container-tool-box {
-      position: absolute;
-      right: 25px;
-      bottom: 25px;
-      width: 40px;
-      height: auto;
-    }
-  }
-
-  /* 具体的样式 */
-  #container {
-    #aside-logo-box {
-      width: 100%;
-      height: 100%;
-
-      .logo {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 100%;
-
-        img {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          display: block;
-          width: 80%;
-          cursor: pointer;
-        }
-      }
-    }
-
-    #aside-nav-box {
-      width: 100%;
-
-      ul {
-        width: 100%;
-        height: 100%;
-
-        li {
-          width: 100%;
-          height: 40px;
-          padding: 0 15px;
-
-          .nav-item-box {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            height: 40px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all var(--transition-time);
-
-            .nav-icon {
-              width: 40px;
-              height: 40px;
-
-              span {
-                position: relative;
-                display: block;
-                width: 100%;
-                height: 100%;
-
-                img {
-                  position: absolute;
-                  top: 50%;
-                  left: 60%;
-                  transform: translateY(-50%);
-                  width: 50%;
-                  height: 50%;
-                }
-              }
-            }
-
-            .nav-title {
-              flex: 1;
-
-              span {
-                display: block;
-                width: 100%;
-                height: 100%;
-                text-align: left;
-                line-height: 40px;
-                font-size: 14px;
-                color: #333333;
-                padding-left: 10px;
-              }
-            }
-          }
-
-          .mouseenter {
-            background: #ffffff;
-          }
-
-          .active {
-            background: #e0e0e0;
-          }
-        }
-
-        li:nth-child(n + 2) {
-          margin-top: 12px;
-        }
-      }
-    }
-
-    #header-box {
-      width: 100%;
-      height: 80px;
-      background: #00b96b;
-    }
-
-    #search-box {
-      position: relative;
-      width: 100%;
-      height: 80px;
-      display: flex;
-      flex-direction: row;
-
-      .search-select {
-        position: relative;
-        width: 80px;
-        height: 80px;
-        background: var(--search-box-background);
-        border-radius: 5px 0 0 5px;
-
-        img {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-
-          display: block;
-          width: 50px;
-          height: 50px;
-          cursor: pointer;
-        }
-      }
-
-      .search-input {
-        flex: 1;
-        border-radius: 0 5px 5px 0;
-
-        input {
-          display: block;
-          width: 100%;
-          height: 100%;
-          border: none;
-          outline: none;
-          color: #222226;
-          font-size: 20px;
-          font-weight: 400;
-          background: var(--search-box-background);
-          padding: 0 10px 0 0;
-        }
-      }
-
-      .switch-search {
-        position: absolute;
-        top: calc(80px + 5px);
-        left: 0;
-        z-index: 99;
-        border-radius: 5px;
-
-        width: 100%;
-        height: auto;
-        background: var(--search-box-background);
-
-        ul {
-          width: 100%;
-          height: auto;
-
-          li {
-            position: relative;
-            float: left;
-            display: block;
-            width: 80px;
-            height: 80px;
-
-            img {
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-              width: 50px;
-              height: 50px;
-              transition: all var(--transition-time);
-              cursor: pointer;
-
-              &:hover {
-                scale: 1.05;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    #content-box {
-      width: 100%;
-      height: auto;
-
-      .main-section {
-        width: 100%;
-        height: auto;
-        margin-top: 40px;
-
-        .section-title {
-          position: relative;
-          width: 100%;
-          height: 50px;
-
-          a {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            display: inline-block;
-            transition: all var(--transition-time);
-            padding: 5px 10px 5px 0;
-
-            .title-icon {
-              position: relative;
-              float: left;
-              width: 30px;
-              height: 30px;
-
-              img {
-                position: absolute;
-                top: 50%;
-                left: 0;
-                transform: translateY(-50%);
-                width: 80%;
-                height: 80%;
-              }
-            }
-
-            .title-text {
-              font-weight: 600;
-              color: #333333;
-              line-height: 30px;
-              font-size: 16px;
-            }
-          }
-
-          a:hover {
-            scale: 1.05;
-          }
-        }
-
-        .section-item {
-          display: block;
-          width: 100%;
-          height: auto;
-
-          ul {
-            width: 100%;
-            height: auto;
-            display: grid;
-            grid-template-columns: var(--content-grid);
-            grid-row-gap: 25px;
-            grid-column-gap: 25px;
-
-            li {
-              height: 84px;
-              border-radius: 4px;
-              box-shadow: 0 2px 8px rgb(60 114 139 / 3%);
-              background: rgba(255, 255, 255, 0.6);
-              transition: all var(--transition-time);
-              cursor: pointer;
-              overflow: hidden;
-              border: 1px solid #e5e7eb;
-
-              a {
-                display: block;
-                width: 100%;
-                height: 100%;
-                padding: 12px;
-
-                .item-box {
-                  display: flex;
-                  width: 100%;
-                  height: 60px;
-
-                  .item-left {
-                    width: 60px;
-                    height: 60px;
-                    padding: 10px;
-
-                    .web-logo {
-                      position: relative;
-                      width: 40px;
-                      height: 40px;
-
-                      span {
-                        display: block;
-                        width: 40px;
-                        height: 40px;
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        text-align: center;
-                        line-height: 40px;
-                        font-size: 20px;
-                        font-weight: 500;
-                        background: #007dfe;
-                        color: #ffffff;
-                        border-radius: 50%;
-                      }
-
-                      img {
-                        display: block;
-                        width: 40px;
-                        height: 40px;
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        border-radius: 20%;
-                      }
-                    }
-                  }
-
-                  .item-right {
-                    flex: 1;
-                    display: flex;
-                    flex-direction: column;
-                    padding: 10px 0;
-                    overflow: hidden;
-
-                    .web-title {
-                      flex: 1;
-                      display: block;
-                      font-size: 14px;
-                      font-weight: 500;
-                      color: #333333;
-                      line-height: 20px;
-                      margin-bottom: 2px;
-                      white-space: nowrap;
-                      text-overflow: ellipsis;
-                      overflow: hidden;
-                    }
-
-                    .web-desc {
-                      flex: 1;
-                      display: block;
-                      color: #999999;
-                      font-size: 12px;
-                      line-height: 20px;
-                      white-space: nowrap;
-                      text-overflow: ellipsis;
-                      overflow: hidden;
-                    }
-                  }
-                }
-              }
-            }
-
-            li:hover {
-              transform: translateY(-5%) scale(1.02);
-            }
-          }
-        }
-      }
-
-      .main-section:nth-child(1) {
-        margin-top: 0;
-      }
-    }
-
-    #footer-box {
-      width: 100%;
-      height: 60px;
-      text-align: center;
-      line-height: 60px;
-      background: #b3b3b3;
-
-      span {
-        color: #666666;
-        font-size: 0.8em;
-      }
-    }
-
-    #tool-box {
-      width: 40px;
-      height: auto;
-
-      .tool-item-box {
-        position: relative;
-        width: 40px;
-        height: 40px;
-        background: #ffffff;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: all var(--transition-time);
-
-        img {
-          display: block;
-          width: 65%;
-          height: 65%;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-      }
-
-      .tool-item-box:nth-child(n + 2) {
-        margin-top: 10px;
-      }
-    }
   }
 }
 
-// 小窗口
+// 响应式变量：小窗口
 @media screen and (max-width: 1200px) {
-  /* 响应式变量 */
   #container {
+    --logo-width: 0;
     --aside-width: 0;
     --content-grid: 1fr 1fr;
-    --search-box-display: none;
   }
+}
 
-  /* 结构 */
-  #container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
+/* 布局结构 */
+#container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--container-background);
+
+  #container-header {
+    width: 100%;
+    height: 70px;
     display: flex;
     flex-direction: row;
-    background: var(--container-background);
-    transition: background-color var(--transition-time);
 
-    .container-left-box {
-      position: relative;
-      width: var(--aside-width);
-      height: 100%;
-      display: flex;
-      flex-direction: column;
+    #header-logo {
+      width: var(--logo-width);
+      height: 70px;
 
-      .aside-logo-box {
-        width: 100%;
-        height: 80px;
-      }
-
-      .aside-nav-box {
-        flex: 1;
-        overflow-y: scroll;
-
-        &::-webkit-scrollbar {
-          width: 0;
-        }
-      }
-    }
-
-    .container-right-box {
-      flex: 1;
-      overflow-y: scroll;
-
-      .header-box {
-        width: 100%;
-        height: auto;
-      }
-
-      .search-box {
-        width: 100%;
-        height: auto;
-        padding: 0 3%;
-        display: var(--search-box-display);
-      }
-
-      .content-box {
-        width: 100%;
-        height: auto;
-        padding: 0 3%;
-      }
-
-      .footer-box {
-        width: 100%;
-        height: auto;
-      }
-    }
-
-    .container-tool-box {
-      position: absolute;
-      right: 25px;
-      bottom: 25px;
-      width: 40px;
-      height: auto;
-    }
-  }
-
-  /* 具体的样式 */
-  #container {
-    #aside-logo-box {
-      width: 100%;
-      height: 100%;
-
-      .logo {
-        position: relative;
-        display: block;
+      #logo-box {
         width: 100%;
         height: 100%;
 
-        img {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          display: block;
-          width: 80%;
-          cursor: pointer;
-        }
-      }
-    }
-
-    #aside-nav-box {
-      width: 100%;
-
-      ul {
-        width: 100%;
-        height: 100%;
-
-        li {
-          width: 100%;
-          height: 40px;
-          padding: 0 15px;
-
-          .nav-item-box {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            height: 40px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all var(--transition-time);
-
-            .nav-icon {
-              width: 40px;
-              height: 40px;
-
-              span {
-                position: relative;
-                display: block;
-                width: 100%;
-                height: 100%;
-
-                img {
-                  position: absolute;
-                  top: 50%;
-                  left: 60%;
-                  transform: translateY(-50%);
-                  width: 50%;
-                  height: 50%;
-                }
-              }
-            }
-
-            .nav-title {
-              flex: 1;
-
-              span {
-                display: block;
-                width: 100%;
-                height: 100%;
-                text-align: left;
-                line-height: 40px;
-                font-size: 14px;
-                color: #333333;
-                padding-left: 10px;
-              }
-            }
-          }
-
-          .mouseenter {
-            background: #ffffff;
-          }
-
-          .active {
-            background: #e0e0e0;
-          }
-        }
-
-        li:nth-child(n + 2) {
-          margin-top: 12px;
-        }
-      }
-    }
-
-    #header-box {
-      width: 100%;
-      height: 80px;
-      background: #00b96b;
-    }
-
-    #search-box {
-      position: relative;
-      width: 100%;
-      height: 80px;
-      display: flex;
-      flex-direction: row;
-
-      .search-select {
-        position: relative;
-        width: 80px;
-        height: 80px;
-        background: var(--search-box-background);
-        border-radius: 5px 0 0 5px;
-
-        img {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-
-          display: block;
-          width: 50px;
-          height: 50px;
-          cursor: pointer;
-        }
-      }
-
-      .search-input {
-        flex: 1;
-        border-radius: 0 5px 5px 0;
-
-        input {
+        .logo-link {
+          position: relative;
           display: block;
           width: 100%;
           height: 100%;
-          border: none;
-          outline: none;
-          color: #222226;
-          font-size: 20px;
-          font-weight: 400;
-          background: var(--search-box-background);
-          padding: 0 10px 0 0;
+          transition: opacity 0.2s ease;
+          cursor: pointer;
+
+          &:hover {
+            opacity: 0.9;
+          }
+
+          .logo-img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: block;
+            width: 80%;
+          }
         }
       }
+    }
 
-      .switch-search {
-        position: absolute;
-        top: calc(80px + 5px);
-        left: 0;
-        z-index: 99;
-        border-radius: 5px;
+    #header-nav {
+      flex: 1;
 
+      #nav-box {
         width: 100%;
-        height: auto;
-        background: var(--search-box-background);
+        height: 100%;
+      }
+    }
+  }
+
+  #container-content {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+
+    #content-aside {
+      width: var(--aside-width);
+      height: 100%;
+
+
+      #aside-box {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
 
         ul {
           width: 100%;
           height: auto;
 
           li {
+            width: 100%;
+            height: 40px;
+            padding: 0 15px;
+
+            .nav-item-box {
+              display: flex;
+              flex-direction: row;
+              width: 100%;
+              height: 40px;
+              border-radius: 8px;
+              cursor: pointer;
+              transition: all var(--transition-time);
+
+              .nav-icon {
+                width: 40px;
+                height: 40px;
+
+                span {
+                  position: relative;
+                  display: block;
+                  width: 100%;
+                  height: 100%;
+
+                  img {
+                    position: absolute;
+                    top: 50%;
+                    left: 60%;
+                    transform: translateY(-50%);
+                    width: 50%;
+                    height: 50%;
+                  }
+                }
+              }
+
+              .nav-title {
+                flex: 1;
+
+                span {
+                  display: block;
+                  width: 100%;
+                  height: 100%;
+                  text-align: left;
+                  line-height: 40px;
+                  font-size: 14px;
+                  color: #333333;
+                  padding-left: 10px;
+                }
+              }
+            }
+
+            .mouseenter {
+              background: #ffffff;
+            }
+
+            .active {
+              background: #e0e0e0;
+            }
+          }
+
+          li:nth-child(n + 2) {
+            margin-top: 12px;
+          }
+        }
+      }
+    }
+
+    #content-main {
+      flex: 1;
+      overflow-y: scroll;
+      scrollbar-gutter: stable;
+
+      .main-search {
+        width: 100%;
+        height: 80px;
+        padding: 0 3%;
+
+        #search-box {
+          position: relative;
+          width: 100%;
+          height: 80px;
+          display: flex;
+          flex-direction: row;
+
+          .search-select {
             position: relative;
-            float: left;
-            display: block;
             width: 80px;
             height: 80px;
+            background: var(--search-box-background);
+            border-radius: 5px 0 0 5px;
 
             img {
               position: absolute;
               top: 50%;
               left: 50%;
               transform: translate(-50%, -50%);
+
+              display: block;
               width: 50px;
               height: 50px;
-              transition: all var(--transition-time);
               cursor: pointer;
-
-              &:hover {
-                scale: 1.05;
-              }
             }
           }
-        }
-      }
-    }
 
-    #content-box {
-      width: 100%;
-      height: auto;
+          .search-input {
+            flex: 1;
+            border-radius: 0 5px 5px 0;
 
-      .main-section {
-        width: 100%;
-        height: auto;
-        margin-top: 40px;
+            input {
+              display: block;
+              width: 100%;
+              height: 100%;
+              border: none;
+              outline: none;
+              color: #222226;
+              font-size: 20px;
+              font-weight: 400;
+              background: var(--search-box-background);
+              padding: 0 10px 0 0;
+            }
+          }
 
-        .section-title {
-          position: relative;
-          width: 100%;
-          height: 50px;
-
-          a {
+          .switch-search {
             position: absolute;
-            top: 50%;
+            top: calc(80px + 5px);
             left: 0;
-            transform: translateY(-50%);
-            display: inline-block;
-            transition: all var(--transition-time);
-            padding: 5px 10px 5px 0;
+            z-index: 99;
+            border-radius: 5px;
 
-            .title-icon {
-              position: relative;
-              float: left;
-              width: 30px;
-              height: 30px;
-
-              img {
-                position: absolute;
-                top: 50%;
-                left: 0;
-                transform: translateY(-50%);
-                width: 80%;
-                height: 80%;
-              }
-            }
-
-            .title-text {
-              font-weight: 600;
-              color: #333333;
-              line-height: 30px;
-              font-size: 16px;
-            }
-          }
-
-          a:hover {
-            scale: 1.05;
-          }
-        }
-
-        .section-item {
-          display: block;
-          width: 100%;
-          height: auto;
-
-          ul {
             width: 100%;
             height: auto;
-            display: grid;
-            grid-template-columns: var(--content-grid);
-            grid-row-gap: 25px;
-            grid-column-gap: 25px;
+            background: var(--search-box-background);
 
-            li {
-              height: 84px;
-              border-radius: 4px;
-              box-shadow: 0 2px 8px rgb(60 114 139 / 3%);
-              background: rgba(255, 255, 255, 0.6);
-              transition: all var(--transition-time);
-              cursor: pointer;
-              overflow: hidden;
-              border: 1px solid #e5e7eb;
+            ul {
+              width: 100%;
+              height: auto;
 
-              a {
+              li {
+                position: relative;
+                float: left;
                 display: block;
-                width: 100%;
-                height: 100%;
-                padding: 12px;
+                width: 80px;
+                height: 80px;
 
-                .item-box {
-                  display: flex;
-                  width: 100%;
-                  height: 60px;
+                img {
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  width: 50px;
+                  height: 50px;
+                  transition: all var(--transition-time);
+                  cursor: pointer;
 
-                  .item-left {
-                    width: 60px;
-                    height: 60px;
-                    padding: 10px;
-
-                    .web-logo {
-                      position: relative;
-                      width: 40px;
-                      height: 40px;
-
-                      span {
-                        display: block;
-                        width: 40px;
-                        height: 40px;
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        text-align: center;
-                        line-height: 40px;
-                        font-size: 20px;
-                        font-weight: 500;
-                        background: #007dfe;
-                        color: #ffffff;
-                        border-radius: 50%;
-                      }
-
-                      img {
-                        display: block;
-                        width: 40px;
-                        height: 40px;
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        border-radius: 20%;
-                      }
-                    }
-                  }
-
-                  .item-right {
-                    flex: 1;
-                    display: flex;
-                    flex-direction: column;
-                    padding: 10px 0;
-                    overflow: hidden;
-
-                    .web-title {
-                      flex: 1;
-                      display: block;
-                      font-size: 14px;
-                      font-weight: 500;
-                      color: #333333;
-                      line-height: 20px;
-                      margin-bottom: 2px;
-                      white-space: nowrap;
-                      text-overflow: ellipsis;
-                      overflow: hidden;
-                    }
-
-                    .web-desc {
-                      flex: 1;
-                      display: block;
-                      color: #999999;
-                      font-size: 12px;
-                      line-height: 20px;
-                      white-space: nowrap;
-                      text-overflow: ellipsis;
-                      overflow: hidden;
-                    }
+                  &:hover {
+                    scale: 1.05;
                   }
                 }
               }
             }
-
-            li:hover {
-              transform: translateY(-5%) scale(1.02);
-            }
           }
         }
       }
 
-      .main-section:nth-child(1) {
-        margin-top: 0;
+      .main-content {
+        width: 100%;
+        height: auto;
+        padding: 0 3%;
+
+        #content-box {
+          width: 100%;
+          height: auto;
+
+          .main-section {
+            width: 100%;
+            height: auto;
+            margin-top: 40px;
+
+            .section-title {
+              position: relative;
+              width: 100%;
+              height: 50px;
+
+              a {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                display: inline-block;
+                transition: all var(--transition-time);
+                padding: 5px 10px 5px 0;
+
+                .title-icon {
+                  position: relative;
+                  float: left;
+                  width: 30px;
+                  height: 30px;
+
+                  img {
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    transform: translateY(-50%);
+                    width: 80%;
+                    height: 80%;
+                  }
+                }
+
+                .title-text {
+                  font-weight: 600;
+                  color: #333333;
+                  line-height: 30px;
+                  font-size: 16px;
+                }
+              }
+
+              a:hover {
+                scale: 1.05;
+              }
+            }
+
+            .section-item {
+              display: block;
+              width: 100%;
+              height: auto;
+
+              ul {
+                width: 100%;
+                height: auto;
+                display: grid;
+                grid-template-columns: var(--content-grid);
+                grid-row-gap: 25px;
+                grid-column-gap: 25px;
+
+                li {
+                  height: 84px;
+                  border-radius: 4px;
+                  box-shadow: 0 2px 8px rgb(60 114 139 / 3%);
+                  background: rgba(255, 255, 255, 0.6);
+                  transition: all var(--transition-time);
+                  cursor: pointer;
+                  overflow: hidden;
+                  border: 1px solid #e5e7eb;
+
+                  a {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    padding: 12px;
+
+                    .item-box {
+                      display: flex;
+                      width: 100%;
+                      height: 60px;
+
+                      .item-left {
+                        width: 60px;
+                        height: 60px;
+                        padding: 10px;
+
+                        .web-logo {
+                          position: relative;
+                          width: 40px;
+                          height: 40px;
+
+                          span {
+                            display: block;
+                            width: 40px;
+                            height: 40px;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            text-align: center;
+                            line-height: 40px;
+                            font-size: 20px;
+                            font-weight: 500;
+                            background: #007dfe;
+                            color: #ffffff;
+                            border-radius: 50%;
+                          }
+
+                          img {
+                            display: block;
+                            width: 40px;
+                            height: 40px;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            border-radius: 20%;
+                          }
+                        }
+                      }
+
+                      .item-right {
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        padding: 10px 0;
+                        overflow: hidden;
+
+                        .web-title {
+                          flex: 1;
+                          display: block;
+                          font-size: 14px;
+                          font-weight: 500;
+                          color: #333333;
+                          line-height: 20px;
+                          margin-bottom: 2px;
+                          white-space: nowrap;
+                          text-overflow: ellipsis;
+                          overflow: hidden;
+                        }
+
+                        .web-desc {
+                          flex: 1;
+                          display: block;
+                          color: #999999;
+                          font-size: 12px;
+                          line-height: 20px;
+                          white-space: nowrap;
+                          text-overflow: ellipsis;
+                          overflow: hidden;
+                        }
+                      }
+                    }
+                  }
+                }
+
+                li:hover {
+                  transform: translateY(-5%) scale(1.02);
+                }
+              }
+            }
+          }
+
+          .main-section:nth-child(1) {
+            margin-top: 0;
+          }
+        }
+      }
+
+      .main-footer {
+        width: 100%;
+        height: 60px;
+
+        #footer-box {
+          width: 100%;
+          height: 60px;
+          text-align: center;
+          line-height: 60px;
+          background: #b3b3b3;
+
+          span a {
+            color: #666666;
+            font-size: 0.8em;
+
+            &:hover {
+              color: #60a5fa;
+            }
+          }
+        }
       }
     }
+  }
 
-    #footer-box {
-      width: 100%;
-      height: 60px;
-      text-align: center;
-      line-height: 60px;
-      background: #b3b3b3;
-
-      span {
-        color: #666666;
-        font-size: 0.8em;
-      }
-    }
+  #container-tool {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    width: 40px;
+    height: auto;
 
     #tool-box {
       width: 40px;
