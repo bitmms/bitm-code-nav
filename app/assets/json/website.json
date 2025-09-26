@@ -6,6 +6,13 @@
     "iconSvg": "/svg/nav/recommend.svg",
     "children": [
       {
+        "name": "丘盾CDN",
+        "href": "https://www.scdn.koxiuqiu.cc/",
+        "desc": "纯公益内容分发网络加速",
+        "slug": "/redirect/bits-to-qiudun-cdn",
+        "logo": "/svg/website/qiudun-cdn.svg"
+      },
+      {
         "name": "哔哩哔哩",
         "href": "https://www.bilibili.com",
         "desc": "弹幕视频社区，互动性强",
