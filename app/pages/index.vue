@@ -295,6 +295,8 @@ watch(searchContent, (newSearchString, oldSearchString) => {
         <div class="main-footer">
           <footer id="footer-box">
             <span><a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备2022028266号</a></span>
+            &nbsp;
+            <span>本站由<a href="https://www.scdn.koxiuqiu.cc/" target="_blank">Qiudun CDN</a>提供加速服务</span>
           </footer>
         </div>
       </div>
