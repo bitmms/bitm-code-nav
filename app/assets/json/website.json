@@ -1017,6 +1017,13 @@
         "desc": "快乐课堂点名系统",
         "slug": "/tool/10006.html",
         "logo": "/svg/website/me.svg"
+      },
+      {
+        "name": "大声密谋",
+        "href": "",
+        "desc": "水哥创意赛：大声密谋4.0",
+        "slug": "/tool/10007.html",
+        "logo": "/svg/website/me.svg"
       }
     ]
   }
