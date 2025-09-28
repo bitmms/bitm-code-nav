@@ -1031,6 +1031,13 @@
         "desc": "灵活可控的 UUID 生成器",
         "slug": "/tool/10008.html",
         "logo": "/svg/website/me.svg"
+      },
+      {
+        "name": "随机数生成器",
+        "href": "",
+        "desc": "轻松生成指定范围内的随机数",
+        "slug": "/tool/10009.html",
+        "logo": "/svg/website/me.svg"
       }
     ]
   }

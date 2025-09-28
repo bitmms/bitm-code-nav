@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机数生成器 - 自定义范围和数量的随机数工具</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B5CF6', // 紫色作为主色调，代表随机和创意
+                        secondary: '#10B981',
+                        dark: '#1F2937',
+                        light: '#F9FAFB'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'custom': '0 10px 25px -5px rgba(139, 92, 246, 0.1), 0 8px 10px -6px rgba(139, 92, 246, 0.1)',
+                        'custom-hover': '0 20px 25px -5px rgba(139, 92, 246, 0.2), 0 10px 10px -5px rgba(139, 92, 246, 0.1)',
+                    }
+                },
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-gradient {
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .transition-custom {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .input-focus {
+                @apply focus:ring-2 focus:ring-primary focus:border-primary transition-custom;
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-50 text-dark min-h-screen flex flex-col">
+    <!-- 导航栏 -->
+    <header class="bg-white shadow-sm sticky top-0 z-50 transition-custom">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa fa-random text-primary text-2xl"></i>
+                <h1 class="text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-secondary text-gradient">随机数生成器</h1>
+            </div>
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#" class="text-gray-600 hover:text-primary transition-custom">主页</a>
+                <a href="#features" class="text-gray-600 hover:text-primary transition-custom">功能</a>
+                <a href="#about" class="text-gray-600 hover:text-primary transition-custom">关于</a>
+            </nav>
+            <button class="md:hidden text-gray-600 focus:outline-none" id="menu-toggle">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端菜单 -->
+        <div class="md:hidden hidden bg-white border-t" id="mobile-menu">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+                <a href="#" class="py-2 text-gray-600 hover:text-primary transition-custom">主页</a>
+                <a href="#features" class="py-2 text-gray-600 hover:text-primary transition-custom">功能</a>
+                <a href="#about" class="py-2 text-gray-600 hover:text-primary transition-custom">关于</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="flex-grow container mx-auto px-4 py-8 md:py-16">
+        <!-- 介绍部分 -->
+        <section class="text-center mb-12 max-w-3xl mx-auto">
+            <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">自定义随机数生成工具</h2>
+            <p class="text-gray-600 text-lg mb-8">轻松生成指定范围内的随机数，可自定义数量、是否允许重复值以及是否生成整数</p>
+            <div class="flex justify-center">
+                <a href="#generator" class="bg-primary hover:bg-primary/90 text-white font-medium px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-custom flex items-center">
+                    开始生成 <i class="fa fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </section>
+        
+        <!-- 生成器部分 -->
+        <section id="generator" class="bg-white rounded-xl shadow-custom p-6 md:p-8 mb-16 transform hover:shadow-custom-hover transition-custom">
+            <div class="grid md:grid-cols-12 gap-8">
+                <!-- 左侧：选项设置 -->
+                <div class="md:col-span-5 space-y-6">
+                    <h3 class="text-xl font-bold border-b pb-2">生成选项</h3>
+                    
+                    <!-- 范围设置 -->
+                    <div class="space-y-4">
+                        <div>
+                            <label for="min-value" class="block text-gray-700 font-medium mb-2">最小值</label>
+                            <input type="number" id="min-value" value="0" step="any" 
+                                   class="w-full p-3 border border-gray-300 rounded-lg input-focus">
+                        </div>
+                        
+                        <div>
+                            <label for="max-value" class="block text-gray-700 font-medium mb-2">最大值</label>
+                            <input type="number" id="max-value" value="100" step="any" 
+                                   class="w-full p-3 border border-gray-300 rounded-lg input-focus">
+                        </div>
+                    </div>
+                    
+                    <!-- 生成数量 -->
+                    <div>
+                        <label for="count" class="block text-gray-700 font-medium mb-2">生成数量</label>
+                        <div class="flex items-center">
+                            <button id="decrease-count" class="p-3 border border-gray-300 rounded-l-lg hover:bg-gray-100 transition-custom">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <input type="number" id="count" min="1" max="100" value="10" 
+                                   class="w-full p-3 border-y border-gray-300 text-center input-focus">
+                            <button id="increase-count" class="p-3 border border-gray-300 rounded-r-lg hover:bg-gray-100 transition-custom">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 高级选项 -->
+                    <div class="pt-2">
+                        <h4 class="font-medium mb-3">高级选项</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="allow-duplicates" checked 
+                                       class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                <label for="allow-duplicates" class="ml-2 text-gray-700">允许重复值</label>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <input type="checkbox" id="integer-only" checked 
+                                       class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                <label for="integer-only" class="ml-2 text-gray-700">仅生成整数</label>
+                            </div>
+                            
+                            <div id="decimal-places-container" class="hidden">
+                                <label for="decimal-places" class="block text-gray-700 font-medium mb-2">小数位数</label>
+                                <input type="number" id="decimal-places" min="0" max="10" value="2" 
+                                       class="w-full p-2 border border-gray-300 rounded-lg input-focus">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 按钮组 -->
+                    <div class="flex space-x-3 pt-2">
+                        <button id="generate-btn" class="flex-1 bg-primary hover:bg-primary/90 text-white font-medium px-4 py-3 rounded-lg shadow-md hover:shadow-lg transition-custom flex items-center justify-center">
+                            <i class="fa fa-refresh mr-2"></i> 生成随机数
+                        </button>
+                        <button id="reset-btn" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium px-4 py-3 rounded-lg transition-custom flex items-center justify-center">
+                            <i class="fa fa-undo mr-2"></i> 重置
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 右侧：结果展示 -->
+                <div class="md:col-span-7">
+                    <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+                        <h3 class="text-xl font-bold">生成结果</h3>
+                        <div class="flex space-x-2">
+                            <button id="copy-all" class="text-gray-600 hover:text-primary transition-custom p-2 rounded hover:bg-gray-100 flex items-center" title="复制所有随机数">
+                                <i class="fa fa-copy mr-1"></i> 复制全部
+                            </button>
+                            <button id="download" class="text-gray-600 hover:text-primary transition-custom p-2 rounded hover:bg-gray-100 flex items-center" title="下载随机数列表">
+                                <i class="fa fa-download mr-1"></i> 下载
+                            </button>
+                            <button id="sort-numbers" class="text-gray-600 hover:text-primary transition-custom p-2 rounded hover:bg-gray-100 flex items-center" title="排序随机数">
+                                <i class="fa fa-sort mr-1"></i> 排序
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="number-results" class="border border-gray-200 rounded-lg max-h-[500px] overflow-y-auto p-4 space-y-2 bg-gray-50">
+                        <!-- 随机数将在这里动态生成 -->
+                        <div class="text-gray-500 italic text-center py-8">点击生成按钮开始创建随机数</div>
+                    </div>
+                    
+                    <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+                        <div class="bg-gray-50 p-3 rounded-lg border border-gray-200">
+                            <div class="text-gray-500">总和</div>
+                            <div id="sum-result" class="font-semibold">-</div>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-lg border border-gray-200">
+                            <div class="text-gray-500">平均值</div>
+                            <div id="average-result" class="font-semibold">-</div>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-lg border border-gray-200">
+                            <div class="text-gray-500">最小值</div>
+                            <div id="min-result" class="font-semibold">-</div>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-lg border border-gray-200">
+                            <div class="text-gray-500">最大值</div>
+                            <div id="max-result" class="font-semibold">-</div>
+                        </div>
+                    </div>
+                    
+                    <div id="notification" class="hidden mt-4 p-3 rounded-lg bg-green-100 text-green-800 border border-green-200 flex items-center justify-between animate-fade-in">
+                        <span id="notification-text">随机数已复制到剪贴板</span>
+                        <button id="close-notification" class="text-green-800 hover:text-green-600">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 功能特点部分 -->
+        <section id="features" class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">功能特点</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl shadow-custom p-6 transform hover:shadow-custom-hover transition-custom hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-sliders text-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">灵活的范围设置</h3>
+                    <p class="text-gray-600">支持任意范围的数值设置，无论是正整数、负整数还是小数，都能满足您的需求。</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-custom p-6 transform hover:shadow-custom-hover transition-custom hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-calculator text-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">批量生成</h3>
+                    <p class="text-gray-600">一次可生成1-100个随机数，满足您对大量随机数据的需求，提高工作效率。</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-custom p-6 transform hover:shadow-custom-hover transition-custom hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-wrench text-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">高级选项</h3>
+                    <p class="text-gray-600">可控制是否允许重复值、是否仅生成整数以及小数位数，满足各种场景需求。</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 关于部分 -->
+        <section id="about" class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">关于随机数生成</h2>
+            <div class="bg-white rounded-xl shadow-custom p-6 md:p-8 transform hover:shadow-custom-hover transition-custom">
+                <p class="text-gray-700 mb-4">随机数生成器用于创建不可预测的数值，广泛应用于游戏、密码学、统计采样、模拟和抽奖等场景。</p>
+                
+                <h3 class="text-xl font-bold mt-6 mb-3">伪随机数与真随机数</h3>
+                <p class="text-gray-700 mb-4">本工具使用计算机算法生成伪随机数，这些数值虽然看起来随机，但实际上是通过确定性算法生成的。它们具有良好的统计随机性，适用于大多数非加密场景。</p>
+                
+                <h3 class="text-xl font-bold mt-6 mb-3">使用提示</h3>
+                <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                    <li>确保最小值小于最大值，否则会自动交换这两个值</li>
+                    <li>当不允许重复值且生成数量大于范围大小时，会自动调整为允许重复</li>
+                    <li>所有计算都在您的浏览器中进行，不会上传到任何服务器</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <i class="fa fa-random text-primary text-xl"></i>
+                    <span class="font-bold">随机数生成器</span>
+                </div>
+                <div class="text-gray-400 text-sm">
+                    &copy; 2023 随机数生成器 | 所有计算均在本地完成，保护您的隐私
+                </div>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition-custom">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-custom">
+                        <i class="fa fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-custom">
+                        <i class="fa fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // DOM元素
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const minValue = document.getElementById('min-value');
+        const maxValue = document.getElementById('max-value');
+        const count = document.getElementById('count');
+        const decreaseCount = document.getElementById('decrease-count');
+        const increaseCount = document.getElementById('increase-count');
+        const allowDuplicates = document.getElementById('allow-duplicates');
+        const integerOnly = document.getElementById('integer-only');
+        const decimalPlacesContainer = document.getElementById('decimal-places-container');
+        const decimalPlaces = document.getElementById('decimal-places');
+        const generateBtn = document.getElementById('generate-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const numberResults = document.getElementById('number-results');
+        const copyAllBtn = document.getElementById('copy-all');
+        const downloadBtn = document.getElementById('download');
+        const sortNumbersBtn = document.getElementById('sort-numbers');
+        const sumResult = document.getElementById('sum-result');
+        const averageResult = document.getElementById('average-result');
+        const minResult = document.getElementById('min-result');
+        const maxResult = document.getElementById('max-result');
+        const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notification-text');
+        const closeNotification = document.getElementById('close-notification');
+        
+        // 存储当前生成的随机数
+        let currentNumbers = [];
+        let isSorted = false;
+        
+        // 移动端菜单切换
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 整数/小数切换
+        integerOnly.addEventListener('change', () => {
+            if (integerOnly.checked) {
+                decimalPlacesContainer.classList.add('hidden');
+                // 确保步长为1
+                minValue.step = 1;
+                maxValue.step = 1;
+                // 转换为整数
+                minValue.value = Math.round(parseFloat(minValue.value) || 0);
+                maxValue.value = Math.round(parseFloat(maxValue.value) || 100);
+            } else {
+                decimalPlacesContainer.classList.remove('hidden');
+                // 允许小数步长
+                minValue.step = 'any';
+                maxValue.step = 'any';
+            }
+        });
+        
+        // 生成数量调整
+        decreaseCount.addEventListener('click', () => {
+            if (parseInt(count.value) > 1) {
+                count.value = parseInt(count.value) - 1;
+            }
+        });
+        
+        increaseCount.addEventListener('click', () => {
+            if (parseInt(count.value) < 100) {
+                count.value = parseInt(count.value) + 1;
+            }
+        });
+        
+        // 显示通知
+        function showNotification(text) {
+            notificationText.textContent = text;
+            notification.classList.remove('hidden');
+            
+            // 添加淡入动画
+            notification.classList.add('animate-pulse');
+            setTimeout(() => {
+                notification.classList.remove('animate-pulse');
+            }, 1000);
+            
+            // 5秒后自动关闭
+            setTimeout(() => {
+                hideNotification();
+            }, 5000);
+        }
+        
+        // 隐藏通知
+        function hideNotification() {
+            notification.classList.add('hidden');
+        }
+        
+        closeNotification.addEventListener('click', hideNotification);
+        
+        // 复制到剪贴板
+        async function copyToClipboard(text) {
+            try {
+                await navigator.clipboard.writeText(text);
+                return true;
+            } catch (err) {
+                console.error('无法复制文本: ', err);
+                return false;
+            }
+        }
+        
+        // 下载随机数列表
+        function downloadNumbers(numbers) {
+            const text = numbers.join('\n');
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `random-numbers-${new Date().toISOString().slice(0,10)}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 0);
+        }
+        
+        // 生成随机数
+        function generateRandomNumbers() {
+            // 获取用户输入
+            let min = parseFloat(minValue.value) || 0;
+            let max = parseFloat(maxValue.value) || 100;
+            const countValue = parseInt(count.value) || 10;
+            const duplicatesAllowed = allowDuplicates.checked;
+            const integersOnly = integerOnly.checked;
+            const decimals = parseInt(decimalPlaces.value) || 2;
+            
+            // 确保min <= max
+            if (min > max) {
+                [min, max] = [max, min];
+                // 更新输入框显示
+                minValue.value = min;
+                maxValue.value = max;
+            }
+            
+            // 检查是否允许重复且数量超过范围
+            const rangeSize = integersOnly ? (max - min + 1) : Infinity;
+            if (!duplicatesAllowed && countValue > rangeSize) {
+                allowDuplicates.checked = true;
+                showNotification(`生成数量超过范围大小，已自动允许重复值`);
+            }
+            
+            const numbers = [];
+            const usedNumbers = new Set();
+            
+            for (let i = 0; i < countValue; i++) {
+                let number;
+                
+                // 生成随机数
+                if (integersOnly) {
+                    // 整数
+                    number = Math.floor(Math.random() * (max - min + 1)) + min;
+                } else {
+                    // 小数
+                    number = Math.random() * (max - min) + min;
+                    // 保留指定小数位数
+                    number = Number(number.toFixed(decimals));
+                }
+                
+                // 处理不允许重复的情况
+                if (!duplicatesAllowed) {
+                    // 如果已存在，重新生成
+                    while (usedNumbers.has(number)) {
+                        if (integersOnly) {
+                            number = Math.floor(Math.random() * (max - min + 1)) + min;
+                        } else {
+                            number = Math.random() * (max - min) + min;
+                            number = Number(number.toFixed(decimals));
+                        }
+                    }
+                    usedNumbers.add(number);
+                }
+                
+                numbers.push(number);
+            }
+            
+            currentNumbers = [...numbers]; // 保存原始数组
+            isSorted = false;
+            return numbers;
+        }
+        
+        // 计算统计数据
+        function calculateStats(numbers) {
+            if (numbers.length === 0) return null;
+            
+            const sum = numbers.reduce((acc, num) => acc + num, 0);
+            const average = sum / numbers.length;
+            const min = Math.min(...numbers);
+            const max = Math.max(...numbers);
+            
+            return {
+                sum,
+                average,
+                min,
+                max
+            };
+        }
+        
+        // 显示统计数据
+        function displayStats(stats) {
+            if (!stats) {
+                sumResult.textContent = '-';
+                averageResult.textContent = '-';
+                minResult.textContent = '-';
+                maxResult.textContent = '-';
+                return;
+            }
+            
+            // 格式化显示
+            sumResult.textContent = formatNumber(stats.sum);
+            averageResult.textContent = formatNumber(stats.average);
+            minResult.textContent = formatNumber(stats.min);
+            maxResult.textContent = formatNumber(stats.max);
+        }
+        
+        // 格式化数字显示
+        function formatNumber(number) {
+            // 如果是整数，不显示小数
+            if (Number.isInteger(number)) {
+                return number.toString();
+            }
+            // 否则最多显示6位小数
+            return number.toFixed(Math.min(6, Math.max(0, decimalPlaces.value)));
+        }
+        
+        // 显示随机数结果
+        function displayNumbers(numbers) {
+            numberResults.innerHTML = '';
+            
+            if (numbers.length === 0) {
+                numberResults.innerHTML = '<div class="text-gray-500 italic text-center py-8">没有生成随机数</div>';
+                displayStats(null);
+                return;
+            }
+            
+            numbers.forEach((number, index) => {
+                const numberElement = document.createElement('div');
+                numberElement.className = 'flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 hover:border-primary transition-custom group';
+                numberElement.innerHTML = `
+                    <div class="flex items-center">
+                        <span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm mr-3">${index + 1}</span>
+                        <span class="font-mono text-sm md:text-base">${formatNumber(number)}</span>
+                    </div>
+                    <button class="copy-single text-gray-400 hover:text-primary transition-custom opacity-0 group-hover:opacity-100" data-index="${index}">
+                        <i class="fa fa-copy"></i>
+                    </button>
+                `;
+                numberResults.appendChild(numberElement);
+            });
+            
+            // 添加复制单个随机数的事件监听
+            document.querySelectorAll('.copy-single').forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    const index = parseInt(e.currentTarget.dataset.index);
+                    const number = numbers[index];
+                    const success = await copyToClipboard(formatNumber(number));
+                    if (success) {
+                        showNotification(`随机数已复制到剪贴板`);
+                    } else {
+                        showNotification(`复制失败，请手动复制`);
+                    }
+                });
+            });
+            
+            // 计算并显示统计数据
+            const stats = calculateStats(numbers);
+            displayStats(stats);
+        }
+        
+        // 排序随机数
+        function toggleSortNumbers() {
+            if (currentNumbers.length === 0) {
+                showNotification('没有可排序的随机数，请先生成');
+                return;
+            }
+            
+            let sortedNumbers;
+            if (isSorted) {
+                // 恢复原始顺序
+                sortedNumbers = [...currentNumbers];
+                sortNumbersBtn.innerHTML = '<i class="fa fa-sort mr-1"></i> 排序';
+            } else {
+                // 升序排序
+                sortedNumbers = [...currentNumbers].sort((a, b) => a - b);
+                sortNumbersBtn.innerHTML = '<i class="fa fa-unsort mr-1"></i> 恢复';
+            }
+            
+            isSorted = !isSorted;
+            displayNumbers(sortedNumbers);
+        }
+        
+        // 生成按钮点击事件
+        generateBtn.addEventListener('click', () => {
+            // 添加加载状态
+            generateBtn.disabled = true;
+            generateBtn.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i> 生成中...';
+            
+            // 生成随机数（使用setTimeout模拟异步操作，避免UI阻塞）
+            setTimeout(() => {
+                const numbers = generateRandomNumbers();
+                displayNumbers(numbers);
+                
+                // 恢复按钮状态
+                generateBtn.disabled = false;
+                generateBtn.innerHTML = '<i class="fa fa-refresh mr-2"></i> 生成随机数';
+                
+                showNotification(`已生成 ${numbers.length} 个随机数`);
+            }, 100);
+        });
+        
+        // 重置按钮点击事件
+        resetBtn.addEventListener('click', () => {
+            // 重置为默认值
+            minValue.value = 0;
+            maxValue.value = 100;
+            count.value = 10;
+            allowDuplicates.checked = true;
+            integerOnly.checked = true;
+            decimalPlacesContainer.classList.add('hidden');
+            minValue.step = 1;
+            maxValue.step = 1;
+            
+            // 清空结果
+            numberResults.innerHTML = '<div class="text-gray-500 italic text-center py-8">点击生成按钮开始创建随机数</div>';
+            currentNumbers = [];
+            isSorted = false;
+            displayStats(null);
+            sortNumbersBtn.innerHTML = '<i class="fa fa-sort mr-1"></i> 排序';
+            
+            showNotification('已重置所有选项');
+        });
+        
+        // 复制所有随机数
+        copyAllBtn.addEventListener('click', async () => {
+            if (currentNumbers.length === 0) {
+                showNotification('没有可复制的随机数，请先生成');
+                return;
+            }
+            
+            const numbersText = currentNumbers.map(num => formatNumber(num)).join('\n');
+            const success = await copyToClipboard(numbersText);
+            
+            if (success) {
+                showNotification(`已复制 ${currentNumbers.length} 个随机数到剪贴板`);
+            } else {
+                showNotification(`复制失败，请手动复制`);
+            }
+        });
+        
+        // 下载随机数
+        downloadBtn.addEventListener('click', () => {
+            if (currentNumbers.length === 0) {
+                showNotification('没有可下载的随机数，请先生成');
+                return;
+            }
+            
+            const numbersText = currentNumbers.map(num => formatNumber(num));
+            downloadNumbers(numbersText);
+            showNotification(`已下载 ${currentNumbers.length} 个随机数`);
+        });
+        
+        // 排序按钮点击事件
+        sortNumbersBtn.addEventListener('click', toggleSortNumbers);
+        
+        // 页面加载时的初始化
+        window.addEventListener('load', () => {
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        
+                        // 关闭移动菜单
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+            
+            // 初始生成随机数
+            setTimeout(() => {
+                const numbers = generateRandomNumbers();
+                displayNumbers(numbers);
+            }, 500);
+        });
+    </script>
+</body>
+</html>
+    
