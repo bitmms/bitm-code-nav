@@ -8,8 +8,8 @@ import type SearchEngine from "~/assets/ts/SearchEngine";
 
 // ======= DOM Refs =======
 const contextBoxRef: Ref<HTMLElement | null> = ref(null)    // 主区域 dom 元素，便于处理滚动事件
-const mainBoxRef: Ref<HTMLElement | null> = ref(null)    // 主区域 dom 元素，便于处理滚动事件
-const searchInputDom: Ref<HTMLElement | null> = ref(null)    // 主区域 dom 元素，便于处理滚动事件
+const mainBoxRef: Ref<HTMLElement | null> = ref(null)       // 主区域 dom 元素，便于处理滚动事件
+const searchInputDom: Ref<HTMLElement | null> = ref(null)   // 主区域 dom 元素，便于处理滚动事件
 
 // ======= State =======
 const websiteData: Ref<Category[]> = ref(webSiteJsonData)   // json 数据
@@ -17,7 +17,7 @@ const searchData: Ref<SearchVO> = ref(searchJsonData)       // json 数据
 const searchContent: Ref<string> = ref('')                  // 用户当前等待搜索的字符串
 const searchType: Ref<string> = ref('bing')                 // 用户当前使用的搜索引擎名称
 const isShowToUp: Ref<boolean> = ref(false)                 // 记录当前是否显示返回底部按钮
-const nowThemeType: Ref<string> = ref('light')                   // 记录当前的主题类型：dark、light
+const nowThemeType: Ref<string> = ref('light')              // 记录当前的主题类型：dark、light
 const isShowSwitchSearchEngines: Ref<boolean> = ref(false)  // 记录当前是否显示切换搜索引擎的盒子
 
 // 返回顶部、返回底部
@@ -178,7 +178,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
 
 <template>
   <div id="container" ref="mainBoxRef">
-    <div id="container-header">
+    <header id="container-header">
       <div id="header-logo">
         <header id="logo-box">
           <a href="/" class="logo-link" title="双比特 - 程序员导航站" aria-label="返回首页" rel="home">
@@ -190,15 +190,14 @@ watch(searchContent, (newSearchString, oldSearchString) => {
           </a>
         </header>
       </div>
-      <div id="header-nav">
-        <header id="nav-box">
-          <div class="tool-item-box" @click="switchToDarkOrLight">
-            <img v-show="nowThemeType === 'light'" src="/svg/tool/tool-to-dark.svg" alt="切换为黑色主题">
-            <img v-show="nowThemeType === 'dark'" src="/svg/tool/tool-to-light.svg" alt="切换为白色主题">
-          </div>
-        </header>
+      <div id="header-content">
+        <div class="nav-box"></div>
+        <div class="tool-of-dark-and-light" @click="switchToDarkOrLight">
+          <img v-show="nowThemeType === 'dark'" src="/svg/tool/tool-to-dark.svg" alt="切换为黑色主题">
+          <img v-show="nowThemeType === 'light'" src="/svg/tool/tool-to-light.svg" alt="切换为白色主题">
+        </div>
       </div>
-    </div>
+    </header>
     <div id="container-content">
       <div id="content-aside">
         <div id="aside-box">
@@ -212,7 +211,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
                     @mouseleave="mouseLeaveAsideNavItem(item)"
                 >
                   <div class="nav-icon">
-              <span>
+                    <span>
                       <img :src="item.iconSvg" :alt="item.category">
                     </span>
                   </div>
@@ -296,7 +295,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
           <footer id="footer-box">
             <span><a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备2022028266号</a></span>
             &nbsp;
-            <span>本站由<a href="https://www.scdn.koxiuqiu.cc/" target="_blank">Qiudun CDN</a>提供加速服务</span>
+            <span>本站由XXXXXXXXXXXX提供加速服务</span>
           </footer>
         </div>
       </div>
@@ -308,8 +307,8 @@ watch(searchContent, (newSearchString, oldSearchString) => {
           <img v-show="!isShowToUp" src="/svg/tool/tool-to-down.svg" alt="滚动到底部">
         </div>
         <div class="tool-item-box" @click="switchToDarkOrLight">
-          <img v-show="nowThemeType === 'light'" src="/svg/tool/tool-to-dark.svg" alt="切换为黑色主题">
-          <img v-show="nowThemeType === 'dark'" src="/svg/tool/tool-to-light.svg" alt="切换为白色主题">
+          <img v-show="nowThemeType === 'dark'" src="/svg/tool/tool-to-dark.svg" alt="切换为黑色主题">
+          <img v-show="nowThemeType === 'light'" src="/svg/tool/tool-to-light.svg" alt="切换为白色主题">
         </div>
       </div>
     </div>
@@ -320,6 +319,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
 // 公共变量
 #container {
   --transition-time: .5s;
+  --transition-time-1s: .1s;
 }
 
 // 白色主题
@@ -327,12 +327,14 @@ watch(searchContent, (newSearchString, oldSearchString) => {
   //--container-background: #ffffff;
   --container-background: url('/img/main-bg.png');
   --search-box-background: #d0d6de;
+  --bg1: #f1f5f9;
 }
 
 // 黑暗主题
 #container.dark {
   --container-background: #13181e;
   --search-box-background: #d0d6de;
+  --bg1: #0f172b;
 }
 
 // 响应式变量：大窗口
@@ -340,6 +342,8 @@ watch(searchContent, (newSearchString, oldSearchString) => {
   #container {
     --logo-width: 220px;
     --aside-width: 220px;
+    --header-height: 70px;
+    --header-bottom-border: 4px;
     --content-grid: 1fr 1fr 1fr 1fr;
   }
 }
@@ -349,6 +353,8 @@ watch(searchContent, (newSearchString, oldSearchString) => {
   #container {
     --logo-width: 0;
     --aside-width: 0;
+    --header-height: 0;
+    --header-bottom-border: 0;
     --content-grid: 1fr 1fr;
   }
 }
@@ -364,48 +370,72 @@ watch(searchContent, (newSearchString, oldSearchString) => {
 
   #container-header {
     width: 100%;
-    height: 70px;
+    height: var(--header-height);
     display: flex;
     flex-direction: row;
+    border-bottom: var(--header-bottom-border) solid #6b7280;
+    overflow: hidden;
+    transition: height var(--transition-time-1s);
+    background: #ffffff;
 
     #header-logo {
       width: var(--logo-width);
       height: 70px;
+      overflow: hidden;
 
       #logo-box {
         width: 100%;
         height: 100%;
 
         .logo-link {
-          position: relative;
           display: block;
           width: 100%;
           height: 100%;
-          transition: opacity 0.2s ease;
-          cursor: pointer;
+          transition: opacity, background var(--transition-time) ease;
+          text-align: center;
+
+          .logo-img {
+            display: inline-block;
+            height: 100%;
+          }
 
           &:hover {
             opacity: 0.9;
-          }
-
-          .logo-img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: block;
-            width: 80%;
+            background: #00b96b;
           }
         }
       }
     }
 
-    #header-nav {
+    #header-content {
       flex: 1;
+      display: flex;
+      flex-direction: row;
+      padding-right: 200px;
 
-      #nav-box {
-        width: 100%;
+      .nav-box {
+        flex: 1;
+      }
+
+      .tool-of-dark-and-light {
+        position: relative;
+        width: 40px;
         height: 100%;
+
+        img {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          display: block;
+          width: 32px;
+          height: 32px;
+
+          border-radius: 5px;
+
+          &:hover {
+            background: var(--bg1);
+          }
+        }
       }
     }
   }
@@ -419,7 +449,8 @@ watch(searchContent, (newSearchString, oldSearchString) => {
     #content-aside {
       width: var(--aside-width);
       height: 100%;
-
+      padding-top: 50px;
+      transition: width var(--transition-time-1s);
 
       #aside-box {
         width: 100%;
