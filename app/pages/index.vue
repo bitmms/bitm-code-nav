@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import {computed} from "vue";
-import {websiteConfigData, searchConfigData} from '~/assets/data/website'
-import type Category from "~/assets/ts/Category";
-import type SearchVO from "~/assets/ts/SearchVO";
-import type SearchEngine from "~/assets/ts/SearchEngine";
+import {websiteConfigData, searchConfigData} from '~/dao/WebSiteData'
+import type {Category} from "~/model/Category";
+import type {SearchModel} from "~/model/SearchModel";
+import type {WebsiteModel} from "~/model/WebsiteModel";
 
 // ======= DOM Refs =======
 const contextBoxRef: Ref<HTMLElement | null> = ref(null)    // 主区域 dom 元素，便于处理滚动事件
@@ -12,7 +12,7 @@ const searchInputDom: Ref<HTMLElement | null> = ref(null)   // 主区域 dom 元
 
 // ======= State =======
 const websiteData: Ref<Category[]> = ref(websiteConfigData) // json 数据
-const searchData: Ref<SearchVO> = ref(searchConfigData)     // json 数据
+const searchData: Ref<SearchModel> = ref(searchConfigData)     // json 数据
 const searchContent: Ref<string> = ref('')                  // 用户当前等待搜索的字符串
 const searchType: Ref<string> = ref('bing')                 // 用户当前使用的搜索引擎名称
 const isShowToUp: Ref<boolean> = ref(false)                 // 记录当前是否显示返回底部按钮
@@ -53,25 +53,6 @@ const mainContentScroll = () => {
   }
 }
 
-// 点击左侧导航栏的某项
-const selectAsideNavItem = (nowNavItem: Category) => {
-  websiteData.value.forEach((item) => (item.isSelected = false))
-  nowNavItem.isSelected = true
-}
-
-// 鼠标移入左侧导航栏的某项
-const mouseEnterAsideNavItem = (nowNavItem: Category) => {
-  websiteData.value.forEach((item) => (item.isMouseenter = false))
-  if (!nowNavItem.isSelected) {
-    nowNavItem.isMouseenter = true
-  }
-}
-
-// 鼠标移除左侧导航栏的某项
-const mouseLeaveAsideNavItem = (nowNavItem: Category) => {
-  nowNavItem.isMouseenter = false
-}
-
 // 按下回车进行搜素
 const enterToSearch = () => {
   const searchString = searchContent.value
@@ -86,10 +67,10 @@ const enterToSearch = () => {
     console.log('当前搜索字符串为：' + searchString)
     console.log('当前搜索的列表为：' + searchStringList)
     // 构建搜索链接
-    const targetUrl = nowSearchEngineObj.value.url + encodeURIComponent(searchString)
+    const targetUrl = nowSearchEngineObj.value.href + encodeURIComponent(searchString)
     // 以新标签页展示搜索结果
-    if (searchData.value.tab) {
-      window.open(targetUrl, '_blank', 'noopener,noreferrer')
+    if (searchData.value.searchResultIsBlank) {
+      window.open(targetUrl, '_blank')
     }
     // 以当前页面展示搜索结果
     else {
@@ -113,11 +94,12 @@ const selectSearchEngine = (name: string) => {
 }
 
 // 获取当前搜索引擎
-const nowSearchEngineObj = computed((): SearchEngine => {
-  let defaultSearchEngine: SearchEngine = {
+const nowSearchEngineObj = computed((): WebsiteModel => {
+  let defaultSearchEngine: WebsiteModel = {
     name: searchType.value,
-    url: 'https://cn.bing.com/search?ensearch=0&q=',
+    href: 'https://cn.bing.com/search?ensearch=0&q=',
     logo: '/assets/svg/search/search-bing.svg',
+    desc: '必应搜索'
   }
   for (const searchEngineItem of searchData.value.list) {
     if (searchEngineItem.name === searchType.value) {
@@ -151,7 +133,7 @@ onMounted(() => {
   searchInputDom.value?.focus()
 })
 
-// 监听searchContent的变化
+// 监听 searchContent 的变化
 watch(searchContent, (newSearchString, oldSearchString) => {
   // 1. 过滤无效变化（空值或与之前相同的值）
   if (newSearchString.trim() === '' || newSearchString === oldSearchString) {
@@ -182,15 +164,20 @@ watch(searchContent, (newSearchString, oldSearchString) => {
         <header id="logo-box">
           <a href="/" class="logo-link" title="双比特 - 程序员导航站" aria-label="返回首页" rel="home">
             <img
-                class="logo-img"
-                src="/bits-logo.svg"
+                class="logo-img logo-img1"
+                src="../assets/svg/logo/logo.svg"
+                alt="双比特 - 程序员导航站"
+                loading="eager">
+            <img
+                class="logo-img logo-img2"
+                src="../assets/svg/logo/logo2.svg"
                 alt="双比特 - 程序员导航站"
                 loading="eager">
           </a>
         </header>
       </div>
       <div id="header-content">
-        <div class="nav-box"></div>
+        <div class="nav-box"/>
         <div class="tool-of-dark-and-light" @click="switchToDarkOrLight">
           <img v-show="nowThemeType === 'dark'" src="/svg/tool/tool-to-dark.svg" alt="切换为黑色主题">
           <img v-show="nowThemeType === 'light'" src="/svg/tool/tool-to-light.svg" alt="切换为白色主题">
@@ -203,12 +190,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
           <ul>
             <li v-for="(item, index) in websiteData" :key="index">
               <a :href="`#${item.category}`" :title="item.category" :aria-label="item.category">
-                <div
-                    :class="`nav-item-box ${item.isSelected ? 'active' : ''} ${item.isMouseenter ? 'mouseenter' : ''}`"
-                    @click="selectAsideNavItem(item)"
-                    @mouseenter="mouseEnterAsideNavItem(item)"
-                    @mouseleave="mouseLeaveAsideNavItem(item)"
-                >
+                <div class="nav-item-box">
                   <div class="nav-icon">
                     <span>
                       <img :src="item.iconSvg" :alt="item.category">
@@ -246,7 +228,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
                   <img
                       :src="searchEngineItem.logo"
                       :alt="searchEngineItem.name"
-                      :title="searchEngineItem.name"
+                      :title="searchEngineItem.desc"
                       @click="selectSearchEngine(searchEngineItem.name)"
                   >
                 </li>
@@ -294,8 +276,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
         <div class="main-footer">
           <footer id="footer-box">
             <span><a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备2022028266号</a></span>
-            &nbsp;
-            <span>本站由XXXXXXXXXXXX提供加速服务</span>
+            <span>本站由 Hello 提供加速服务</span>
           </footer>
         </div>
       </div>
@@ -325,7 +306,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
 // 白色主题
 #container.light {
   //--container-background: #ffffff;
-  --container-background: url('/img/main-bg.png');
+  --container-background: url('/img/bg.png');
   --search-box-background: #d0d6de;
   --bg1: #f1f5f9;
 }
@@ -334,7 +315,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
 #container.dark {
   --container-background: #13181e;
   --search-box-background: #d0d6de;
-  --bg1: #0f172b;
+  --bg1: #d0d6de;
 }
 
 // 响应式变量：大窗口
@@ -382,26 +363,43 @@ watch(searchContent, (newSearchString, oldSearchString) => {
       width: var(--logo-width);
       height: 70px;
       overflow: hidden;
+      padding-top: 10px;
 
       #logo-box {
         width: 100%;
         height: 100%;
 
         .logo-link {
+          position: relative;
           display: block;
           width: 100%;
           height: 100%;
-          transition: opacity, background var(--transition-time) ease;
           text-align: center;
 
           .logo-img {
-            display: inline-block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             height: 100%;
           }
 
+          .logo-img1 {
+            opacity: 1;
+          }
+
+          .logo-img2 {
+            opacity: 0;
+          }
+
           &:hover {
-            opacity: 0.9;
-            background: #00b96b;
+            .logo-img1 {
+              opacity: 0;
+            }
+
+            .logo-img2 {
+              opacity: 1;
+            }
           }
         }
       }
@@ -419,7 +417,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
 
       .tool-of-dark-and-light {
         position: relative;
-        width: 40px;
+        width: 60px;
         height: 100%;
 
         img {
@@ -427,9 +425,10 @@ watch(searchContent, (newSearchString, oldSearchString) => {
           top: 50%;
           transform: translateY(-50%);
           display: block;
-          width: 32px;
-          height: 32px;
-
+          width: 50px;
+          height: 50px;
+          padding: 8px;
+          cursor: pointer;
           border-radius: 5px;
 
           &:hover {
@@ -510,15 +509,17 @@ watch(searchContent, (newSearchString, oldSearchString) => {
                   padding-left: 10px;
                 }
               }
+
+              &:hover {
+                background: #dddfe2;
+              }
+
+              &active {
+                background: #e0e0e0;
+              }
             }
 
-            .mouseenter {
-              background: #ffffff;
-            }
 
-            .active {
-              background: #e0e0e0;
-            }
           }
 
           li:nth-child(n + 2) {
