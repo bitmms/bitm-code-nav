@@ -4,4 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxt/eslint'],
   css: ['@/assets/css/global.css'],
+  app: {
+    baseURL: '/BaseUrl/',
+  },
 })
