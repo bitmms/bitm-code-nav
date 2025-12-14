@@ -275,8 +275,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
         </div>
         <div class="main-footer">
           <footer id="footer-box">
-            <span><a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备2022028266号</a></span>
-            <span>本站由 Hello 提供加速服务</span>
+            <span>本站由<a href="https://docs.github.com/en/pages" target="_blank">Github Page</a>提供部署服务</span>
           </footer>
         </div>
       </div>
