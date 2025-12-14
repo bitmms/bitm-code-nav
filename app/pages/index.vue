@@ -162,7 +162,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
     <header id="container-header">
       <div id="header-logo">
         <header id="logo-box">
-          <a href="/" class="logo-link" title="双比特 - 程序员导航站" aria-label="返回首页" rel="home">
+          <NuxtLink to="/" class="logo-link" title="双比特 - 程序员导航站" aria-label="返回首页" rel="home">
             <img
                 class="logo-img logo-img1"
                 src="../assets/svg/logo/logo.svg"
@@ -173,7 +173,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
                 src="../assets/svg/logo/logo2.svg"
                 alt="双比特 - 程序员导航站"
                 loading="eager">
-          </a>
+          </NuxtLink>
         </header>
       </div>
       <div id="header-content">
@@ -189,6 +189,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
         <div id="aside-box">
           <ul>
             <li v-for="(item, index) in websiteData" :key="index">
+              <!--锚点标签，故意使用 a 标签-->
               <a :href="`#${item.category}`" :title="item.category" :aria-label="item.category">
                 <div class="nav-item-box">
                   <div class="nav-icon">
@@ -242,6 +243,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
             <section v-for="(categoryItem, categoryIndex) in websiteData" :key="categoryIndex" class="main-section">
 
               <div :id="categoryItem.category" class="section-title">
+                <!--锚点标签，故意使用 a 标签-->
                 <a :href="`#${categoryItem.category}`" :title="categoryItem.category" :aria-label="categoryItem.category">
                   <span class="title-icon"><img :src="categoryItem.iconSvg" :alt="categoryItem.category"></span>
                   <span class="title-text">{{ categoryItem.category }}</span>
@@ -251,8 +253,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
               <div class="section-item">
                 <ul>
                   <li v-for="(websiteItem, websiteIndex) in categoryItem.children" :key="websiteIndex">
-                    <!--:href="`${websiteItem.slug}`"-->
-                    <a :href="`${websiteItem.href}`" :title="websiteItem.desc" target="_blank">
+                    <NuxtLink :to="`${websiteItem.href}`" :title="websiteItem.desc" target="_blank">
                       <div class="item-box">
                         <div class="item-left">
                           <div class="web-logo">
@@ -265,7 +266,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
                           <div class="web-desc">{{ websiteItem.desc }}</div>
                         </div>
                       </div>
-                    </a>
+                    </NuxtLink>
                   </li>
                 </ul>
               </div>
@@ -275,7 +276,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
         </div>
         <div class="main-footer">
           <footer id="footer-box">
-            <span>本站由<a href="https://docs.github.com/en/pages" target="_blank">Github Pages</a>提供部署服务</span>
+            <span>本站由<NuxtLink to="https://docs.github.com/en/pages" target="_blank">Github Pages</NuxtLink>提供部署服务</span>
           </footer>
         </div>
       </div>
