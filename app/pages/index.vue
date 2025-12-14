@@ -275,7 +275,7 @@ watch(searchContent, (newSearchString, oldSearchString) => {
         </div>
         <div class="main-footer">
           <footer id="footer-box">
-            <span>本站由<a href="https://docs.github.com/en/pages" target="_blank">Github Page</a>提供部署服务</span>
+            <span>本站由<a href="https://docs.github.com/en/pages" target="_blank">Github Pages</a>提供部署服务</span>
           </footer>
         </div>
       </div>
