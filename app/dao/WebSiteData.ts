@@ -564,12 +564,6 @@ const websiteConfigData = [
                 "logo": "svg/website/cloud-drive-of-weiyun.svg"
             },
             {
-                "name": "123 云盘",
-                "href": "https://www.123pan.com",
-                "desc": "下载不限速，资源丰富",
-                "logo": "svg/website/cloud-drive-of-123.svg"
-            },
-            {
                 "name": "中国电信云盘",
                 "href": "https://cloud.189.cn",
                 "desc": "电信官方云盘，安全稳定",
