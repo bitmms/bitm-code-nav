@@ -42,16 +42,16 @@ const websiteConfigData = [
                 "logo": "svg/website/lemonlive.svg"
             },
             {
-                "name": "百度翻译",
-                "href": "https://fanyi.baidu.com",
-                "desc": "百度旗下的专业翻译工具",
-                "logo": "svg/website/baidu-fanyi.svg"
-            },
-            {
                 "name": "Online-GDB",
                 "href": "https://www.onlinegdb.com/",
                 "desc": "GDB online is an online compiler and debugger tool",
                 "logo": "svg/website/onlinegdb.svg"
+            },
+            {
+                "name": "百度翻译",
+                "href": "https://fanyi.baidu.com",
+                "desc": "百度旗下的专业翻译工具",
+                "logo": "svg/website/baidu-fanyi.svg"
             },
             {
                 "name": "微信文件传输助手",
@@ -870,6 +870,12 @@ const searchConfigData = {
             "href": "https://www.baidu.com/s?wd=",
             "logo": "svg/search/search-baidu.svg",
             "desc": "百度搜索"
+        },
+        {
+            "name": "Nuget",
+            "href": "https://www.nuget.org/packages?q=",
+            "logo": "svg/website/repo-nuget.svg",
+            "desc": "NuGet 是 .NET 的包管理器"
         },
         {
             "name": "google",
