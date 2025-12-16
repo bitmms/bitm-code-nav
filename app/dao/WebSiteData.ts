@@ -540,12 +540,6 @@ const websiteConfigData = [
                 "logo": "svg/website/cloud-drive-of-xunlei.svg"
             },
             {
-                "name": "蓝奏・云存储",
-                "href": "https://www.lanzoui.com",
-                "desc": "不限速，适合小文件分享",
-                "logo": "svg/website/cloud-drive-of-lanzou.svg"
-            },
-            {
                 "name": "小飞机网盘",
                 "href": "https://www.feejii.com",
                 "desc": "轻便网盘，适合快速传输",
