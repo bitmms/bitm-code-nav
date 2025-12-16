@@ -626,6 +626,12 @@ const websiteConfigData = [
         "iconSvg": "svg/nav/document.svg",
         "children": [
             {
+                "name": "微软技术文档",
+                "href": "https://learn.microsoft.com/zh-cn/docs/",
+                "desc": "微软技术文档",
+                "logo": "svg/website/doc-mc.svg"
+            },
+            {
                 "name": "Vue.js v2 文档",
                 "href": "https://v2.cn.vuejs.org",
                 "desc": "Vue.js v2 官方文档",
@@ -842,12 +848,6 @@ const websiteConfigData = [
                 "logo": "svg/website/doc-spring.svg"
             },
             {
-                "name": ".NET 学习",
-                "href": "https://learn.microsoft.com/zh-cn/dotnet",
-                "desc": ".NET 官方学习文档",
-                "logo": "svg/website/doc-dotnet.svg"
-            },
-            {
                 "name": "FreeSWITCH",
                 "href": "https://rts.cn/freeswitch",
                 "desc": "FreeSWITCH 相关资源",
@@ -866,70 +866,64 @@ const searchConfigData = {
             "desc": "必应搜索"
         },
         {
-            "name": "baidu",
-            "href": "https://www.baidu.com/s?wd=",
-            "logo": "svg/search/search-baidu.svg",
-            "desc": "百度搜索"
-        },
-        {
-            "name": "Nuget",
-            "href": "https://www.nuget.org/packages?q=",
-            "logo": "svg/website/repo-nuget.svg",
-            "desc": "NuGet 是 .NET 的包管理器"
-        },
-        {
             "name": "google",
             "href": "https://www.google.com/search?q=",
             "logo": "svg/search/search-google.svg",
             "desc": "谷歌搜索"
         },
         {
-            "name": "360",
-            "href": "https://www.so.com/s?q=",
-            "logo": "svg/search/search-360.svg",
-            "desc": "360搜索"
-        },
-        {
             "name": "csdn",
             "href": "https://so.csdn.net/so/search?q=",
-            "logo": "svg/search/search-csdn.svg",
+            "logo": "svg/website/csdn.svg",
             "desc": "CSDN 搜索"
         },
         {
             "name": "cnblogs",
             "href": "https://zzkx.cnblogs.com/s?w=",
-            "logo": "svg/search/search-cnblogs.svg",
+            "logo": "svg/website/cnblogs.svg",
             "desc": "博客园搜索"
-        },
-        {
-            "name": "juejin",
-            "href": "https://juejin.cn/search?query=",
-            "logo": "svg/search/search-juejin.svg",
-            "desc": "掘金搜索"
         },
         {
             "name": "segmentfault",
             "href": "https://segmentfault.com/search?q=",
-            "logo": "svg/search/search-segmentfault.svg",
+            "logo": "svg/website/segmentfault.svg",
             "desc": "思否搜索"
-        },
-        {
-            "name": "jianshu",
-            "href": "https://www.jianshu.com/search?q=",
-            "logo": "svg/search/search-jianshu.svg",
-            "desc": "简书搜索"
         },
         {
             "name": "stackoverflow",
             "href": "https://stackoverflow.com/search?q=",
-            "logo": "svg/search/search-stackoverflow.svg",
+            "logo": "svg/website/stackoverflow.svg",
             "desc": "stackoverflow 搜索"
         },
         {
-            "name": "bilibili",
-            "href": "https://search.bilibili.com/all?keyword=",
-            "logo": "svg/search/search-bilibili.svg",
-            "desc": "哔哩哔哩搜索"
+            "name": "jianshu",
+            "href": "https://www.jianshu.com/search?q=",
+            "logo": "svg/website/jianshu.svg",
+            "desc": "简书搜索"
+        },
+        {
+            "name": "juejin",
+            "href": "https://juejin.cn/search?query=",
+            "logo": "svg/website/juejin.svg",
+            "desc": "掘金搜索"
+        },
+        {
+            "name": "iconfont",
+            "href": "https://www.iconfont.cn/search/index?searchType=icon&q=",
+            "logo": "svg/website/icon-alibaba-iconfont.svg",
+            "desc": "阿里图标搜索"
+        },
+        {
+            "name": "github",
+            "href": "https://github.com/search?q=",
+            "logo": "svg/website/github.svg",
+            "desc": "Github 搜索"
+        },
+        {
+            "name": "gitee",
+            "href": "https://so.gitee.com/?q=",
+            "logo": "svg/website/gitee.svg",
+            "desc": "Gitee 搜索"
         },
         {
             "name": "zhihu",
@@ -938,40 +932,40 @@ const searchConfigData = {
             "desc": "知乎搜索"
         },
         {
-            "name": "gitee",
-            "href": "https://so.gitee.com/?q=",
-            "logo": "svg/search/search-gitee.svg",
-            "desc": "Gitee 搜索"
+            "name": "baidu",
+            "href": "https://www.baidu.com/s?wd=",
+            "logo": "svg/search/search-baidu.svg",
+            "desc": "百度搜索"
         },
         {
-            "name": "github",
-            "href": "https://github.com/search?q=",
-            "logo": "svg/search/search-github.svg",
-            "desc": "Github 搜索"
+            "name": "360",
+            "href": "https://www.so.com/s?q=",
+            "logo": "svg/search/search-360.svg",
+            "desc": "360搜索"
         },
         {
-            "name": "maven",
-            "href": "https://mvnrepository.com/search?q=",
-            "logo": "svg/search/search-maven.svg",
-            "desc": "Maven 搜索"
-        },
-        {
-            "name": "ollama",
-            "href": "https://ollama.com/search?q=",
-            "logo": "svg/search/search-ollama.svg",
-            "desc": "Ollama 搜索"
-        },
-        {
-            "name": "iconfont",
-            "href": "https://www.iconfont.cn/search/index?searchType=icon&q=",
-            "logo": "svg/search/search-iconfont.svg",
-            "desc": "阿里图标搜索"
+            "name": "bilibili",
+            "href": "https://search.bilibili.com/all?keyword=",
+            "logo": "svg/website/bilibili.svg",
+            "desc": "哔哩哔哩搜索"
         },
         {
             "name": "docker",
             "href": "https://hub.docker.com/search?q=",
-            "logo": "svg/search/search-docker.svg",
+            "logo": "svg/website/repo-docker.svg",
             "desc": "Docker 镜像搜索"
+        },
+        {
+            "name": "maven",
+            "href": "https://mvnrepository.com/search?q=",
+            "logo": "svg/website/repo-maven.svg",
+            "desc": "Maven 搜索"
+        },
+        {
+            "name": "Nuget",
+            "href": "https://www.nuget.org/packages?q=",
+            "logo": "svg/website/repo-nuget.svg",
+            "desc": "NuGet 是 .NET 的包管理器"
         }
     ]
 }
