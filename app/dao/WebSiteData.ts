@@ -105,7 +105,7 @@ const websiteConfigData = [
             },
             {
                 "name": "DeepSeek",
-                "href": "https://www.deepseek.com",
+                "href": "https://chat.deepseek.com",
                 "desc": "DeepSeek",
                 "logo": "svg/website/ai-llm-deepseek.svg"
             },
@@ -120,24 +120,6 @@ const websiteConfigData = [
                 "href": "https://yiyan.baidu.com",
                 "desc": "文心一言",
                 "logo": "svg/website/ai-llm-wenxin-yiyan.svg"
-            },
-            {
-                "name": "KIMI AI",
-                "href": "https://www.kimi.com",
-                "desc": "KIMI AI",
-                "logo": "svg/website/ai-llm-kimi.svg"
-            },
-            {
-                "name": "腾讯元宝",
-                "href": "https://yuanbao.tencent.com",
-                "desc": "腾讯元宝",
-                "logo": "svg/website/ai-llm-tencent-yuanbao.svg"
-            },
-            {
-                "name": "讯飞星火",
-                "href": "https://xinghuo.xfyun.cn/desk",
-                "desc": "讯飞星火",
-                "logo": "svg/website/ai-llm-xunfei-xinghuo.svg"
             }
         ]
     },
