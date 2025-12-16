@@ -136,7 +136,7 @@ const websiteConfigData = [
                 "logo": "svg/website/cnblogs.svg"
             },
             {
-                "name": "稀土掘金",
+                "name": "掘金",
                 "href": "https://juejin.cn",
                 "desc": "中文开发者技术社区",
                 "logo": "svg/website/juejin.svg"
@@ -152,24 +152,6 @@ const websiteConfigData = [
                 "href": "https://segmentfault.com",
                 "desc": "专业开发者技术社区",
                 "logo": "svg/website/segmentfault.svg"
-            },
-            {
-                "name": "简书",
-                "href": "https://www.jianshu.com",
-                "desc": "优质创作分享社区",
-                "logo": "svg/website/jianshu.svg"
-            },
-            {
-                "name": "OSCHINA",
-                "href": "https://www.oschina.net",
-                "desc": "中文开源技术社区",
-                "logo": "svg/website/oschina.svg"
-            },
-            {
-                "name": "鸿蒙开发者论坛",
-                "href": "https://developer.huawei.com/home/forum",
-                "desc": "鸿蒙开发问答社区",
-                "logo": "svg/website/harmonyos-forum.svg"
             },
             {
                 "name": "Stack Overflow",
