@@ -558,12 +558,6 @@ const websiteConfigData = [
                 "logo": "svg/website/cloud-drive-of-china-telecom.svg"
             },
             {
-                "name": "中国联通云盘",
-                "href": "https://pan.wo.cn",
-                "desc": "联通推出的文件存储服务",
-                "logo": "svg/website/cloud-drive-of-china-unicom.svg"
-            },
-            {
                 "name": "中国移动云盘",
                 "href": "https://yun.139.com",
                 "desc": "移动用户专享云存储工具",
