@@ -334,12 +334,6 @@ const websiteConfigData = [
                 "logo": "svg/website/mirrot-xuanyuan.svg"
             },
             {
-                "name": "毫秒镜像",
-                "href": "https://1ms.run/",
-                "desc": "告别蜗牛速度！国内专线拉取镜像！",
-                "logo": "svg/website/1ms-xuanyuan.svg"
-            },
-            {
                 "name": "阿里云镜像站",
                 "href": "https://developer.aliyun.com/mirror",
                 "desc": "阿里开源镜像服务平台",
@@ -482,7 +476,7 @@ const websiteConfigData = [
                 "logo": "svg/website/cloud-service-of-jd.svg"
             },
             {
-                "name": "百度智能云",
+                "name": "百度云",
                 "href": "https://cloud.baidu.com",
                 "desc": "百度企业级云服务平台",
                 "logo": "svg/website/cloud-service-of-baidu-ai.svg"
@@ -492,30 +486,6 @@ const websiteConfigData = [
                 "href": "https://www.volcengine.com",
                 "desc": "字节跳动企业级云服务平台",
                 "logo": "svg/website/cloud-service-of-volcengine.svg"
-            },
-            {
-                "name": "金山云",
-                "href": "https://www.ksyun.com",
-                "desc": "金山软件企业级云服务平台",
-                "logo": "svg/website/cloud-service-of-kingsoft.svg"
-            },
-            {
-                "name": "中国电信云服务",
-                "href": "https://www.ctyun.cn",
-                "desc": "中国电信企业级云服务平台",
-                "logo": "svg/website/cloud-service-of-china-telecom.svg"
-            },
-            {
-                "name": "中国移动云服务",
-                "href": "https://ecloud.10086.cn",
-                "desc": "中国移动企业级云服务平台",
-                "logo": "svg/website/cloud-service-of-china-mobile.svg"
-            },
-            {
-                "name": "中国联通云服务",
-                "href": "https://www.cucloud.cn",
-                "desc": "中国联通企业级云服务平台",
-                "logo": "svg/website/cloud-service-of-unicom.svg"
             },
             {
                 "name": "七牛云",
