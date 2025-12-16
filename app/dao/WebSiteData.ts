@@ -540,12 +540,6 @@ const websiteConfigData = [
                 "logo": "svg/website/cloud-drive-of-xunlei.svg"
             },
             {
-                "name": "小飞机网盘",
-                "href": "https://www.feejii.com",
-                "desc": "轻便网盘，适合快速传输",
-                "logo": "svg/website/cloud-drive-of-feejii.svg"
-            },
-            {
                 "name": "夸克网盘",
                 "href": "https://pan.quark.cn",
                 "desc": "夸克浏览器集成，速度快",
