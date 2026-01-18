@@ -82,6 +82,12 @@ const websiteConfigData = [
                 "href": "https://github.com",
                 "desc": "全球最大开源项目托管平台",
                 "logo": "svg/website/github.svg"
+            },
+            {
+                "name": "打字练习",
+                "href": "https://dazidazi.com",
+                "desc": "打字练习",
+                "logo": "svg/website/dazi.svg"
             }
         ]
     },
