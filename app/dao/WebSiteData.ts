@@ -768,6 +768,12 @@ const websiteConfigData = [
                 "href": "https://rts.cn/freeswitch",
                 "desc": "FreeSWITCH 相关资源",
                 "logo": "svg/website/doc-freeswitch.svg"
+            },
+            {
+                "name": "数据库内核月报",
+                "href": "http://mysql.taobao.org/monthly/",
+                "desc": "阿里云RDS-数据库内核组《数据库内核月报》",
+                "logo": "svg/website/doc-rds.svg"
             }
         ]
     }
