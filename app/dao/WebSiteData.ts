@@ -502,30 +502,6 @@ const websiteConfigData = [
                 "href": "https://pan.xunlei.com/login",
                 "desc": "支持边下边播，资源丰富",
                 "logo": "svg/website/cloud-drive-of-xunlei.svg"
-            },
-            {
-                "name": "夸克网盘",
-                "href": "https://pan.quark.cn",
-                "desc": "夸克浏览器集成，速度快",
-                "logo": "svg/website/cloud-drive-of-quark.svg"
-            },
-            {
-                "name": "腾讯微云",
-                "href": "https://www.weiyun.com",
-                "desc": "腾讯出品，微信 QQ 无缝接入",
-                "logo": "svg/website/cloud-drive-of-weiyun.svg"
-            },
-            {
-                "name": "中国电信云盘",
-                "href": "https://cloud.189.cn",
-                "desc": "电信官方云盘，安全稳定",
-                "logo": "svg/website/cloud-drive-of-china-telecom.svg"
-            },
-            {
-                "name": "中国移动云盘",
-                "href": "https://yun.139.com",
-                "desc": "移动用户专享云存储工具",
-                "logo": "svg/website/cloud-drive-of-china-mobile.svg"
             }
         ]
     },
