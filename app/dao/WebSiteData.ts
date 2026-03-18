@@ -473,7 +473,7 @@ const websiteConfigData = [
         "children": [
             {
                 "name": "网际快车",
-                "href": "https://wjkc66.vip",
+                "href": "https://快车.com",
                 "desc": "魔法工具",
                 "logo": "svg/website/magic-01.svg"
             },
