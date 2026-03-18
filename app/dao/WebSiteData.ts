@@ -518,58 +518,64 @@ const websiteConfigData = [
                 "logo": "svg/website/doc-mc.svg"
             },
             {
-                "name": "Vue.js v2 文档",
-                "href": "https://v2.cn.vuejs.org",
-                "desc": "Vue.js v2 官方文档",
-                "logo": "svg/website/doc-vue2.svg"
+                "name": "数据库内核月报",
+                "href": "http://mysql.taobao.org/monthly/",
+                "desc": "阿里云RDS-数据库内核组《数据库内核月报》",
+                "logo": "svg/website/doc-rds.svg"
             },
             {
-                "name": "Vue.js v3 文档",
+                "name": "Vue",
                 "href": "https://cn.vuejs.org",
-                "desc": "Vue.js v3 官方文档",
+                "desc": "渐进式 JavaScript 框架",
                 "logo": "svg/website/doc-vue3.svg"
             },
             {
-                "name": "VueUse 文档",
-                "href": "https://vueuse.org/",
-                "desc": "基础 Vue 组合式工具的集合",
-                "logo": "svg/website/doc-vueuse.svg"
-            },
-            {
-                "name": "Axios 文档",
-                "href": "https://www.axios-http.cn/docs/intro",
-                "desc": "Axios 官方文档",
-                "logo": "svg/website/doc-axios.svg"
+                "name": "React",
+                "href": "https://zh-hans.react.dev/learn",
+                "desc": "React 官方文档",
+                "logo": "svg/website/doc-react.svg"
             },
             {
                 "name": "TDesign",
                 "href": "https://tdesign.tencent.com",
-                "desc": "TDesign 官方文档",
+                "desc": "为设计师 & 开发者打造工作美学",
                 "logo": "svg/website/doc-tdesign.svg"
             },
             {
                 "name": "Element UI",
                 "href": "https://element.eleme.cn/#/zh-CN",
-                "desc": "Element UI 官方文档",
+                "desc": "基于 Vue 的桌面端组件库",
                 "logo": "svg/website/doc-element-ui.svg"
             },
             {
-                "name": "Element Plus",
-                "href": "https://element-plus.org",
-                "desc": "Element Plus 官方文档",
-                "logo": "svg/website/doc-element-plus.svg"
-            },
-            {
-                "name": "Ant Design Vue",
-                "href": "https://www.antdv.com/docs/vue/introduce-cn",
-                "desc": "Ant Design Vue 官方文档",
+                "name": "Ant Design",
+                "href": "https://ant.design/",
+                "desc": "AI 友好的「设计系统」",
                 "logo": "svg/website/doc-antd-vue.svg"
             },
             {
                 "name": "Arco Design",
                 "href": "https://arco.design",
-                "desc": "Arco Design 官方文档",
+                "desc": "字节跳动出品的企业级设计系统",
                 "logo": "svg/website/doc-arco-design.svg"
+            },
+            {
+                "name": "Axios",
+                "href": "https://www.axios-http.cn/docs/intro",
+                "desc": "Axios 官方文档",
+                "logo": "svg/website/doc-axios.svg"
+            },
+            {
+                "name": "AJAX 教程",
+                "href": "https://www.runoob.com/ajax/ajax-tutorial.html",
+                "desc": "AJAX 菜鸟教程",
+                "logo": "svg/website/doc-ajax.svg"
+            },
+            {
+                "name": "VueUse",
+                "href": "https://vueuse.org/",
+                "desc": "基础 Vue 组合式工具的集合",
+                "logo": "svg/website/doc-vueuse.svg"
             },
             {
                 "name": "MDN Web Docs",
@@ -584,34 +590,10 @@ const websiteConfigData = [
                 "logo": "svg/website/doc-nuxt.svg"
             },
             {
-                "name": "Electron",
-                "href": "https://www.electronjs.org/zh",
-                "desc": "Electron 官方文档",
-                "logo": "svg/website/doc-electron.svg"
-            },
-            {
-                "name": "React",
-                "href": "https://zh-hans.react.dev/learn",
-                "desc": "React 官方文档",
-                "logo": "svg/website/doc-react.svg"
-            },
-            {
-                "name": "jQuery",
-                "href": "https://jquery.com",
-                "desc": "jQuery 官方文档",
-                "logo": "svg/website/doc-jquery.svg"
-            },
-            {
                 "name": "Next.js",
                 "href": "https://www.nextjs.cn",
                 "desc": "Next.js 官方文档",
                 "logo": "svg/website/doc-next.svg"
-            },
-            {
-                "name": "ECharts",
-                "href": "https://echarts.apache.org/zh/index.html",
-                "desc": "ECharts 官方文档",
-                "logo": "svg/website/doc-echarts.svg"
             },
             {
                 "name": "Chart.js",
@@ -620,34 +602,16 @@ const websiteConfigData = [
                 "logo": "svg/website/doc-chart.svg"
             },
             {
-                "name": "AJAX 教程",
-                "href": "https://www.runoob.com/ajax/ajax-tutorial.html",
-                "desc": "AJAX 菜鸟教程",
-                "logo": "svg/website/doc-ajax.svg"
+                "name": "ECharts",
+                "href": "https://echarts.apache.org/zh/index.html",
+                "desc": "ECharts 官方文档",
+                "logo": "svg/website/doc-echarts.svg"
             },
             {
-                "name": "Bootstrap v3",
-                "href": "https://v3.bootcss.com",
-                "desc": "Bootstrap v3 官方文档",
-                "logo": "svg/website/doc-bootstrap-v3.svg"
-            },
-            {
-                "name": "Bootstrap v4",
-                "href": "https://v4.bootcss.com",
-                "desc": "Bootstrap v4 官方文档",
-                "logo": "svg/website/doc-bootstrap-v4.svg"
-            },
-            {
-                "name": "Bootstrap v5",
-                "href": "https://v5.bootcss.com",
-                "desc": "Bootstrap v5 官方文档",
-                "logo": "svg/website/doc-bootstrap-v5.svg"
-            },
-            {
-                "name": "uni-app",
-                "href": "https://uniapp.dcloud.net.cn",
-                "desc": "UniApp 官方文档",
-                "logo": "svg/website/doc-uni-app.svg"
+                "name": "Electron",
+                "href": "https://www.electronjs.org/zh",
+                "desc": "Electron 官方文档",
+                "logo": "svg/website/doc-electron.svg"
             },
             {
                 "name": "Cocos Creator",
@@ -656,94 +620,16 @@ const websiteConfigData = [
                 "logo": "svg/website/doc-cocos.svg"
             },
             {
-                "name": "Redis 教程",
-                "href": "https://www.redis.net.cn/tutorial/3501.html",
-                "desc": "Redis 中文教程",
-                "logo": "svg/website/doc-redis.svg"
-            },
-            {
-                "name": "MySQL 中文网",
-                "href": "https://www.mysqlzh.com",
-                "desc": "MySQL 中文网",
-                "logo": "svg/website/doc-mysql.svg"
-            },
-            {
                 "name": "PostgreSQL",
                 "href": "https://www.postgresql.org",
                 "desc": "PostgreSQL 官方网站",
                 "logo": "svg/website/doc-postgresql.svg"
             },
             {
-                "name": "MongoDB",
-                "href": "https://www.mongodb.com/zh-cn/docs",
-                "desc": "MongoDB 官方文档",
-                "logo": "svg/website/doc-mongodb.svg"
-            },
-            {
-                "name": "SQL Server",
-                "href": "https://www.microsoft.com/zh-cn/sql-server/sql-server-downloads",
-                "desc": "SQL Server 官方下载页",
-                "logo": "svg/website/doc-sql-server.svg"
-            },
-            {
-                "name": "SQLite",
-                "href": "https://sqlite.org/index.html",
-                "desc": "SQLite 官方网站",
-                "logo": "svg/website/doc-sql-lite.svg"
-            },
-            {
-                "name": "HTTP协议超级详解",
-                "href": "https://www.cnblogs.com/an-wen/p/11180076.html",
-                "desc": "博客园文章页面",
-                "logo": "svg/website/doc-http.svg"
-            },
-            {
-                "name": "计算机网络快速浏览",
-                "href": "https://mp.weixin.qq.com/s/N8a-YcCoVmXNrDWjnaxuJg",
-                "desc": "微信公众号文章",
-                "logo": "svg/website/doc-network.svg"
-            },
-            {
-                "name": "菜鸟教程",
-                "href": "https://www.runoob.com",
-                "desc": "菜鸟教程官方网站",
-                "logo": "svg/website/doc-cainiao.svg"
-            },
-            {
-                "name": "MyBatis",
-                "href": "https://mybatis.net.cn/index.html",
-                "desc": "MyBatis 官方文档",
-                "logo": "svg/website/doc-mybatis.svg"
-            },
-            {
-                "name": "MyBatis-Plus",
-                "href": "https://baomidou.com",
-                "desc": "MyBatis-Plus 官方文档",
-                "logo": "svg/website/doc-mybatis-plus.svg"
-            },
-            {
-                "name": "Go 语言之旅",
-                "href": "https://github.com/unknwon/the-way-to-go_ZH_CN/blob/master/eBook/preface.md",
-                "desc": "Go 语言之旅中文翻译",
-                "logo": "svg/website/doc-golang.svg"
-            },
-            {
-                "name": "Spring 中文文档",
-                "href": "https://springdoc.cn",
-                "desc": "Spring 中文文档",
-                "logo": "svg/website/doc-spring.svg"
-            },
-            {
                 "name": "FreeSWITCH",
                 "href": "https://rts.cn/freeswitch",
                 "desc": "FreeSWITCH 相关资源",
                 "logo": "svg/website/doc-freeswitch.svg"
-            },
-            {
-                "name": "数据库内核月报",
-                "href": "http://mysql.taobao.org/monthly/",
-                "desc": "阿里云RDS-数据库内核组《数据库内核月报》",
-                "logo": "svg/website/doc-rds.svg"
             }
         ]
     }
