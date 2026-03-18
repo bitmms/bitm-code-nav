@@ -475,13 +475,7 @@ const websiteConfigData = [
                 "name": "网际快车",
                 "href": "https://快车.com",
                 "desc": "魔法工具",
-                "logo": "svg/website/magic-01.svg"
-            },
-            {
-                "name": "云未落",
-                "href": "https://cnnic.cnnic.link",
-                "desc": "魔法工具",
-                "logo": "svg/website/magic-02.svg"
+                "logo": "svg/website/magic-vpn.svg"
             }
         ]
     },
