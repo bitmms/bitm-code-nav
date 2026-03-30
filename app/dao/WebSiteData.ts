@@ -88,6 +88,12 @@ const websiteConfigData = [
                 "href": "https://dazidazi.com",
                 "desc": "打字练习",
                 "logo": "svg/website/dazi.svg"
+            },
+            {
+                "name": "Google AdSense",
+                "href": "https://adsense.google.com/adsense",
+                "desc": "谷歌广告服务",
+                "logo": "svg/website/google-ads.svg"
             }
         ]
     },
@@ -120,12 +126,6 @@ const websiteConfigData = [
                 "href": "https://chatgpt.com",
                 "desc": "ChatGPT",
                 "logo": "svg/website/ai-llm-chatgpt.svg"
-            },
-            {
-                "name": "文心一言",
-                "href": "https://yiyan.baidu.com",
-                "desc": "文心一言",
-                "logo": "svg/website/ai-llm-wenxin-yiyan.svg"
             }
         ]
     },
