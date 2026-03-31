@@ -25,7 +25,7 @@ const websiteConfigData = [
             },
             {
                 "name": "555电影",
-                "href": "https://5573695.vip",
+                "href": "https://zxdy5.top",
                 "desc": "最新 Netflix 免费在线观看",
                 "logo": "svg/website/555-movie.svg"
             },
