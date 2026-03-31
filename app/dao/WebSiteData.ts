@@ -126,6 +126,12 @@ const websiteConfigData = [
                 "href": "https://chatgpt.com",
                 "desc": "ChatGPT",
                 "logo": "svg/website/ai-llm-chatgpt.svg"
+            },
+            {
+                "name": "Arena AI",
+                "href": "https://arena.ai",
+                "desc": "大模型 AI 竞技场",
+                "logo": "svg/website/ai-llm-arena.svg"
             }
         ]
     },
