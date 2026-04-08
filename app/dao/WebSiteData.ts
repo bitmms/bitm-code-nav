@@ -24,10 +24,10 @@ const websiteConfigData = [
                 "logo": "svg/website/huya.svg"
             },
             {
-                "name": "555电影",
-                "href": "https://zxdy5.top",
-                "desc": "最新 Netflix 免费在线观看",
-                "logo": "svg/website/555-movie.svg"
+                "name": "微信读书",
+                "href": "https://weread.qq.com/",
+                "desc": "微信读书",
+                "logo": "svg/website/weixin-book.svg"
             },
             {
                 "name": "语雀",
@@ -94,6 +94,12 @@ const websiteConfigData = [
                 "href": "https://adsense.google.com/adsense",
                 "desc": "谷歌广告服务",
                 "logo": "svg/website/google-ads.svg"
+            },
+            {
+                "name": "555电影",
+                "href": "https://zxdy5.top",
+                "desc": "最新 Netflix 免费在线观看",
+                "logo": "svg/website/555-movie.svg"
             }
         ]
     },
