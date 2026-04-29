@@ -96,7 +96,6 @@ li {
   height: 100%;
   object-fit: cover;
   border-radius: 12px;
-  filter: var(--icon-filter);
 }
 
 .card-avatar {

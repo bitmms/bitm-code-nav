@@ -114,7 +114,6 @@ export default {
     width: 28px;
     height: 28px;
     border-radius: 6px;
-    filter: var(--icon-filter);
   }
 
   .chevron {
