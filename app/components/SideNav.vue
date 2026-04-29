@@ -97,7 +97,6 @@ ul {
     }
   }
 
-  &:target,
   &:active {
     border-left-color: var(--accent);
     background: var(--accent-light);
@@ -105,9 +104,6 @@ ul {
 
     .nav-icon {
       background: var(--accent);
-      img {
-        filter: brightness(0) invert(1);
-      }
     }
   }
 }

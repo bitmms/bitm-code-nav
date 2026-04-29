@@ -11,7 +11,7 @@ function resolveAssetPaths(data) {
   }
 }
 
-const websiteConfigData = [
+const _websiteConfigData = [
     {
         "category": "站长推荐",
         "iconSvg": "svg/nav/recommend.svg",
@@ -673,7 +673,7 @@ const websiteConfigData = [
         ]
     }
 ]
-const searchConfigData = {
+const _searchConfigData = {
     "searchResultIsBlank": true,
     "list": [
         {
@@ -786,6 +786,9 @@ const searchConfigData = {
         }
     ]
 }
+
+const websiteConfigData = structuredClone(_websiteConfigData)
+const searchConfigData = structuredClone(_searchConfigData)
 
 resolveAssetPaths(websiteConfigData)
 resolveAssetPaths(searchConfigData)

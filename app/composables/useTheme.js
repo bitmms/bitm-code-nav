@@ -13,7 +13,7 @@ export function useTheme(mainBoxRef) {
     if (import.meta.client) {
       window.localStorage.setItem('nowThemeType', theme)
     }
-  }, { immediate: true })
+  })
 
   onMounted(() => {
     const saved = window.localStorage.getItem('nowThemeType')

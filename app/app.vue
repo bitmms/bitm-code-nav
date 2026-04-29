@@ -29,7 +29,7 @@ export default {
   <div id="container" ref="mainBoxRef">
     <header id="container-header">
       <div id="header-logo">
-        <header id="logo-box">
+        <div id="logo-box">
           <NuxtLink to="/" class="logo-link" title="双比特 - 程序员导航站" aria-label="返回首页" rel="home">
             <img
               class="logo-img logo-img1"
@@ -42,7 +42,7 @@ export default {
               alt="双比特 - 程序员导航站"
               loading="eager">
           </NuxtLink>
-        </header>
+        </div>
       </div>
       <div id="header-content">
         <div class="nav-box"/>
@@ -86,7 +86,7 @@ export default {
 </template>
 
 <style lang="less" scoped>
-// =========== 公共变量（亮色兜底，防首屏黑闪） ===========
+// =========== 基础变量（亮色兜底，防首屏黑闪） ===========
 #container {
   --transition-time: .3s;
   --transition-fast: .15s;
@@ -121,34 +121,26 @@ export default {
   --scrollbar-thumb: #c4c9d0;
   --scrollbar-track: transparent;
   --icon-filter: none;
+
+  // 布局
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-image, var(--bg-primary, #f0f2f5));
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
 }
 
-// =========== 亮色主题 ===========
+// =========== 亮色主题（仅定义暗色不存在的变量） ===========
 #container.light {
   --bg-image: url('~/assets/img/bg.png');
-  --bg-primary: #f0f2f5;
-  --bg-secondary: #ffffff;
-  --bg-tertiary: #f7f8fa;
-  --bg-hover: #e8ecf1;
-  --bg-card: rgba(255, 255, 255, 0.72);
-  --bg-toolbar: rgba(255, 255, 255, 0.85);
-  --text-primary: #1a1a2e;
-  --text-secondary: #6b7280;
-  --text-tertiary: #9ca3af;
-  --border-color: #e5e7eb;
-  --border-light: #f0f0f0;
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.04);
-  --accent: #4f46e5;
-  --accent-light: #eef2ff;
-  --accent-hover: #4338ca;
-  --search-bg: #e8ecf1;
-  --search-focus-bg: #ffffff;
-  --scrollbar-thumb: #c4c9d0;
-  --scrollbar-track: transparent;
-  --icon-filter: none;
 }
 
 // =========== 暗色主题 ===========
@@ -186,23 +178,6 @@ export default {
     --header-height: 0;
     --header-bottom-border: 0;
     --content-grid: 1fr 1fr;
-  }
-}
-
-// =========== 全局 ===========
-#container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: var(--bg-image, var(--bg-primary, #f0f2f5));
-  font-family: var(--font-family);
-  -webkit-font-smoothing: antialiased;
-
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
   }
 }
 

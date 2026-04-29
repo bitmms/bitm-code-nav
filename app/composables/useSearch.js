@@ -60,26 +60,14 @@ export function useSearch(searchData, searchInputDom) {
     isEngineListVisible.value = !isEngineListVisible.value
   }
 
-  watch(searchContent, (newVal, oldVal) => {
-    if (newVal.trim() === '' || newVal === oldVal) return
-
-    const cacheList = readSearchHistory()
-    const suggestions = []
-    cacheList.forEach((item) => {
-      if (item.indexOf(newVal) !== -1) {
-        suggestions.push(item)
-      }
-    })
-  })
-
   onMounted(() => {
     const saved = window.localStorage.getItem('searchType')
     if (saved !== null) {
       searchType.value = saved
     }
-    setTimeout(() => {
+    nextTick(() => {
       searchInputDom.value?.focus()
-    }, 0)
+    })
   })
 
   return {
