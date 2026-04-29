@@ -97,7 +97,7 @@ export default {
   --content-grid: 1fr 1fr 1fr 1fr;
   --card-radius: 12px;
   --search-radius: 16px;
-  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-family: 'HarmonyOS Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
   --bg-primary: #f0f2f5;
   --bg-secondary: #ffffff;
   --bg-tertiary: #f7f8fa;

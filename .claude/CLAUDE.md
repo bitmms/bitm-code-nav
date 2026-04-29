@@ -34,6 +34,14 @@ background: url('~/assets/img/bg.png');
 - `new URL()` + `import.meta.url` 是 Vite 推荐的同步资源引入方式
 - 字符串拼接路径（如 `/assets/${name}.svg`）不会被 Vite 识别，打包后 404
 
+## 字体使用规则
+
+- 项目字体文件位于 `app/assets/font/`，包含 HarmonyOS Sans 6 个重量：Thin(100)、Light(300)、Regular(400)、Medium(500)、Bold(700)、Black(900)
+- 全局默认字体栈：`'HarmonyOS Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif`
+- `@font-face` 声明集中放在 `app/assets/css/global.css`
+- 所有组件/页面使用 `var(--font-family)` 或直接继承 `body` 字体，禁止单独指定其他字体家族
+- 新增字体文件必须同步添加 `@font-face` 声明，`font-display` 使用 `swap`
+
 
 ## 项目提交技能
 当项目开发到一定程度时，操作者会把代码提交到 Github 仓库中，具体从提交流程如下：
