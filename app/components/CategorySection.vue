@@ -59,6 +59,7 @@ export default {
   img {
     width: 22px;
     height: 22px;
+    filter: var(--icon-filter);
   }
 }
 
