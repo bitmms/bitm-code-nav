@@ -1,8 +1,19 @@
+import { getAssetUrl } from '../utils/assetUrl.js'
+
+function resolveAssetPaths(data) {
+  if (Array.isArray(data)) {
+    data.forEach(resolveAssetPaths)
+  } else if (data && typeof data === 'object') {
+    if (data.iconSvg) data.iconSvg = getAssetUrl(data.iconSvg)
+    if (data.logo) data.logo = getAssetUrl(data.logo)
+    if (data.children) resolveAssetPaths(data.children)
+    if (data.list) resolveAssetPaths(data.list)
+  }
+}
+
 const websiteConfigData = [
     {
         "category": "站长推荐",
-        "isSelected": false,
-        "isMouseenter": false,
         "iconSvg": "svg/nav/recommend.svg",
         "children": [
             {
@@ -105,8 +116,6 @@ const websiteConfigData = [
     },
     {
         "category": "语言模型",
-        "isSelected": false,
-        "isMouseenter": false,
         "iconSvg": "svg/nav/llm.svg",
         "children": [
             {
@@ -179,8 +188,6 @@ const websiteConfigData = [
     },
     {
         "category": "技术社区",
-        "isSelected": false,
-        "isMouseenter": false,
         "iconSvg": "svg/nav/community.svg",
         "children": [
             {
@@ -217,8 +224,6 @@ const websiteConfigData = [
     },
     {
         "category": "中央仓库",
-        "isSelected": false,
-        "isMouseenter": false,
         "iconSvg": "svg/nav/central-repository.svg",
         "children": [
             {
@@ -285,8 +290,6 @@ const websiteConfigData = [
     },
     {
         "category": "算法学习",
-        "isSelected": false,
-        "isMouseenter": false,
         "iconSvg": "svg/nav/acm.svg",
         "children": [
             {
@@ -341,8 +344,6 @@ const websiteConfigData = [
     },
     {
         "category": "镜像加速",
-        "isSelected": false,
-        "isMouseenter": false,
         "iconSvg": "svg/nav/mirror.svg",
         "children": [
             {
@@ -397,8 +398,6 @@ const websiteConfigData = [
     },
     {
         "category": "图标素材",
-        "isSelected": false,
-        "isMouseenter": false,
         "iconSvg": "svg/nav/icon.svg",
         "children": [
             {
@@ -447,8 +446,6 @@ const websiteConfigData = [
     },
     {
         "category": "云服务商",
-        "isSelected": false,
-        "isMouseenter": false,
         "iconSvg": "svg/nav/cloudServices.svg",
         "children": [
             {
@@ -515,8 +512,6 @@ const websiteConfigData = [
     },
     {
         "category": "魔法工具",
-        "isSelected": false,
-        "isMouseenter": false,
         "iconSvg": "svg/nav/magic.svg",
         "children": [
             {
@@ -529,8 +524,6 @@ const websiteConfigData = [
     },
     {
         "category": "各种云盘",
-        "isSelected": false,
-        "isMouseenter": false,
         "iconSvg": "svg/nav/cloudDrive.svg",
         "children": [
             {
@@ -555,8 +548,6 @@ const websiteConfigData = [
     },
     {
         "category": "技术文档",
-        "isSelected": false,
-        "isMouseenter": false,
         "iconSvg": "svg/nav/document.svg",
         "children": [
             {
@@ -796,5 +787,7 @@ const searchConfigData = {
     ]
 }
 
-// 命名导出多个对象
-export {websiteConfigData, searchConfigData};
+resolveAssetPaths(websiteConfigData)
+resolveAssetPaths(searchConfigData)
+
+export { websiteConfigData, searchConfigData }
