@@ -75,6 +75,7 @@ ul {
     img {
       width: 18px;
       height: 18px;
+      filter: var(--icon-filter);
     }
   }
 

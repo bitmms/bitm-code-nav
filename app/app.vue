@@ -120,6 +120,7 @@ export default {
   --search-focus-bg: #ffffff;
   --scrollbar-thumb: #c4c9d0;
   --scrollbar-track: transparent;
+  --icon-filter: none;
 }
 
 // =========== 亮色主题 ===========
@@ -147,6 +148,7 @@ export default {
   --search-focus-bg: #ffffff;
   --scrollbar-thumb: #c4c9d0;
   --scrollbar-track: transparent;
+  --icon-filter: none;
 }
 
 // =========== 暗色主题 ===========
@@ -173,6 +175,7 @@ export default {
   --search-focus-bg: #222533;
   --scrollbar-thumb: #3a3d50;
   --scrollbar-track: transparent;
+  --icon-filter: brightness(0) invert(1);
 }
 
 // =========== 响应式 ===========
