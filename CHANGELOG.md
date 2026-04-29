@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 2026-04-30 — Claude Code 工作流文档
+
+### 新增
+- 文件：.claude/settings.json — 项目权限配置
+
+### 修改
+- 文件：CLAUDE.md — 重写为完整项目开发指南
+- 文件：.claude/CLAUDE.md — 重写为强制规则+技能+场景文档
+
+### 移除
+- 文件：app/assets/svg/website/chatgpt.svg — 未使用的重复文件
+
+---
+
 ## 2026-04-29 — 项目转换为 JS + Options API
 
 ### TS → JS 转换

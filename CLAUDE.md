@@ -1,56 +1,99 @@
 # CLAUDE.md
 
-此文件为 Claude Code（claude.ai/code）在此仓库中工作时提供指导。
+此文件为 Claude Code 在此仓库中工作的项目指南。
 
 ## 项目概述
 
-程序员导航站 — 基于 Nuxt 4 的静态网站分类导航，部署到 GitHub Pages（`/bitm-code-nav/`）。
+程序员导航站 — Nuxt 4 静态网站分类导航，部署到 GitHub Pages（`/bitm-code-nav/`）。
 
 ## 常用命令
 
 ```bash
-npm run dev        # 开发服务器
-npm run build      # 生产构建（.output）
-npm run generate   # 静态生成（用于 GitHub Pages 部署）
+npm run dev        # 开发服务器 → http://localhost:3000/bitm-code-nav/
+npm run generate   # 静态生成 → .output/public（部署用）
+npm run build      # 生产构建 → .output
 ```
 
 ## 技术栈
 
-- **Nuxt 4**（SSR 启用）、**Vue 3.5**（Options API + setup 桥接）
-- **Less** 作为 CSS 预处理器
-- **JavaScript**（无类型标注）
-- **GitHub Actions** 用于 GitHub Pages 部署
+- **Nuxt 4**（SSR）、**Vue 3.5**（Options API + setup 桥接 composables）
+- **Less**（scoped 样式）、**JavaScript**（禁用 TypeScript）
+- **GitHub Actions** 部署到 GitHub Pages
 
-## 架构
+## 目录结构
 
-### 路由
-单页面应用 — 仅有一个路由（`app/pages/index.vue`）。无 API 路由或服务器中间件。
+```
+bitm-code-nav/
+├── nuxt.config.js              # Nuxt 配置（baseURL: /bitm-code-nav/）
+├── app/
+│   ├── app.vue                 # 根布局：header + sidebar + 浮动工具栏 + <NuxtPage />
+│   ├── pages/
+│   │   └── index.vue           # 唯一页面：SearchBar + CategorySection × N + 页脚
+│   ├── components/
+│   │   ├── SearchBar.vue       # 搜索栏（输入框 + 引擎选择下拉面板）
+│   │   ├── SideNav.vue         # 侧边分类导航
+│   │   ├── CategorySection.vue # 单个分类区块（标题 + 网站卡片网格）
+│   │   └── WebsiteCard.vue     # 单个网站卡片
+│   ├── composables/
+│   │   ├── useTheme.js         # 主题切换（亮/暗 + localStorage 持久化）
+│   │   ├── useScroll.js        # 滚动控制（返回顶部/底部）
+│   │   └── useSearch.js        # 搜索逻辑（引擎选择、搜索历史、执行搜索）
+│   ├── data/
+│   │   └── WebSiteData.js      # 全站数据（分类 + 网站 + 搜索引擎）
+│   ├── utils/
+│   │   └── assetUrl.js         # Vite 资源映射（import.meta.glob → getAssetUrl）
+│   └── assets/
+│       ├── css/global.css      # @font-face + 全局 reset
+│       ├── font/               # HarmonyOS Sans 6 重量
+│       ├── img/bg.png          # 亮色主题背景图
+│       └── svg/                # 所有图标（logo/nav/search/tool/website）
+└── public/
+    ├── favicon.ico
+    └── robots.txt
+```
 
-### 组件结构
-- `app/app.vue` — 根布局，包含 header、sidebar、toolbar
-- `app/pages/index.vue` — 页面内容：SearchBar + CategorySection 列表 + 页脚
-- `app/components/` — SearchBar、SideNav、CategorySection、WebsiteCard
-- `app/composables/` — useTheme、useScroll、useSearch
+## 组件树
 
-### 数据层
-所有网站数据硬编码在 `app/data/WebSiteData.js` 中，导出两个常量。资源路径在导出前通过 `app/utils/assetUrl.js`（`import.meta.glob`）自动转换为 Vite 哈希 URL。
+```
+app.vue
+├── #container-header  → Logo + 主题切换按钮
+├── #content-aside     → <SideNav :website-data />
+├── #content-main      → <NuxtPage />
+│   └── index.vue
+│       ├── <SearchBar :search-data />
+│       ├── <CategorySection v-for :category-item />
+│       │   └── <WebsiteCard v-for :website-item />
+│       └── <footer>
+└── #container-tool    → 滚动切换 + 主题切换
+```
 
-### 静态资源
-所有资源放在 `app/assets/` 下，**禁止**使用 `/public/` 裸路径。引用方式见 `.claude/CLAUDE.md`。
+## 数据流
 
-### 页面结构
-- **`app/app.vue`** — 根布局：Header（Logo + 主题切换）、Sidebar、浮动工具栏
-- **`app/pages/index.vue`** — 页面内容：SearchBar + CategorySection 列表 + 页脚
-- Header 中 Logo 带悬停交换效果，浮动工具栏含滚动到顶部/底部 + 主题切换
+- 无 Pinia / Vuex，全部用 `ref()` + `computed()` 管理
+- `WebSiteData.js` 导出 `websiteConfigData` 和 `searchConfigData`，在导出前通过 `resolveAssetPaths()` 将资源路径转为 Vite 哈希 URL
+- localStorage 持久化：`nowThemeType`（主题）、`searchType`（搜索引擎）、`searchStringList`（搜索历史）
 
-### 状态管理
-无 Pinia 或 Vuex — 使用本地 `ref`/`computed` 管理状态。通过 `localStorage` 持久化：搜索引擎选择、暗色/亮色主题、搜索历史字符串列表。
+## 主题系统
 
-### 响应式设计
-通过 CSS 自定义属性（`--logo-width`、`--aside-width`、`--header-height`、`--content-grid`）处理响应式布局，在 1200px 断点处切换值。小屏幕隐藏侧边栏和头部。
+CSS 自定义属性模式，定义在 `app/app.vue` 的 `#container` 上：
 
-### 生产部署
-通过 GitHub Actions 部署到 GitHub Pages，静态生成输出到 `.output/public`。
+```
+#container           ← 基类设定亮色默认值（所有变量）
+#container.light     ← 仅设 --bg-image（亮色特有）
+#container.dark      ← 覆盖所有变量为暗色值
+```
 
-### 路径注意事项
-应用基础路径在 `nuxt.config.js` 中设置为 `/bitm-code-nav/`。所有静态资源通过 Vite 的 `import.meta.glob` 处理，资源 URL 在构建时自动生成哈希路径。
+新增可主题化属性时：先在基类 `#container` 加默认值（亮色），再在 `#container.dark` 中覆盖。禁止在 `.light` 块中重复基类已有的值。
+
+## 关键约束
+
+详见 `.claude/CLAUDE.md`，核心要点：
+- **静态资源**：禁止 `/public/` 裸路径，必须用 `getAssetUrl()` 或 `url('~/assets/...')`
+- **字体**：全局使用 HarmonyOS Sans，禁止单独指定字体家族
+- **语言**：JavaScript，禁用 TypeScript 类型标注
+- **Vue**：Options API（`export default {}`），composables 通过 `setup()` 桥接
+
+## 路径注意
+
+- `baseURL: '/bitm-code-nav/'`，所有路由和资源路径需考虑此前缀
+- 资源经 Vite 处理后带哈希（如 `logo.abc123.svg`），不可硬编码路径
