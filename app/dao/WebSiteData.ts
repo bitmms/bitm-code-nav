@@ -134,10 +134,46 @@ const websiteConfigData = [
                 "logo": "svg/website/ai-llm-chatgpt.svg"
             },
             {
+                "name": "文心一言",
+                "href": "https://yiyan.baidu.com",
+                "desc": "文心一言",
+                "logo": "svg/website/ai-llm-yiyan.svg"
+            },
+            {
+                "name": "Kimi",
+                "href": "https://www.kimi.com",
+                "desc": "Kimi",
+                "logo": "svg/website/ai-llm-kimi.svg"
+            },
+            {
+                "name": "元宝",
+                "href": "https://yuanbao.tencent.com/chat",
+                "desc": "元宝",
+                "logo": "svg/website/ai-llm-yuanbao.svg"
+            },
+            {
+                "name": "智谱清言",
+                "href": "https://chatglm.cn/main",
+                "desc": "智谱清言",
+                "logo": "svg/website/ai-llm-glm.svg"
+            },
+            {
+                "name": "讯飞星火",
+                "href": "https://xinghuo.xfyun.cn/desk",
+                "desc": "讯飞星火",
+                "logo": "svg/website/ai-llm-xinghuo.svg"
+            },
+            {
                 "name": "Arena AI",
                 "href": "https://arena.ai",
                 "desc": "大模型 AI 竞技场",
                 "logo": "svg/website/ai-llm-arena.svg"
+            },
+            {
+                "name": "灵芽API",
+                "href": "https://api.lingyaai.cn/",
+                "desc": "一站式对接各种大模型",
+                "logo": "svg/website/ai-llm-lingyaai.png"
             }
         ]
     },
