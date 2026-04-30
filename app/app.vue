@@ -7,7 +7,7 @@ export default {
     const websiteData = ref(websiteConfigData)
     const mainBoxRef = ref(null)
     const contentRef = ref(null)
-    const { currentTheme, toggleTheme, isTransitioning, transitionOrigin, transitionTarget } = useTheme(mainBoxRef)
+    const { currentTheme, toggleTheme, isTransitioning, transitionOrigin } = useTheme(mainBoxRef)
     const { showBackToTop, toggleScroll, handleScroll } = useScroll(contentRef)
 
     return {
@@ -18,7 +18,6 @@ export default {
       toggleTheme,
       isTransitioning,
       transitionOrigin,
-      transitionTarget,
       showBackToTop,
       toggleScroll,
       handleScroll,
@@ -89,7 +88,6 @@ export default {
   <div
     v-if="isTransitioning"
     class="theme-transition-overlay"
-    :class="transitionTarget === 'dark' ? 'to-dark' : 'to-light'"
     :style="{ '--ox': transitionOrigin.x + 'px', '--oy': transitionOrigin.y + 'px' }"
   />
 </template>
@@ -345,12 +343,11 @@ export default {
   inset: 0;
   z-index: 9999;
   pointer-events: none;
+  background: transparent;
+  backdrop-filter: invert(1);
   clip-path: circle(0 at var(--ox) var(--oy));
-  animation: theme-expand 500ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: theme-expand 400ms ease forwards;
 }
-
-.to-dark { background: #0f1117; }
-.to-light { background: #f0f2f5; }
 
 @keyframes theme-expand {
   to {

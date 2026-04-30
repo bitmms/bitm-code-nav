@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 2026-04-30 — 修复主题切换动画白屏/黑屏
+
+### 修改
+- 文件：app/composables/useTheme.js — 移除 transitionTarget，调整主题切换时机至动画末尾
+- 文件：app/app.vue — 遮罩层用 backdrop-filter: invert(1) 替代纯色背景，消除遮挡内容的白/黑屏
+
+---
+
 ## 2026-04-30 — 主题切换动画
 
 ### 修改

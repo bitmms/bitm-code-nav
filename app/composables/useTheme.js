@@ -2,7 +2,6 @@ export function useTheme(mainBoxRef) {
   const currentTheme = ref('light')
   const isTransitioning = ref(false)
   const transitionOrigin = ref({ x: 0, y: 0 })
-  const transitionTarget = ref('')
 
   const toggleTheme = (event) => {
     if (isTransitioning.value) return
@@ -13,16 +12,12 @@ export function useTheme(mainBoxRef) {
       x: event?.clientX ?? window.innerWidth / 2,
       y: event?.clientY ?? window.innerHeight / 2
     }
-    transitionTarget.value = target
     isTransitioning.value = true
 
     setTimeout(() => {
       currentTheme.value = target
-    }, 250)
-
-    setTimeout(() => {
       isTransitioning.value = false
-    }, 520)
+    }, 400)
   }
 
   watch(currentTheme, (theme) => {
@@ -42,5 +37,5 @@ export function useTheme(mainBoxRef) {
     }
   })
 
-  return { currentTheme, toggleTheme, isTransitioning, transitionOrigin, transitionTarget }
+  return { currentTheme, toggleTheme, isTransitioning, transitionOrigin }
 }
