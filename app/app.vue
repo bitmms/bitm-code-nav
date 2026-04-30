@@ -197,21 +197,25 @@ export default {
     .header-nav {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 8px;
       padding: 0 16px;
 
       a {
-        padding: 6px 14px;
-        border-radius: 8px;
+        padding: 7px 18px;
+        border-radius: 20px;
         font-size: 13px;
         font-weight: 500;
         color: var(--text-secondary);
         text-decoration: none;
+        background: var(--bg-tertiary);
+        border: 1px solid transparent;
         transition: all var(--transition-fast);
 
         &:hover {
           color: var(--accent);
           background: var(--accent-light);
+          border-color: var(--accent);
+          transform: translateY(-1px);
         }
       }
     }
