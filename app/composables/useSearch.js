@@ -13,6 +13,7 @@ export function useSearch(searchData, searchInputDom) {
   const searchContent = ref('')
   const searchType = ref('bing')
   const isEngineListVisible = ref(false)
+  const highlightedIndex = ref(-1)
 
   const currentSearchEngine = computed(() => {
     let engine = {
@@ -30,9 +31,27 @@ export function useSearch(searchData, searchInputDom) {
     return engine
   })
 
-  const handleSearch = () => {
-    const searchString = searchContent.value
-    if (searchString.trim().length === 0) return
+  const suggestions = computed(() => {
+    const val = searchContent.value.trim()
+    if (val === '') return []
+    const history = readSearchHistory()
+    const result = []
+    for (const item of history) {
+      if (item.toLowerCase().includes(val.toLowerCase()) && item !== val) {
+        result.push(item)
+      }
+      if (result.length >= 8) break
+    }
+    return result
+  })
+
+  const isSuggestionVisible = computed(() => {
+    return suggestions.value.length > 0 && !isEngineListVisible.value
+  })
+
+  const handleSearch = (query) => {
+    const searchString = (query || searchContent.value).trim()
+    if (searchString.length === 0) return
 
     const searchStringList = readSearchHistory()
     const idx = searchStringList.indexOf(searchString)
@@ -48,6 +67,57 @@ export function useSearch(searchData, searchInputDom) {
       window.location.href = targetUrl
     }
     searchContent.value = ''
+    highlightedIndex.value = -1
+  }
+
+  const selectSuggestion = (index) => {
+    if (index >= 0 && index < suggestions.value.length) {
+      searchContent.value = suggestions.value[index]
+      highlightedIndex.value = -1
+      nextTick(() => {
+        handleSearch()
+      })
+    }
+  }
+
+  const onInputKeydown = (e) => {
+    if (isEngineListVisible.value) return
+
+    const len = suggestions.value.length
+    if (len === 0) {
+      if (e.key === 'Enter') {
+        e.preventDefault()
+        handleSearch()
+      }
+      return
+    }
+
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault()
+        highlightedIndex.value = highlightedIndex.value < len - 1 ? highlightedIndex.value + 1 : 0
+        break
+      case 'ArrowUp':
+        e.preventDefault()
+        highlightedIndex.value = highlightedIndex.value > 0 ? highlightedIndex.value - 1 : len - 1
+        break
+      case 'Enter':
+        e.preventDefault()
+        if (highlightedIndex.value >= 0) {
+          selectSuggestion(highlightedIndex.value)
+        } else {
+          handleSearch()
+        }
+        break
+      case 'Escape':
+        highlightedIndex.value = -1
+        searchInputDom.value?.blur()
+        break
+    }
+  }
+
+  const dismissSuggestions = () => {
+    highlightedIndex.value = -1
   }
 
   const selectSearchEngine = (name) => {
@@ -58,6 +128,7 @@ export function useSearch(searchData, searchInputDom) {
 
   const toggleEngineList = () => {
     isEngineListVisible.value = !isEngineListVisible.value
+    highlightedIndex.value = -1
   }
 
   onMounted(() => {
@@ -74,8 +145,14 @@ export function useSearch(searchData, searchInputDom) {
     searchContent,
     searchType,
     isEngineListVisible,
+    highlightedIndex,
     currentSearchEngine,
+    suggestions,
+    isSuggestionVisible,
     handleSearch,
+    selectSuggestion,
+    onInputKeydown,
+    dismissSuggestions,
     selectSearchEngine,
     toggleEngineList,
   }

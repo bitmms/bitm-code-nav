@@ -9,20 +9,40 @@ export default {
     const {
       searchContent,
       isEngineListVisible,
+      highlightedIndex,
       currentSearchEngine,
+      suggestions,
+      isSuggestionVisible,
       handleSearch,
+      selectSuggestion,
+      onInputKeydown,
+      dismissSuggestions,
       selectSearchEngine,
       toggleEngineList,
     } = useSearch(props.searchData, searchInputDom)
+
+    const highlightMatch = (text) => {
+      const query = searchContent.value.trim()
+      if (!query) return text
+      const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi')
+      return text.replace(regex, '<mark>$1</mark>')
+    }
 
     return {
       searchInputDom,
       searchContent,
       isEngineListVisible,
+      highlightedIndex,
       currentSearchEngine,
+      suggestions,
+      isSuggestionVisible,
       handleSearch,
+      selectSuggestion,
+      onInputKeydown,
+      dismissSuggestions,
       selectSearchEngine,
       toggleEngineList,
+      highlightMatch,
     }
   }
 }
@@ -43,15 +63,33 @@ export default {
         type="text"
         class="search-input"
         placeholder="搜索你想要的网站..."
-        @keydown.enter="handleSearch"
-        @focus="isEngineListVisible = false"
+        @keydown="onInputKeydown"
+        @blur="dismissSuggestions"
       >
-      <button class="search-btn" @click="handleSearch" title="搜索">
+      <button class="search-btn" @click="handleSearch()" title="搜索">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="11" cy="11" r="8"/>
           <line x1="21" y1="21" x2="16.65" y2="16.65"/>
         </svg>
       </button>
+    </div>
+
+    <div v-show="isSuggestionVisible" class="suggestion-dropdown">
+      <div class="suggestion-header">搜索历史</div>
+      <div
+        v-for="(item, index) in suggestions"
+        :key="item"
+        class="suggestion-item"
+        :class="{ highlighted: index === highlightedIndex }"
+        @mousedown.prevent="selectSuggestion(index)"
+        @mouseenter="highlightedIndex = index"
+      >
+        <svg class="suggestion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <span class="suggestion-text" v-html="highlightMatch(item)"></span>
+      </div>
     </div>
 
     <div v-show="isEngineListVisible" class="engine-dropdown">
@@ -163,6 +201,74 @@ export default {
   }
 }
 
+// =========== 搜索建议下拉 ===========
+.suggestion-dropdown {
+  position: absolute;
+  top: calc(52px + 24px + 4px);
+  left: 3%;
+  right: 3%;
+  z-index: 99;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  overflow: hidden;
+}
+
+.suggestion-header {
+  padding: 8px 14px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+
+  &.highlighted {
+    background: var(--accent-light);
+
+    .suggestion-text {
+      color: var(--accent);
+    }
+
+    .suggestion-icon {
+      color: var(--accent);
+    }
+  }
+
+  .suggestion-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+  }
+
+  .suggestion-text {
+    font-size: 14px;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    :deep(mark) {
+      background: transparent;
+      color: var(--accent);
+      font-weight: 600;
+    }
+  }
+}
+
+// =========== 搜索引擎下拉 ===========
 .engine-dropdown {
   position: absolute;
   top: calc(52px + 24px + 6px);

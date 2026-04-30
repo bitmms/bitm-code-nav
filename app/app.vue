@@ -116,7 +116,7 @@ export default {
   --accent: #4f46e5;
   --accent-light: #eef2ff;
   --accent-hover: #4338ca;
-  --search-bg: #e8ecf1;
+  --search-bg: #dde1e7;
   --search-focus-bg: #ffffff;
   --scrollbar-thumb: #c4c9d0;
   --scrollbar-track: transparent;
@@ -163,8 +163,8 @@ export default {
   --accent: #818cf8;
   --accent-light: #1e2040;
   --accent-hover: #6366f1;
-  --search-bg: #1c1f2e;
-  --search-focus-bg: #222533;
+  --search-bg: #232738;
+  --search-focus-bg: #2a2d3a;
   --scrollbar-thumb: #3a3d50;
   --scrollbar-track: transparent;
   --icon-filter: brightness(0) invert(1);
