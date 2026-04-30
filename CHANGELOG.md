@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 2026-04-30 — 修复动画原点与卡顿
+
+### 修改
+- 文件：app/composables/useTheme.js — getBoundingClientRect 精确获取按钮中心 + nextTick/rAF 两阶段触发
+- 文件：app/app.vue — clip-path 改为 transform: scale() GPU 加速 + will-change 优化渲染
+
+---
+
 ## 2026-04-30 — 修复主题切换动画中间色问题
 
 ### 修改

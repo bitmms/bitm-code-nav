@@ -7,7 +7,7 @@ export default {
     const websiteData = ref(websiteConfigData)
     const mainBoxRef = ref(null)
     const contentRef = ref(null)
-    const { currentTheme, toggleTheme, isTransitioning, transitionOrigin, transitionOldTheme } = useTheme(mainBoxRef)
+    const { currentTheme, toggleTheme, isTransitioning, isShrinking, transitionOrigin, transitionOldTheme } = useTheme(mainBoxRef)
     const { showBackToTop, toggleScroll, handleScroll } = useScroll(contentRef)
 
     return {
@@ -17,6 +17,7 @@ export default {
       currentTheme,
       toggleTheme,
       isTransitioning,
+      isShrinking,
       transitionOrigin,
       transitionOldTheme,
       showBackToTop,
@@ -89,7 +90,7 @@ export default {
   <div
     v-if="isTransitioning"
     class="theme-transition-overlay"
-    :class="transitionOldTheme === 'light' ? 'from-light' : 'from-dark'"
+    :class="[transitionOldTheme === 'light' ? 'from-light' : 'from-dark', { shrink: isShrinking }]"
     :style="{ '--ox': transitionOrigin.x + 'px', '--oy': transitionOrigin.y + 'px' }"
   />
 </template>
@@ -342,19 +343,23 @@ export default {
 // =========== 主题切换过渡动画 ===========
 .theme-transition-overlay {
   position: fixed;
-  inset: 0;
   z-index: 9999;
   pointer-events: none;
-  clip-path: circle(150vmax at var(--ox) var(--oy));
-  animation: theme-reveal 250ms ease-out forwards;
+  border-radius: 50%;
+  width: 300vmax;
+  height: 300vmax;
+  left: var(--ox);
+  top: var(--oy);
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 250ms ease-out;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.theme-transition-overlay.shrink {
+  transform: translate(-50%, -50%) scale(0);
 }
 
 .from-light { background: #f0f2f5; }
 .from-dark  { background: #0f1117; }
-
-@keyframes theme-reveal {
-  to {
-    clip-path: circle(0 at var(--ox) var(--oy));
-  }
-}
 </style>
