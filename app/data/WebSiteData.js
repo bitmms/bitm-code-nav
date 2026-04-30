@@ -83,18 +83,6 @@ const _websiteConfigData = [
                 "logo": "svg/website/qq-email.svg"
             },
             {
-                "name": "力扣",
-                "href": "https://leetcode.cn",
-                "desc": "全球求职刷题知名平台",
-                "logo": "svg/website/acm-leetcode.svg"
-            },
-            {
-                "name": "Github",
-                "href": "https://github.com",
-                "desc": "全球最大开源项目托管平台",
-                "logo": "svg/website/github.svg"
-            },
-            {
                 "name": "打字练习",
                 "href": "https://dazidazi.com",
                 "desc": "在线盲打速度训练",
