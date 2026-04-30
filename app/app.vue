@@ -7,19 +7,12 @@ export default {
     const websiteData = websiteConfigData
     const mainBoxRef = ref(null)
     const contentRef = ref(null)
-    const { currentTheme, toggleTheme, isTransitioning, isShrinking, transitionOrigin, transitionOldTheme } = useTheme(mainBoxRef)
     const { showBackToTop, toggleScroll, handleScroll } = useScroll(contentRef)
 
     return {
       websiteData,
       mainBoxRef,
       contentRef,
-      currentTheme,
-      toggleTheme,
-      isTransitioning,
-      isShrinking,
-      transitionOrigin,
-      transitionOldTheme,
       showBackToTop,
       toggleScroll,
       handleScroll,
@@ -50,14 +43,6 @@ export default {
       </div>
       <div id="header-content">
         <div class="nav-box"/>
-        <button class="tool-of-dark-and-light" @click="toggleTheme($event)" :title="currentTheme === 'light' ? '切换暗色模式' : '切换亮色模式'" :aria-label="currentTheme === 'light' ? '切换暗色模式' : '切换亮色模式'">
-          <svg v-show="currentTheme === 'dark'" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-          </svg>
-          <svg v-show="currentTheme === 'light'" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-          </svg>
-        </button>
       </div>
     </header>
     <div id="container-content">
@@ -77,26 +62,12 @@ export default {
           <polyline points="6 9 12 15 18 9"/>
         </svg>
       </button>
-      <button class="tool-item-box" @click="toggleTheme($event)" :title="currentTheme === 'light' ? '切换暗色模式' : '切换亮色模式'" :aria-label="currentTheme === 'light' ? '切换暗色模式' : '切换亮色模式'">
-        <svg v-show="currentTheme === 'dark'" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-        </svg>
-        <svg v-show="currentTheme === 'light'" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-      </button>
     </div>
   </div>
-  <div
-    v-if="isTransitioning"
-    class="theme-transition-overlay"
-    :class="[transitionOldTheme === 'light' ? 'from-light' : 'from-dark', { shrink: isShrinking }]"
-    :style="{ '--ox': transitionOrigin.x + 'px', '--oy': transitionOrigin.y + 'px' }"
-  />
 </template>
 
 <style lang="less" scoped>
-// =========== 基础变量（亮色兜底，防首屏黑闪） ===========
+// =========== 基础变量 ===========
 #container {
   --transition-time: .3s;
   --transition-fast: .15s;
@@ -129,7 +100,7 @@ export default {
   --search-focus-bg: #ffffff;
   --scrollbar-thumb: #c4c9d0;
   --scrollbar-track: transparent;
-  --icon-filter: none;
+  --bg-image: url('~/assets/img/bg.png');
 
   // 布局
   position: relative;
@@ -145,38 +116,6 @@ export default {
     scrollbar-width: thin;
     scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
   }
-}
-
-// =========== 亮色主题（仅定义暗色不存在的变量） ===========
-#container.light {
-  --bg-image: url('~/assets/img/bg.png');
-}
-
-// =========== 暗色主题 ===========
-#container.dark {
-  --bg-primary: #0f1117;
-  --bg-secondary: #161822;
-  --bg-tertiary: #1c1f2e;
-  --bg-hover: #232738;
-  --bg-card: rgba(22, 24, 34, 0.75);
-  --bg-toolbar: rgba(22, 24, 34, 0.9);
-  --text-primary: #e8e8ed;
-  --text-secondary: #8b8fa3;
-  --text-tertiary: #5c6072;
-  --border-color: #2a2d3a;
-  --border-light: #222533;
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.15);
-  --accent: #60a5fa;
-  --accent-light: #1e293b;
-  --accent-hover: #93c5fd;
-  --search-bg: #232738;
-  --search-focus-bg: #2a2d3a;
-  --scrollbar-thumb: #3a3d50;
-  --scrollbar-track: transparent;
-  --icon-filter: brightness(0) invert(1);
 }
 
 // =========== 响应式 ===========
@@ -251,31 +190,6 @@ export default {
     padding-right: 24px;
 
     .nav-box { flex: 1; }
-
-    .tool-of-dark-and-light {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border: none;
-      background: transparent;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      color: var(--text-secondary);
-      font: inherit;
-
-      .theme-icon {
-        width: 22px;
-        height: 22px;
-      }
-
-      &:hover {
-        background: var(--bg-hover);
-        color: var(--text-primary);
-      }
-    }
   }
 }
 
@@ -345,27 +259,4 @@ export default {
     }
   }
 }
-
-// =========== 主题切换过渡动画 ===========
-.theme-transition-overlay {
-  position: fixed;
-  z-index: 9999;
-  pointer-events: none;
-  border-radius: 50%;
-  width: 300vmax;
-  height: 300vmax;
-  left: var(--ox);
-  top: var(--oy);
-  transform: translate(-50%, -50%) scale(1);
-  transition: transform 250ms ease-out;
-  will-change: transform;
-  backface-visibility: hidden;
-}
-
-.theme-transition-overlay.shrink {
-  transform: translate(-50%, -50%) scale(0);
-}
-
-.from-light { background: var(--theme-bg-light); }
-.from-dark  { background: var(--theme-bg-dark); }
 </style>

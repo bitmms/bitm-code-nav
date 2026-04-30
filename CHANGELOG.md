@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 2026-04-30 — 移除黑白主题切换，统一使用白色主题
+
+### 移除
+- 文件：app/composables/useTheme.js — 删除整个文件
+- 文件：app/app.vue — 删除暗色 CSS 块、主题切换按钮、过渡动画遮罩、useTheme 调用
+- 文件：app/assets/css/global.css — 删除 --theme-bg-light/dark 变量
+- 文件：app/components/SideNav.vue — 删除 icon-filter
+- 文件：app/components/CategorySection.vue — 删除 icon-filter
+
+---
+
 ## 2026-04-30 — 搜索栏移回页面中间并放大
 
 ### 修改
