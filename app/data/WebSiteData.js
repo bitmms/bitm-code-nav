@@ -675,6 +675,7 @@ const _websiteConfigData = [
 ]
 const _searchConfigData = {
     "searchResultIsBlank": true,
+    "searchHistoryLimit": 10000,
     "list": [
         {
             "name": "bing",
@@ -790,7 +791,11 @@ const _searchConfigData = {
 const websiteConfigData = structuredClone(_websiteConfigData)
 const searchConfigData = structuredClone(_searchConfigData)
 
+const appConfig = {
+  hotSiteCount: 6
+}
+
 resolveAssetPaths(websiteConfigData)
 resolveAssetPaths(searchConfigData)
 
-export {websiteConfigData, searchConfigData}
+export {websiteConfigData, searchConfigData, appConfig}

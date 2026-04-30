@@ -1,5 +1,5 @@
 <script>
-import { websiteConfigData, searchConfigData } from '~/data/WebSiteData'
+import { websiteConfigData, searchConfigData, appConfig } from '~/data/WebSiteData'
 import { getTopSites } from '~/composables/useClickTracker'
 import { getAssetUrl } from '~/utils/assetUrl'
 
@@ -10,11 +10,11 @@ export default {
     const topSites = ref([])
 
     onMounted(() => {
-      topSites.value = getTopSites(websiteData, 6)
+      topSites.value = getTopSites(websiteData, appConfig.hotSiteCount)
     })
 
     const refreshTopSites = () => {
-      topSites.value = getTopSites(websiteData, 6)
+      topSites.value = getTopSites(websiteData, appConfig.hotSiteCount)
     }
 
     return { websiteData, searchData, topSites, refreshTopSites, getAssetUrl }

@@ -57,7 +57,7 @@ export function useSearch(searchData, searchInputDom, searchWrapperDom) {
     const idx = searchStringList.indexOf(searchString)
     if (idx !== -1) searchStringList.splice(idx, 1)
     searchStringList.unshift(searchString)
-    if (searchStringList.length > 10000) searchStringList.pop()
+    if (searchStringList.length > searchData.searchHistoryLimit) searchStringList.pop()
     window.localStorage.setItem('searchStringList', JSON.stringify(searchStringList))
 
     const targetUrl = currentSearchEngine.value.href + encodeURIComponent(searchString)
