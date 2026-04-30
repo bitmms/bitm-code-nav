@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 2026-04-30 — 清理项目 + 补充 Claude Code 工作流文件
+
+### 删除
+- 文件：server/tsconfig.json — 服务端 TS 配置，纯 JS 项目不需要
+- 文件：tsconfig.json — TypeScript 配置，项目规范禁止 TS
+- 文件：代码审查-开发规范问题.md — 一次性审查文档，所有问题已修复
+- 文件：.claude/settings.local.json — 本地覆盖文件，不应被 git 追踪
+
+### 新增
+- 文件：.env.example — 环境变量配置模板
+
+### 修改
+- 文件：.gitignore — 添加 .claude/settings.local.json 忽略规则
+
+---
+
 ## 2026-04-30 — 网站点击计数 + 首页热门排行
 
 ### 新增
