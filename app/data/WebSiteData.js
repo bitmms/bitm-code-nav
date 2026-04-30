@@ -162,7 +162,7 @@ const _websiteConfigData = [
             },
             {
                 "name": "智谱清言",
-                "href": "https://chatglm.cn/main",
+                "href": "https://chatglm.cn/main/alltoolsdetail",
                 "desc": "智谱清言",
                 "logo": "svg/website/ai-llm-glm.svg"
             },
