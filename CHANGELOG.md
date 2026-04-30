@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2026-04-30 — 优化站点数据 name 和 desc
+
+### 修改
+- 文件：app/data/WebSiteData.js — 修复 13 个 desc=name 无意义项，22 个条目优化描述，2 个过长名称精简
+
+---
+
 ## 2026-04-30 — 调浅 hover 强调色
 
 ### 修改

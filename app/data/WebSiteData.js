@@ -37,7 +37,7 @@ const _websiteConfigData = [
             {
                 "name": "微信读书",
                 "href": "https://weread.qq.com/",
-                "desc": "微信读书",
+                "desc": "腾讯电子书阅读平台",
                 "logo": "svg/website/weixin-book.svg"
             },
             {
@@ -55,7 +55,7 @@ const _websiteConfigData = [
             {
                 "name": "Online-GDB",
                 "href": "https://www.onlinegdb.com/",
-                "desc": "GDB online is an online compiler and debugger tool",
+                "desc": "在线编译器与调试工具",
                 "logo": "svg/website/onlinegdb.svg"
             },
             {
@@ -79,7 +79,7 @@ const _websiteConfigData = [
             {
                 "name": "QQ 邮箱",
                 "href": "https://wx.mail.qq.com",
-                "desc": "QQ 邮箱",
+                "desc": "微信扫码登录的邮箱",
                 "logo": "svg/website/qq-email.svg"
             },
             {
@@ -97,7 +97,7 @@ const _websiteConfigData = [
             {
                 "name": "打字练习",
                 "href": "https://dazidazi.com",
-                "desc": "打字练习",
+                "desc": "在线盲打速度训练",
                 "logo": "svg/website/dazi.svg"
             },
             {
@@ -109,7 +109,7 @@ const _websiteConfigData = [
             {
                 "name": "555电影",
                 "href": "https://zxdy5.top",
-                "desc": "最新 Netflix 免费在线观看",
+                "desc": "在线影视免费观看",
                 "logo": "svg/website/555-movie.svg"
             }
         ]
@@ -121,55 +121,55 @@ const _websiteConfigData = [
             {
                 "name": "豆包",
                 "href": "https://www.doubao.com",
-                "desc": "豆包",
+                "desc": "字节跳动 AI 对话助手",
                 "logo": "svg/website/ai-llm-doubao.svg"
             },
             {
                 "name": "通义千问",
                 "href": "https://www.qianwen.com/",
-                "desc": "阿里巴巴全新推出的AI对话助手",
+                "desc": "阿里云 AI 对话模型",
                 "logo": "svg/website/ai-llm-qianwen.svg"
             },
             {
                 "name": "DeepSeek",
                 "href": "https://chat.deepseek.com",
-                "desc": "DeepSeek",
+                "desc": "开源推理大模型，编程能力强",
                 "logo": "svg/website/ai-llm-deepseek.svg"
             },
             {
                 "name": "ChatGPT",
                 "href": "https://chatgpt.com",
-                "desc": "ChatGPT",
+                "desc": "OpenAI 旗舰对话模型",
                 "logo": "svg/website/ai-llm-chatgpt.svg"
             },
             {
                 "name": "文心一言",
                 "href": "https://yiyan.baidu.com",
-                "desc": "文心一言",
+                "desc": "百度 AI 对话助手",
                 "logo": "svg/website/ai-llm-yiyan.svg"
             },
             {
                 "name": "Kimi",
                 "href": "https://www.kimi.com",
-                "desc": "Kimi",
+                "desc": "月之暗面超长文本模型",
                 "logo": "svg/website/ai-llm-kimi.svg"
             },
             {
                 "name": "元宝",
                 "href": "https://yuanbao.tencent.com/chat",
-                "desc": "元宝",
+                "desc": "腾讯混元 AI 对话助手",
                 "logo": "svg/website/ai-llm-yuanbao.svg"
             },
             {
                 "name": "智谱清言",
                 "href": "https://chatglm.cn/main/alltoolsdetail",
-                "desc": "智谱清言",
+                "desc": "智谱 GLM 模型对话平台",
                 "logo": "svg/website/ai-llm-glm.svg"
             },
             {
                 "name": "讯飞星火",
                 "href": "https://xinghuo.xfyun.cn/desk",
-                "desc": "讯飞星火",
+                "desc": "讯飞认知大模型平台",
                 "logo": "svg/website/ai-llm-xinghuo.svg"
             },
             {
@@ -247,13 +247,13 @@ const _websiteConfigData = [
             {
                 "name": "Vercel",
                 "href": "https://vercel.com",
-                "desc": "静态页面托管平台",
+                "desc": "前端项目部署与托管平台",
                 "logo": "svg/website/vercel.svg"
             },
             {
                 "name": "Nuget",
                 "href": "https://www.nuget.org",
-                "desc": "NuGet 是 .NET 的包管理器",
+                "desc": ".NET 生态包管理器",
                 "logo": "svg/website/repo-nuget.svg"
             },
             {
@@ -265,25 +265,25 @@ const _websiteConfigData = [
             {
                 "name": "npm",
                 "href": "https://www.npmjs.com",
-                "desc": "JavaScript 代码共享中心",
+                "desc": "Node.js 包管理平台",
                 "logo": "svg/website/repo-npm.svg"
             },
             {
                 "name": "pip",
                 "href": "https://pypi.org",
-                "desc": "Python 编程语言的软件仓库",
+                "desc": "Python 官方包索引仓库",
                 "logo": "svg/website/repo-pip.svg"
             },
             {
                 "name": "Docker",
                 "href": "https://hub.docker.com",
-                "desc": "容器化部署平台",
+                "desc": "Docker 官方镜像仓库",
                 "logo": "svg/website/repo-docker.svg"
             },
             {
-                "name": "OpenHarmony 三方库中心仓",
+                "name": "OpenHarmony 三方库",
                 "href": "https://ohpm.openharmony.cn",
-                "desc": "鸿蒙开发三方库",
+                "desc": "鸿蒙生态第三方组件仓库",
                 "logo": "svg/website/repo-harmonyos.svg"
             }
         ]
@@ -431,15 +431,15 @@ const _websiteConfigData = [
                 "logo": "svg/website/icon-iconpark.svg"
             },
             {
-                "name": "中国大学矢量校徽大全",
+                "name": "大学矢量校徽",
                 "href": "https://www.urongda.com",
-                "desc": "专业级矢量校徽库",
+                "desc": "全国高校矢量校徽资源库",
                 "logo": "svg/website/icon-uni-logo.svg"
             },
             {
                 "name": "免费商用字体汇总",
                 "href": "https://github.com/wordshub/free-font",
-                "desc": "免费商用字体汇总",
+                "desc": "开源免费可商用字体合集",
                 "logo": "svg/website/icon-free-font.svg"
             }
         ]
@@ -517,7 +517,7 @@ const _websiteConfigData = [
             {
                 "name": "网际快车",
                 "href": "https://快车.com",
-                "desc": "魔法工具",
+                "desc": "跨境网络加速服务",
                 "logo": "svg/website/magic-vpn.svg"
             }
         ]
@@ -553,13 +553,13 @@ const _websiteConfigData = [
             {
                 "name": "微软技术文档",
                 "href": "https://learn.microsoft.com/zh-cn/docs/",
-                "desc": "微软技术文档",
+                "desc": "微软全系产品技术文档中心",
                 "logo": "svg/website/doc-mc.svg"
             },
             {
                 "name": "数据库内核月报",
                 "href": "http://mysql.taobao.org/monthly/",
-                "desc": "阿里云RDS-数据库内核组《数据库内核月报》",
+                "desc": "阿里数据库内核技术月刊",
                 "logo": "svg/website/doc-rds.svg"
             },
             {
