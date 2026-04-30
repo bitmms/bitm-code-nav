@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2026-04-30 — 头部添加快捷导航链接
+
+### 修改
+- 文件：app/app.vue — nav-box 替换为 header-nav：哔哩哔哩、抖音、虎牙、GitHub、DeepSeek 外链
+
+---
+
 ## 2026-04-30 — 调整背景层次色彩
 
 ### 修改

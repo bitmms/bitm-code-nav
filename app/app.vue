@@ -42,7 +42,13 @@ export default {
         </div>
       </div>
       <div id="header-content">
-        <div class="nav-box"/>
+        <nav class="header-nav">
+          <a href="https://www.bilibili.com" target="_blank" rel="noopener noreferrer" title="哔哩哔哩">哔哩哔哩</a>
+          <a href="https://www.douyin.com" target="_blank" rel="noopener noreferrer" title="抖音">抖音</a>
+          <a href="https://www.huya.com" target="_blank" rel="noopener noreferrer" title="虎牙直播">虎牙</a>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" title="GitHub">GitHub</a>
+          <a href="https://chat.deepseek.com" target="_blank" rel="noopener noreferrer" title="DeepSeek">DeepSeek</a>
+        </nav>
       </div>
     </header>
     <div id="container-content">
@@ -188,7 +194,27 @@ export default {
     align-items: center;
     padding-right: 24px;
 
-    .nav-box { flex: 1; }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0 16px;
+
+      a {
+        padding: 6px 14px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all var(--transition-fast);
+
+        &:hover {
+          color: var(--accent);
+          background: var(--accent-light);
+        }
+      }
+    }
   }
 }
 
