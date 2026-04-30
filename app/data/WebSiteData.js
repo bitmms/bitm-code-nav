@@ -792,7 +792,7 @@ const websiteConfigData = structuredClone(_websiteConfigData)
 const searchConfigData = structuredClone(_searchConfigData)
 
 const appConfig = {
-  hotSiteCount: 6
+    hotSiteCount: 12
 }
 
 resolveAssetPaths(websiteConfigData)
