@@ -78,7 +78,7 @@ export default {
   --card-radius: 12px;
   --search-radius: 16px;
   --font-family: 'HarmonyOS Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  --bg-primary: #f0f2f5;
+  --bg-primary: #f4f5f7;
   --bg-secondary: #ffffff;
   --bg-tertiary: #f7f8fa;
   --bg-hover: #e8ecf1;
@@ -100,7 +100,6 @@ export default {
   --search-focus-bg: #ffffff;
   --scrollbar-thumb: #c4c9d0;
   --scrollbar-track: transparent;
-  --bg-image: url('~/assets/img/bg.png');
 
   // 布局
   position: relative;
@@ -108,7 +107,7 @@ export default {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: var(--bg-image, var(--bg-primary, #f0f2f5));
+  background: var(--bg-primary);
   font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
 
