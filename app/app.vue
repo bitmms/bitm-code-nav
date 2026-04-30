@@ -104,7 +104,6 @@ export default {
   --aside-width: 220px;
   --header-height: 70px;
   --header-bottom-border: 1px;
-  --content-grid: 1fr 1fr 1fr 1fr;
   --card-radius: 12px;
   --search-radius: 16px;
   --font-family: 'HarmonyOS Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
@@ -181,13 +180,16 @@ export default {
 }
 
 // =========== 响应式 ===========
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1100px) {
+  #container {
+    --aside-width: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
   #container {
     --logo-width: 0;
-    --aside-width: 0;
-    --header-height: 0;
-    --header-bottom-border: 0;
-    --content-grid: 1fr 1fr;
+    --header-height: 56px;
   }
 }
 

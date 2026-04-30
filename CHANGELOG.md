@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 2026-04-30 — 页面布局优化
+
+### 修改
+- 文件：app/components/CategorySection.vue — 卡片网格改为 auto-fill 自适应 + 间距增至 18px + 区域间距增至 48px
+- 文件：app/components/SearchBar.vue — max-width: 800px 居中 + 下拉定位适配
+- 文件：app/pages/index.vue — 内容区 max-width: 1400px 居中 + 内边距调整
+- 文件：app/app.vue — 移除固定 content-grid 变量 + 响应式分两级（1100px 折叠侧栏 / 768px 精简头部）
+
+---
+
 ## 2026-04-30 — 全局代码审查问题修复
 
 ### 修复

@@ -28,12 +28,14 @@ export default {
 <style lang="less" scoped>
 .page-content {
   width: 100%;
-  padding: 8px 3% 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 8px 24px 48px;
 }
 
 .page-footer {
   width: 100%;
-  padding: 24px 3%;
+  padding: 24px 24px 32px;
   text-align: center;
 
   .footer-line {

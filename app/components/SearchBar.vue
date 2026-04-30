@@ -114,7 +114,9 @@ export default {
 .search-wrapper {
   position: relative;
   width: 100%;
-  padding: 24px 3% 0;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 28px 16px 0;
 }
 
 .search-bar {
@@ -210,9 +212,9 @@ export default {
 // =========== 搜索建议下拉 ===========
 .suggestion-dropdown {
   position: absolute;
-  top: calc(52px + 24px + 4px);
-  left: 3%;
-  right: 3%;
+  top: calc(52px + 28px + 4px);
+  left: 16px;
+  right: 16px;
   z-index: 101;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
@@ -277,9 +279,9 @@ export default {
 // =========== 搜索引擎下拉 ===========
 .engine-dropdown {
   position: absolute;
-  top: calc(52px + 24px + 6px);
-  left: 3%;
-  right: 3%;
+  top: calc(52px + 28px + 6px);
+  left: 16px;
+  right: 16px;
   z-index: 101;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);

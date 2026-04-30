@@ -31,7 +31,7 @@ export default {
 <style lang="less" scoped>
 .category-section {
   width: 100%;
-  margin-top: 36px;
+  margin-top: 48px;
 
   &:first-child {
     margin-top: 0;
@@ -86,8 +86,8 @@ export default {
 .card-grid {
   width: 100%;
   display: grid;
-  grid-template-columns: var(--content-grid);
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 18px;
   padding: 0;
   margin: 0;
   list-style: none;
