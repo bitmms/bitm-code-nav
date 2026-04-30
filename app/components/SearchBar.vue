@@ -123,7 +123,7 @@ export default {
   display: flex;
   align-items: center;
   width: 100%;
-  height: 52px;
+  height: 44px;
   background: var(--search-bg);
   border-radius: var(--search-radius);
   border: 2px solid transparent;
@@ -212,7 +212,7 @@ export default {
 // =========== 搜索建议下拉 ===========
 .suggestion-dropdown {
   position: absolute;
-  top: calc(52px + 28px + 4px);
+  top: calc(44px + 4px);
   left: 16px;
   right: 16px;
   z-index: 101;
@@ -279,7 +279,7 @@ export default {
 // =========== 搜索引擎下拉 ===========
 .engine-dropdown {
   position: absolute;
-  top: calc(52px + 28px + 6px);
+  top: calc(44px + 6px);
   left: 16px;
   right: 16px;
   z-index: 101;

@@ -782,7 +782,7 @@ const _searchConfigData = {
             "name": "Nuget",
             "href": "https://www.nuget.org/packages?q=",
             "logo": "svg/website/repo-nuget.svg",
-            "desc": "NuGet 是 .NET 的包管理器"
+            "desc": "NuGet 包管理器"
         }
     ]
 }

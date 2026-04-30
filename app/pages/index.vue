@@ -1,17 +1,15 @@
 <script>
-import { websiteConfigData, searchConfigData } from '~/data/WebSiteData'
+import { websiteConfigData } from '~/data/WebSiteData'
 
 export default {
   setup() {
     const websiteData = websiteConfigData
-    const searchData = searchConfigData
-    return { websiteData, searchData }
+    return { websiteData }
   }
 }
 </script>
 
 <template>
-  <SearchBar :search-data="searchData" />
   <div class="page-content">
     <CategorySection
       v-for="(categoryItem, categoryIndex) in websiteData"
@@ -30,7 +28,7 @@ export default {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 8px 24px 48px;
+  padding: 16px 24px 48px;
 }
 
 .page-footer {

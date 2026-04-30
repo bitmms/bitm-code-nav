@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 2026-04-30 — 搜索栏移至 Header 导航栏
+
+### 修改
+- 文件：app/app.vue — 搜索栏从页面内容移至 header，填充空白区域，header 高度增至 80px
+- 文件：app/pages/index.vue — 移除 SearchBar，内容区直接展示分类
+- 文件：app/components/SearchBar.vue — 高度从 52px 降至 44px，下拉定位同步更新
+
+---
+
 ## 2026-04-30 — 页面布局优化
 
 ### 修改
