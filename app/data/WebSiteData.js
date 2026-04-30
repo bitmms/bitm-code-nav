@@ -764,19 +764,19 @@ const _searchConfigData = {
             "name": "bilibili",
             "href": "https://search.bilibili.com/all?keyword=",
             "logo": "svg/website/bilibili.svg",
-            "desc": "哔哩哔哩搜索"
+            "desc": "哔哩哔哩"
         },
         {
             "name": "docker",
             "href": "https://hub.docker.com/search?q=",
             "logo": "svg/website/repo-docker.svg",
-            "desc": "Docker 镜像搜索"
+            "desc": "Docker 镜像"
         },
         {
             "name": "maven",
             "href": "https://mvnrepository.com/search?q=",
             "logo": "svg/website/repo-maven.svg",
-            "desc": "Maven 搜索"
+            "desc": "Maven 仓库"
         },
         {
             "name": "Nuget",

@@ -1,15 +1,19 @@
 <script>
-import { websiteConfigData } from '~/data/WebSiteData'
+import { websiteConfigData, searchConfigData } from '~/data/WebSiteData'
 
 export default {
   setup() {
     const websiteData = websiteConfigData
-    return { websiteData }
+    const searchData = searchConfigData
+    return { websiteData, searchData }
   }
 }
 </script>
 
 <template>
+  <div class="search-section">
+    <SearchBar :search-data="searchData" />
+  </div>
   <div class="page-content">
     <CategorySection
       v-for="(categoryItem, categoryIndex) in websiteData"
@@ -24,6 +28,13 @@ export default {
 </template>
 
 <style lang="less" scoped>
+.search-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 32px 24px 0;
+}
+
 .page-content {
   width: 100%;
   max-width: 1400px;

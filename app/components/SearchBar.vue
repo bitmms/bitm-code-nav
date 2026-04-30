@@ -114,16 +114,16 @@ export default {
 .search-wrapper {
   position: relative;
   width: 100%;
-  max-width: 800px;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 28px 16px 0;
+  padding: 0;
 }
 
 .search-bar {
   display: flex;
   align-items: center;
   width: 100%;
-  height: 44px;
+  height: 56px;
   background: var(--search-bg);
   border-radius: var(--search-radius);
   border: 2px solid transparent;
@@ -157,14 +157,14 @@ export default {
   }
 
   img {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     border-radius: 6px;
   }
 
   .chevron {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     color: var(--text-tertiary);
   }
 }
@@ -176,7 +176,7 @@ export default {
   outline: none;
   background: transparent;
   color: var(--text-primary);
-  font-size: 15px;
+  font-size: 16px;
   padding: 0 16px;
   font-family: inherit;
 
@@ -199,8 +199,8 @@ export default {
   flex-shrink: 0;
 
   svg {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
   }
 
   &:hover {
@@ -212,9 +212,9 @@ export default {
 // =========== 搜索建议下拉 ===========
 .suggestion-dropdown {
   position: absolute;
-  top: calc(44px + 4px);
-  left: 16px;
-  right: 16px;
+  top: calc(56px + 4px);
+  left: 0;
+  right: 0;
   z-index: 101;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
@@ -279,9 +279,9 @@ export default {
 // =========== 搜索引擎下拉 ===========
 .engine-dropdown {
   position: absolute;
-  top: calc(44px + 6px);
-  left: 16px;
-  right: 16px;
+  top: calc(56px + 6px);
+  left: 0;
+  right: 0;
   z-index: 101;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
@@ -305,14 +305,14 @@ export default {
   transition: all var(--transition-fast);
 
   img {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     border-radius: 6px;
     flex-shrink: 0;
   }
 
   span {
-    font-size: 13px;
+    font-size: 14px;
     color: var(--text-secondary);
     white-space: nowrap;
     overflow: hidden;

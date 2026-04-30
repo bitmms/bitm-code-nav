@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 2026-04-30 — 搜索栏移回页面中间并放大
+
+### 修改
+- 文件：app/app.vue — 搜索栏移出 header，恢复原始 header 布局
+- 文件：app/pages/index.vue — 搜索栏放回页面居中位置（search-section）
+- 文件：app/components/SearchBar.vue — 高度 44px→56px，字号/图标同步放大，max-width 720px
+
+---
+
 ## 2026-04-30 — 搜索栏移至 Header 导航栏
 
 ### 修改

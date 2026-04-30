@@ -1,11 +1,10 @@
 <script>
-import { websiteConfigData, searchConfigData } from '~/data/WebSiteData'
+import { websiteConfigData } from '~/data/WebSiteData'
 import { getAssetUrl } from '~/utils/assetUrl'
 
 export default {
   setup() {
     const websiteData = websiteConfigData
-    const searchData = searchConfigData
     const mainBoxRef = ref(null)
     const contentRef = ref(null)
     const { currentTheme, toggleTheme, isTransitioning, isShrinking, transitionOrigin, transitionOldTheme } = useTheme(mainBoxRef)
@@ -13,7 +12,6 @@ export default {
 
     return {
       websiteData,
-      searchData,
       mainBoxRef,
       contentRef,
       currentTheme,
@@ -51,9 +49,7 @@ export default {
         </div>
       </div>
       <div id="header-content">
-        <div class="header-search">
-          <SearchBar :search-data="searchData" />
-        </div>
+        <div class="nav-box"/>
         <button class="tool-of-dark-and-light" @click="toggleTheme($event)" :title="currentTheme === 'light' ? '切换暗色模式' : '切换亮色模式'" :aria-label="currentTheme === 'light' ? '切换暗色模式' : '切换亮色模式'">
           <svg v-show="currentTheme === 'dark'" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
@@ -106,7 +102,7 @@ export default {
   --transition-fast: .15s;
   --logo-width: 220px;
   --aside-width: 220px;
-  --header-height: 80px;
+  --header-height: 70px;
   --header-bottom-border: 1px;
   --card-radius: 12px;
   --search-radius: 16px;
@@ -212,7 +208,7 @@ export default {
 
   #header-logo {
     width: var(--logo-width);
-    height: var(--header-height);
+    height: 70px;
     overflow: hidden;
     padding: 10px 0 0 0;
 
@@ -254,33 +250,7 @@ export default {
     align-items: center;
     padding-right: 24px;
 
-    .header-search {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      max-width: 640px;
-      margin: 0 20px;
-
-      :deep(.search-wrapper) {
-        padding: 0;
-        width: 100%;
-        max-width: none;
-      }
-
-      :deep(.search-engine-btn img) {
-        width: 24px;
-        height: 24px;
-      }
-
-      :deep(.search-input) {
-        font-size: 14px;
-      }
-
-      :deep(.search-btn svg) {
-        width: 18px;
-        height: 18px;
-      }
-    }
+    .nav-box { flex: 1; }
 
     .tool-of-dark-and-light {
       display: flex;
