@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2026-04-30 — 调整背景层次色彩
+
+### 修改
+- 文件：app/app.vue — 调整 bg-primary/card/tertiary/border/search-bg 等 8 个色值，建立冷暖层次
+
+---
+
 ## 2026-04-30 — 移除背景图片，使用纯色背景
 
 ### 修改

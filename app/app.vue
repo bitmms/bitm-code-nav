@@ -78,17 +78,17 @@ export default {
   --card-radius: 12px;
   --search-radius: 16px;
   --font-family: 'HarmonyOS Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  --bg-primary: #f4f5f7;
+  --bg-primary: #eef1f5;
   --bg-secondary: #ffffff;
-  --bg-tertiary: #f7f8fa;
+  --bg-tertiary: #f3f5f8;
   --bg-hover: #e8ecf1;
-  --bg-card: rgba(255, 255, 255, 0.72);
-  --bg-toolbar: rgba(255, 255, 255, 0.85);
+  --bg-card: #ffffff;
+  --bg-toolbar: rgba(255, 255, 255, 0.9);
   --text-primary: #1a1a2e;
   --text-secondary: #6b7280;
   --text-tertiary: #9ca3af;
-  --border-color: #e5e7eb;
-  --border-light: #f0f0f0;
+  --border-color: #e2e5ea;
+  --border-light: #eef0f4;
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
@@ -96,9 +96,9 @@ export default {
   --accent: #5b9cf5;
   --accent-light: #eff6ff;
   --accent-hover: #3b82f6;
-  --search-bg: #dde1e7;
+  --search-bg: #e2e5ec;
   --search-focus-bg: #ffffff;
-  --scrollbar-thumb: #c4c9d0;
+  --scrollbar-thumb: #c8cdd4;
   --scrollbar-track: transparent;
 
   // 布局
