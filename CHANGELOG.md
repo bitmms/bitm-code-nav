@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2026-04-30 — 再调浅 accent 强调色
+
+### 修改
+- 文件：app/app.vue — accent 再浅一档（亮色 #6366f1→#818cf8，暗色 #a5b4fc→#c7d2fe）
+
+---
+
 ## 2026-04-30 — 优化站点数据 name 和 desc
 
 ### 修改
