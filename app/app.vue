@@ -7,7 +7,7 @@ export default {
     const websiteData = ref(websiteConfigData)
     const mainBoxRef = ref(null)
     const contentRef = ref(null)
-    const { currentTheme, toggleTheme } = useTheme(mainBoxRef)
+    const { currentTheme, toggleTheme, isTransitioning, transitionOrigin, transitionTarget } = useTheme(mainBoxRef)
     const { showBackToTop, toggleScroll, handleScroll } = useScroll(contentRef)
 
     return {
@@ -16,6 +16,9 @@ export default {
       contentRef,
       currentTheme,
       toggleTheme,
+      isTransitioning,
+      transitionOrigin,
+      transitionTarget,
       showBackToTop,
       toggleScroll,
       handleScroll,
@@ -46,7 +49,7 @@ export default {
       </div>
       <div id="header-content">
         <div class="nav-box"/>
-        <div class="tool-of-dark-and-light" @click="toggleTheme" :title="currentTheme === 'light' ? '切换暗色模式' : '切换亮色模式'">
+        <div class="tool-of-dark-and-light" @click="toggleTheme($event)" :title="currentTheme === 'light' ? '切换暗色模式' : '切换亮色模式'">
           <svg v-show="currentTheme === 'dark'" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
           </svg>
@@ -73,7 +76,7 @@ export default {
           <polyline points="6 9 12 15 18 9"/>
         </svg>
       </div>
-      <div class="tool-item-box" @click="toggleTheme" :title="currentTheme === 'light' ? '切换暗色模式' : '切换亮色模式'">
+      <div class="tool-item-box" @click="toggleTheme($event)" :title="currentTheme === 'light' ? '切换暗色模式' : '切换亮色模式'">
         <svg v-show="currentTheme === 'dark'" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
         </svg>
@@ -83,6 +86,12 @@ export default {
       </div>
     </div>
   </div>
+  <div
+    v-if="isTransitioning"
+    class="theme-transition-overlay"
+    :class="transitionTarget === 'dark' ? 'to-dark' : 'to-light'"
+    :style="{ '--ox': transitionOrigin.x + 'px', '--oy': transitionOrigin.y + 'px' }"
+  />
 </template>
 
 <style lang="less" scoped>
@@ -327,6 +336,25 @@ export default {
     &:active {
       transform: translateY(0);
     }
+  }
+}
+
+// =========== 主题切换过渡动画 ===========
+.theme-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  clip-path: circle(0 at var(--ox) var(--oy));
+  animation: theme-expand 500ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.to-dark { background: #0f1117; }
+.to-light { background: #f0f2f5; }
+
+@keyframes theme-expand {
+  to {
+    clip-path: circle(150vmax at var(--ox) var(--oy));
   }
 }
 </style>

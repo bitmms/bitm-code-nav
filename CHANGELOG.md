@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 2026-04-30 — 主题切换动画
+
+### 修改
+- 文件：app/composables/useTheme.js — 新增主题切换圆形扩散动画（clip-path circle）
+- 文件：app/app.vue — 添加过渡遮罩层及动画样式，按钮事件传递坐标
+
+---
+
 ## 2026-04-30 — 搜索框颜色调整
 
 ### 修改
