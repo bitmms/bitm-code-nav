@@ -1,6 +1,7 @@
 <script>
 import { websiteConfigData, searchConfigData } from '~/data/WebSiteData'
 import { getTopSites } from '~/composables/useClickTracker'
+import { getAssetUrl } from '~/utils/assetUrl'
 
 export default {
   setup() {
@@ -16,7 +17,7 @@ export default {
       topSites.value = getTopSites(websiteData, 6)
     }
 
-    return { websiteData, searchData, topSites, refreshTopSites }
+    return { websiteData, searchData, topSites, refreshTopSites, getAssetUrl }
   }
 }
 </script>
@@ -27,6 +28,9 @@ export default {
   </div>
   <div v-if="topSites.length > 0" class="hot-section">
     <div class="hot-header">
+      <span class="hot-icon">
+        <img :src="getAssetUrl('svg/nav/hot.svg')" alt="热门网站">
+      </span>
       <h2 class="hot-title">热门网站</h2>
       <span class="hot-sub">根据访问次数排序</span>
     </div>
@@ -69,9 +73,25 @@ export default {
 
 .hot-header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 10px;
   padding-bottom: 12px;
+}
+
+.hot-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--accent-light);
+  flex-shrink: 0;
+
+  img {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 .hot-title {
