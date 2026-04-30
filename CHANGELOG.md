@@ -1,10 +1,10 @@
 # CHANGELOG
 
-## 2026-04-30 — 修复主题切换动画白屏/黑屏
+## 2026-04-30 — 修复主题切换动画中间色问题
 
 ### 修改
-- 文件：app/composables/useTheme.js — 移除 transitionTarget，调整主题切换时机至动画末尾
-- 文件：app/app.vue — 遮罩层用 backdrop-filter: invert(1) 替代纯色背景，消除遮挡内容的白/黑屏
+- 文件：app/composables/useTheme.js — 改为立即切换主题 + 记录旧主题颜色，动画从全屏收缩至点击处
+- 文件：app/app.vue — 遮罩层使用旧主题背景色、clip-path 收缩动画（250ms），消除 invert 产生的中间色
 
 ---
 

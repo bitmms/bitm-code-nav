@@ -1,14 +1,14 @@
-import { getAssetUrl } from '../utils/assetUrl.js'
+import {getAssetUrl} from '../utils/assetUrl.js'
 
 function resolveAssetPaths(data) {
-  if (Array.isArray(data)) {
-    data.forEach(resolveAssetPaths)
-  } else if (data && typeof data === 'object') {
-    if (data.iconSvg) data.iconSvg = getAssetUrl(data.iconSvg)
-    if (data.logo) data.logo = getAssetUrl(data.logo)
-    if (data.children) resolveAssetPaths(data.children)
-    if (data.list) resolveAssetPaths(data.list)
-  }
+    if (Array.isArray(data)) {
+        data.forEach(resolveAssetPaths)
+    } else if (data && typeof data === 'object') {
+        if (data.iconSvg) data.iconSvg = getAssetUrl(data.iconSvg)
+        if (data.logo) data.logo = getAssetUrl(data.logo)
+        if (data.children) resolveAssetPaths(data.children)
+        if (data.list) resolveAssetPaths(data.list)
+    }
 }
 
 const _websiteConfigData = [
@@ -793,4 +793,4 @@ const searchConfigData = structuredClone(_searchConfigData)
 resolveAssetPaths(websiteConfigData)
 resolveAssetPaths(searchConfigData)
 
-export { websiteConfigData, searchConfigData }
+export {websiteConfigData, searchConfigData}

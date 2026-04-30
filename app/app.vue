@@ -7,7 +7,7 @@ export default {
     const websiteData = ref(websiteConfigData)
     const mainBoxRef = ref(null)
     const contentRef = ref(null)
-    const { currentTheme, toggleTheme, isTransitioning, transitionOrigin } = useTheme(mainBoxRef)
+    const { currentTheme, toggleTheme, isTransitioning, transitionOrigin, transitionOldTheme } = useTheme(mainBoxRef)
     const { showBackToTop, toggleScroll, handleScroll } = useScroll(contentRef)
 
     return {
@@ -18,6 +18,7 @@ export default {
       toggleTheme,
       isTransitioning,
       transitionOrigin,
+      transitionOldTheme,
       showBackToTop,
       toggleScroll,
       handleScroll,
@@ -88,6 +89,7 @@ export default {
   <div
     v-if="isTransitioning"
     class="theme-transition-overlay"
+    :class="transitionOldTheme === 'light' ? 'from-light' : 'from-dark'"
     :style="{ '--ox': transitionOrigin.x + 'px', '--oy': transitionOrigin.y + 'px' }"
   />
 </template>
@@ -343,15 +345,16 @@ export default {
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  background: transparent;
-  backdrop-filter: invert(1);
-  clip-path: circle(0 at var(--ox) var(--oy));
-  animation: theme-expand 400ms ease forwards;
+  clip-path: circle(150vmax at var(--ox) var(--oy));
+  animation: theme-reveal 250ms ease-out forwards;
 }
 
-@keyframes theme-expand {
+.from-light { background: #f0f2f5; }
+.from-dark  { background: #0f1117; }
+
+@keyframes theme-reveal {
   to {
-    clip-path: circle(150vmax at var(--ox) var(--oy));
+    clip-path: circle(0 at var(--ox) var(--oy));
   }
 }
 </style>
