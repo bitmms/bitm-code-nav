@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 2026-04-30 — 网站点击计数 + 首页热门排行
+
+### 新增
+- 文件：app/composables/useClickTracker.js — 网站点击次数 localStorage 记录/读取
+
+### 修改
+- 文件：app/components/WebsiteCard.vue — 点击时记录 href 到 localStorage，emit tracked 事件
+- 文件：app/pages/index.vue — 搜索框下方新增"热门网站"区域，按点击次数降序展示前 6 个
+
+---
+
 ## 2026-04-30 — 头部添加快捷导航链接
 
 ### 修改
