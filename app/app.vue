@@ -123,9 +123,9 @@ export default {
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
   --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.04);
-  --accent: #818cf8;
-  --accent-light: #eef2ff;
-  --accent-hover: #6366f1;
+  --accent: #5b9cf5;
+  --accent-light: #eff6ff;
+  --accent-hover: #3b82f6;
   --search-bg: #dde1e7;
   --search-focus-bg: #ffffff;
   --scrollbar-thumb: #c4c9d0;
@@ -170,9 +170,9 @@ export default {
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
   --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.15);
-  --accent: #c7d2fe;
-  --accent-light: #1e2240;
-  --accent-hover: #a5b4fc;
+  --accent: #60a5fa;
+  --accent-light: #1e293b;
+  --accent-hover: #93c5fd;
   --search-bg: #232738;
   --search-focus-bg: #2a2d3a;
   --scrollbar-thumb: #3a3d50;
