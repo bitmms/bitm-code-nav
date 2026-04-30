@@ -350,25 +350,25 @@ const _websiteConfigData = [
                 "name": "轩辕镜像",
                 "href": "https://xuanyuan.cloud",
                 "desc": "专业 Docker 镜像加速服务",
-                "logo": "svg/website/mirrot-xuanyuan.svg"
+                "logo": "svg/website/mirror-xuanyuan.svg"
             },
             {
                 "name": "阿里云镜像站",
                 "href": "https://developer.aliyun.com/mirror",
                 "desc": "阿里开源镜像服务平台",
-                "logo": "svg/website/mirrot-alibaba.svg"
+                "logo": "svg/website/mirror-alibaba.svg"
             },
             {
                 "name": "华为云镜像站",
                 "href": "https://mirrors.huaweicloud.com",
                 "desc": "华为云开源软件镜像源",
-                "logo": "svg/website/mirrot-huawei.svg"
+                "logo": "svg/website/mirror-huawei.svg"
             },
             {
                 "name": "腾讯云镜像站",
                 "href": "https://mirrors.cloud.tencent.com",
                 "desc": "腾讯云软件源镜像服务",
-                "logo": "svg/website/mirrot-tencent.svg"
+                "logo": "svg/website/mirror-tencent.svg"
             },
             {
                 "name": "网易开源镜像站",

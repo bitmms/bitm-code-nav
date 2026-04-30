@@ -8,7 +8,7 @@ export default {
 
 <template>
   <li>
-    <NuxtLink :to="websiteItem.href" :title="websiteItem.desc" target="_blank" class="card-link">
+    <NuxtLink :to="websiteItem.href" :title="websiteItem.desc" target="_blank" rel="noopener noreferrer" class="card-link">
       <div class="card-icon">
         <span v-if="websiteItem.logo === ''" class="card-avatar">{{ websiteItem.name.charAt(0) }}</span>
         <img v-else :src="websiteItem.logo" :alt="websiteItem.name" loading="lazy" class="card-logo">

@@ -4,7 +4,7 @@ import { getAssetUrl } from '~/utils/assetUrl'
 
 export default {
   setup() {
-    const websiteData = ref(websiteConfigData)
+    const websiteData = websiteConfigData
     const mainBoxRef = ref(null)
     const contentRef = ref(null)
     const { currentTheme, toggleTheme, isTransitioning, isShrinking, transitionOrigin, transitionOldTheme } = useTheme(mainBoxRef)
@@ -50,14 +50,14 @@ export default {
       </div>
       <div id="header-content">
         <div class="nav-box"/>
-        <div class="tool-of-dark-and-light" @click="toggleTheme($event)" :title="currentTheme === 'light' ? '切换暗色模式' : '切换亮色模式'">
+        <button class="tool-of-dark-and-light" @click="toggleTheme($event)" :title="currentTheme === 'light' ? '切换暗色模式' : '切换亮色模式'" :aria-label="currentTheme === 'light' ? '切换暗色模式' : '切换亮色模式'">
           <svg v-show="currentTheme === 'dark'" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
           </svg>
           <svg v-show="currentTheme === 'light'" class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
           </svg>
-        </div>
+        </button>
       </div>
     </header>
     <div id="container-content">
@@ -69,22 +69,22 @@ export default {
       </div>
     </div>
     <div id="container-tool">
-      <div class="tool-item-box" @click="toggleScroll" :title="showBackToTop ? '返回顶部' : '滚动到底部'">
+      <button class="tool-item-box" @click="toggleScroll" :title="showBackToTop ? '返回顶部' : '滚动到底部'" :aria-label="showBackToTop ? '返回顶部' : '滚动到底部'">
         <svg v-show="showBackToTop" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polyline points="18 15 12 9 6 15"/>
         </svg>
         <svg v-show="!showBackToTop" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polyline points="6 9 12 15 18 9"/>
         </svg>
-      </div>
-      <div class="tool-item-box" @click="toggleTheme($event)" :title="currentTheme === 'light' ? '切换暗色模式' : '切换亮色模式'">
+      </button>
+      <button class="tool-item-box" @click="toggleTheme($event)" :title="currentTheme === 'light' ? '切换暗色模式' : '切换亮色模式'" :aria-label="currentTheme === 'light' ? '切换暗色模式' : '切换亮色模式'">
         <svg v-show="currentTheme === 'dark'" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
         </svg>
         <svg v-show="currentTheme === 'light'" class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
-      </div>
+      </button>
     </div>
   </div>
   <div
@@ -256,10 +256,13 @@ export default {
       justify-content: center;
       width: 40px;
       height: 40px;
+      border: none;
+      background: transparent;
       border-radius: 10px;
       cursor: pointer;
       transition: all var(--transition-fast);
       color: var(--text-secondary);
+      font: inherit;
 
       .theme-icon {
         width: 22px;
@@ -320,6 +323,7 @@ export default {
     cursor: pointer;
     transition: all var(--transition-fast);
     color: var(--text-secondary);
+    font: inherit;
     box-shadow: var(--shadow-md);
 
     .tool-icon {
@@ -360,6 +364,6 @@ export default {
   transform: translate(-50%, -50%) scale(0);
 }
 
-.from-light { background: #f0f2f5; }
-.from-dark  { background: #0f1117; }
+.from-light { background: var(--theme-bg-light); }
+.from-dark  { background: var(--theme-bg-dark); }
 </style>

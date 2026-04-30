@@ -6,6 +6,7 @@ export default {
 
   setup(props) {
     const searchInputDom = ref(null)
+    const searchWrapperDom = ref(null)
     const {
       searchContent,
       isEngineListVisible,
@@ -19,7 +20,7 @@ export default {
       dismissSuggestions,
       selectSearchEngine,
       toggleEngineList,
-    } = useSearch(props.searchData, searchInputDom)
+    } = useSearch(props.searchData, searchInputDom, searchWrapperDom)
 
     const highlightMatch = (text) => {
       const query = searchContent.value.trim()
@@ -30,6 +31,7 @@ export default {
 
     return {
       searchInputDom,
+      searchWrapperDom,
       searchContent,
       isEngineListVisible,
       highlightedIndex,
@@ -49,14 +51,14 @@ export default {
 </script>
 
 <template>
-  <div class="search-wrapper">
+  <div class="search-wrapper" ref="searchWrapperDom">
     <div class="search-bar">
-      <div class="search-engine-btn" @click="toggleEngineList" :title="currentSearchEngine.desc">
+      <button class="search-engine-btn" @click="toggleEngineList" :title="currentSearchEngine.desc" :aria-label="'当前搜索引擎：' + currentSearchEngine.desc + '，点击切换'">
         <img :src="currentSearchEngine.logo" :alt="currentSearchEngine.name">
         <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polyline points="6 9 12 15 18 9"/>
         </svg>
-      </div>
+      </button>
       <input
         ref="searchInputDom"
         v-model="searchContent"
@@ -140,7 +142,11 @@ export default {
   height: 100%;
   padding: 0 14px;
   cursor: pointer;
+  border: none;
   border-right: 1px solid var(--border-color);
+  background: transparent;
+  color: inherit;
+  font: inherit;
   transition: background var(--transition-fast);
   flex-shrink: 0;
 
@@ -207,7 +213,7 @@ export default {
   top: calc(52px + 24px + 4px);
   left: 3%;
   right: 3%;
-  z-index: 99;
+  z-index: 101;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 12px;
@@ -274,7 +280,7 @@ export default {
   top: calc(52px + 24px + 6px);
   left: 3%;
   right: 3%;
-  z-index: 99;
+  z-index: 101;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 12px;

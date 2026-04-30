@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 2026-04-30 — 全局代码审查问题修复
+
+### 修复
+- 文件：app/components/WebsiteCard.vue — target="_blank" 添加 rel="noopener noreferrer"
+- 文件：app/pages/index.vue — 同上 + 移除不必要的 ref()
+- 文件：app/app.vue — div 交互控件改为 button + 按钮样式重置 + 遮罩使用 CSS 变量 + 移除不必要的 ref()
+- 文件：app/components/SearchBar.vue — 搜索引擎按钮改为 button + z-index 提升至 101 + 添加外部点击关闭
+- 文件：app/composables/useSearch.js — 添加下拉外部点击关闭 + onUnmounted 清理
+- 文件：app/assets/css/global.css — 添加主题背景 CSS 变量 + 修复过时 accent fallback
+
+### 移除
+- 文件：app/assets/svg/tool/tool-to-*.svg（4 个）— 未使用的死代码
+
+### 重命名
+- 文件：app/assets/svg/website/mirrot-*.svg → mirror-*.svg（4 个）— 修正拼写
+
+---
+
 ## 2026-04-30 — accent 从紫色改为蓝色
 
 ### 修改

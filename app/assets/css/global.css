@@ -68,9 +68,11 @@ body {
     font-family: 'HarmonyOS Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    --theme-bg-light: #f0f2f5;
+    --theme-bg-dark: #0f1117;
 }
 
 ::selection {
     color: #ffffff;
-    background: var(--accent, #4f46e5);
+    background: var(--accent, #5b9cf5);
 }

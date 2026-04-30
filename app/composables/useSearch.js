@@ -9,7 +9,7 @@ function readSearchHistory() {
   }
 }
 
-export function useSearch(searchData, searchInputDom) {
+export function useSearch(searchData, searchInputDom, searchWrapperDom) {
   const searchContent = ref('')
   const searchType = ref('bing')
   const isEngineListVisible = ref(false)
@@ -131,6 +131,21 @@ export function useSearch(searchData, searchInputDom) {
     highlightedIndex.value = -1
   }
 
+  const closeAllDropdowns = (e) => {
+    if (searchWrapperDom.value && !searchWrapperDom.value.contains(e.target)) {
+      isEngineListVisible.value = false
+      dismissSuggestions()
+    }
+  }
+
+  watch([isSuggestionVisible, isEngineListVisible], () => {
+    if (isSuggestionVisible.value || isEngineListVisible.value) {
+      document.addEventListener('mousedown', closeAllDropdowns)
+    } else {
+      document.removeEventListener('mousedown', closeAllDropdowns)
+    }
+  })
+
   onMounted(() => {
     const saved = window.localStorage.getItem('searchType')
     if (saved !== null) {
@@ -139,6 +154,10 @@ export function useSearch(searchData, searchInputDom) {
     nextTick(() => {
       searchInputDom.value?.focus()
     })
+  })
+
+  onUnmounted(() => {
+    document.removeEventListener('mousedown', closeAllDropdowns)
   })
 
   return {

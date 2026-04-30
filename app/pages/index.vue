@@ -3,8 +3,8 @@ import { websiteConfigData, searchConfigData } from '~/data/WebSiteData'
 
 export default {
   setup() {
-    const websiteData = ref(websiteConfigData)
-    const searchData = ref(searchConfigData)
+    const websiteData = websiteConfigData
+    const searchData = searchConfigData
     return { websiteData, searchData }
   }
 }
@@ -21,7 +21,7 @@ export default {
   </div>
   <footer class="page-footer">
     <div class="footer-line"></div>
-    <span>由 <a href="https://docs.github.com/en/pages" target="_blank">GitHub Pages</a> 提供部署 · 双比特导航</span>
+    <span>由 <a href="https://docs.github.com/en/pages" target="_blank" rel="noopener noreferrer">GitHub Pages</a> 提供部署 · 双比特导航</span>
   </footer>
 </template>
 
