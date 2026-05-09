@@ -505,8 +505,14 @@ const _websiteConfigData = [
             {
                 "name": "网际快车",
                 "href": "https://快车.com",
-                "desc": "跨境网络加速服务",
-                "logo": "svg/website/magic-vpn.svg"
+                "desc": "魔法工具",
+                "logo": "svg/website/vpn-magic.svg"
+            },
+            {
+                "name": "鹰云",
+                "href": "https://鹰云.com/",
+                "desc": "魔法工具",
+                "logo": "svg/website/vpn-yingyun.svg"
             }
         ]
     },
