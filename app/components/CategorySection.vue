@@ -32,10 +32,6 @@ export default {
 .category-section {
   width: 100%;
   margin-top: 48px;
-
-  &:first-child {
-    margin-top: 0;
-  }
 }
 
 .section-header {
