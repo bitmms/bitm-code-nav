@@ -341,6 +341,12 @@ const _websiteConfigData = [
                 "logo": "svg/website/mirror-xuanyuan.svg"
             },
             {
+                "name": "毫秒镜像",
+                "href": "https://1ms.run/",
+                "desc": "极速 Docker 镜像加速服务",
+                "logo": "svg/website/mirror-ms.svg"
+            },
+            {
                 "name": "阿里云镜像站",
                 "href": "https://developer.aliyun.com/mirror",
                 "desc": "阿里开源镜像服务平台",
