@@ -99,6 +99,12 @@ const _websiteConfigData = [
                 "href": "https://zxdy5.top",
                 "desc": "在线影视免费观看",
                 "logo": "svg/website/555-movie.svg"
+            },
+            {
+                "name": "NineData",
+                "href": "https://ninedata.cloud/",
+                "desc": "多云数据管理云服务",
+                "logo": "svg/website/ninedata.svg"
             }
         ]
     },
