@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2026-05-25 — WebsiteCard 外部链接改用原生 a 标签
+
+### 修改
+- 文件：app/components/WebsiteCard.vue — NuxtLink 替换为原生 a 标签，避免 Nuxt 对外部 URL 多余的客户端路由解析
+
+---
+
 ## 2026-05-25 — 同步 CLAUDE.md 文档至当前代码状态
 
 ### 修改

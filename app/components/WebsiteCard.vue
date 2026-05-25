@@ -16,7 +16,7 @@ export default {
 
 <template>
   <li>
-    <NuxtLink :to="websiteItem.href" :title="websiteItem.desc" target="_blank" rel="noopener noreferrer" class="card-link" @click="trackClick">
+    <a :href="websiteItem.href" :title="websiteItem.desc" target="_blank" rel="noopener noreferrer" class="card-link" @click="trackClick">
       <div class="card-icon">
         <span v-if="websiteItem.logo === ''" class="card-avatar">{{ websiteItem.name.charAt(0) }}</span>
         <img v-else :src="websiteItem.logo" :alt="websiteItem.name" loading="lazy" class="card-logo">
@@ -28,7 +28,7 @@ export default {
       <svg class="card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <polyline points="9 18 15 12 9 6"/>
       </svg>
-    </NuxtLink>
+    </a>
   </li>
 </template>
 
