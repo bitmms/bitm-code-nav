@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 2026-05-25 — 低优先级清理：移除无效样式/死代码/一致性修复
+
+### 修改
+- 文件：app/app.vue — 移除无效 backdrop-filter、显式导入 useScroll
+- 文件：app/composables/useSearch.js — 取消页面加载时自动聚焦搜索框
+- 文件：app/utils/assetUrl.js — 移除已空 img/ 目录的无效 glob 扫描
+- 文件：app/assets/css/global.css — 移除 ::selection 中冗余的硬编码 accent 回退值
+- 文件：app/components/WebsiteCard.vue — logo 空值检查改为 !websiteItem.logo 更稳健
+
+### 删除
+- 文件：pm2.config.cjs — SSR 部署死配置（项目实际为静态站点部署到 GitHub Pages）
+
+---
+
 ## 2026-05-25 — 品牌名修正 + 无障碍标签 + 清理死 CSS
 
 ### 修改

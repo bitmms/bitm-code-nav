@@ -152,7 +152,7 @@ export function useSearch(searchData, searchInputDom, searchWrapperDom) {
       searchType.value = saved
     }
     nextTick(() => {
-      searchInputDom.value?.focus()
+      // 页面加载时不自动聚焦，避免中断用户键盘导航
     })
   })
 

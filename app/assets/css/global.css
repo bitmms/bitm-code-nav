@@ -72,5 +72,5 @@ body {
 
 ::selection {
     color: #ffffff;
-    background: var(--accent, #5b9cf5);
+    background: var(--accent);
 }

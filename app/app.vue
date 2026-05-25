@@ -1,6 +1,7 @@
 <script>
 import { websiteConfigData } from '~/data/WebSiteData'
 import { getAssetUrl } from '~/utils/assetUrl'
+import { useScroll } from '~/composables/useScroll'
 
 export default {
   setup() {
@@ -169,7 +170,6 @@ export default {
   overflow: hidden;
   transition: height var(--transition-fast);
   background: var(--bg-secondary);
-  backdrop-filter: blur(12px);
   z-index: 10;
 
   #header-logo {
