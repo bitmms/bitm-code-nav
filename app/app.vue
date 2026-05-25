@@ -117,7 +117,6 @@ export default {
   --text-secondary: #6b7280;
   --text-tertiary: #9ca3af;
   --border-color: #e2e5ea;
-  --border-light: #eef0f4;
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
@@ -240,7 +239,6 @@ export default {
         .nav-btn-icon {
           width: 16px;
           height: 16px;
-          filter: var(--icon-filter, none);
         }
 
         &:hover {
@@ -278,7 +276,6 @@ export default {
         .github-btn-icon {
           width: 18px;
           height: 18px;
-          filter: var(--icon-filter, none);
         }
 
         .github-btn-text {

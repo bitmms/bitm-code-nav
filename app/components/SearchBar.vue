@@ -72,6 +72,8 @@ export default {
         type="text"
         class="search-input"
         placeholder="搜索你想要的网站..."
+        aria-label="搜索网站"
+        role="searchbox"
         @keydown="onInputKeydown"
         @blur="dismissSuggestions"
       >

@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 2026-05-25 — 品牌名修正 + 无障碍标签 + 清理死 CSS
+
+### 修改
+- 文件：app/data/WebSiteData.js — Github→GitHub、Nuget→NuGet 品牌名大小写修正
+- 文件：app/components/SearchBar.vue — 搜索输入框添加 aria-label 和 role="searchbox"
+- 文件：app/app.vue — 移除未使用的 --border-light 变量和始终为 none 的 --icon-filter 引用
+
+---
+
 ## 2026-05-25 — 修复侧边栏锚点导航滚动不平滑
 
 ### 修改

@@ -221,7 +221,7 @@ const _websiteConfigData = [
         "iconSvg": "svg/nav/central-repository.svg",
         "children": [
             {
-                "name": "Github",
+                "name": "GitHub",
                 "href": "https://github.com/bitmms",
                 "desc": "全球最大开源项目托管平台",
                 "logo": "svg/website/github.svg"
@@ -245,7 +245,7 @@ const _websiteConfigData = [
                 "logo": "svg/website/vercel.svg"
             },
             {
-                "name": "Nuget",
+                "name": "NuGet",
                 "href": "https://www.nuget.org",
                 "desc": ".NET 生态包管理器",
                 "logo": "svg/website/repo-nuget.svg"
@@ -741,7 +741,7 @@ const _searchConfigData = {
             "name": "github",
             "href": "https://github.com/search?q=",
             "logo": "svg/website/github.svg",
-            "desc": "Github 仓库"
+            "desc": "GitHub 仓库"
         },
         {
             "name": "gitee",
@@ -786,7 +786,7 @@ const _searchConfigData = {
             "desc": "Maven 仓库"
         },
         {
-            "name": "Nuget",
+            "name": "NuGet",
             "href": "https://www.nuget.org/packages?q=",
             "logo": "svg/website/repo-nuget.svg",
             "desc": "NuGet 仓库"
