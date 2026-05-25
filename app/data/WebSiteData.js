@@ -222,13 +222,13 @@ const _websiteConfigData = [
         "children": [
             {
                 "name": "Github",
-                "href": "https://github.com",
+                "href": "https://github.com/bitmms",
                 "desc": "全球最大开源项目托管平台",
                 "logo": "svg/website/github.svg"
             },
             {
                 "name": "Gitee",
-                "href": "https://gitee.com",
+                "href": "https://gitee.com/bitmms",
                 "desc": "国内主流代码托管平台",
                 "logo": "svg/website/gitee.svg"
             },
