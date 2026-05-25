@@ -43,11 +43,22 @@ export default {
       </div>
       <div id="header-content">
         <nav class="header-nav">
-          <a href="https://www.bilibili.com" target="_blank" rel="noopener noreferrer" title="哔哩哔哩">哔哩哔哩</a>
-          <a href="https://www.douyin.com" target="_blank" rel="noopener noreferrer" title="抖音">抖音</a>
-          <a href="https://www.huya.com" target="_blank" rel="noopener noreferrer" title="虎牙直播">虎牙</a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" title="GitHub">GitHub</a>
-          <a href="https://chat.deepseek.com" target="_blank" rel="noopener noreferrer" title="DeepSeek">DeepSeek</a>
+          <a class="header-nav-btn" href="https://www.bilibili.com" target="_blank" rel="noopener noreferrer" title="哔哩哔哩">
+            <img :src="getAssetUrl('svg/website/bilibili.svg')" alt="哔哩哔哩" class="nav-btn-icon">
+            <span>哔哩哔哩</span>
+          </a>
+          <a class="header-nav-btn" href="https://www.douyin.com" target="_blank" rel="noopener noreferrer" title="抖音">
+            <img :src="getAssetUrl('svg/website/douyin.svg')" alt="抖音" class="nav-btn-icon">
+            <span>抖音</span>
+          </a>
+          <a class="header-nav-btn" href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" title="ChatGPT">
+            <img :src="getAssetUrl('svg/website/ai-llm-chatgpt.svg')" alt="ChatGPT" class="nav-btn-icon">
+            <span>ChatGPT</span>
+          </a>
+          <a class="header-nav-btn" href="https://www.iconfont.cn" target="_blank" rel="noopener noreferrer" title="阿里巴巴矢量图标库">
+            <img :src="getAssetUrl('svg/website/icon-alibaba-iconfont.svg')" alt="iconfont" class="nav-btn-icon">
+            <span>iconfont</span>
+          </a>
         </nav>
         <div class="header-actions">
           <a
@@ -212,8 +223,11 @@ export default {
       gap: 8px;
       padding: 0 16px;
 
-      a {
-        padding: 7px 18px;
+      .header-nav-btn {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 16px;
         border-radius: 20px;
         font-size: 13px;
         font-weight: 500;
@@ -223,11 +237,21 @@ export default {
         border: 1px solid transparent;
         transition: all var(--transition-fast);
 
+        .nav-btn-icon {
+          width: 16px;
+          height: 16px;
+          filter: var(--icon-filter, none);
+        }
+
         &:hover {
           color: var(--accent);
           background: var(--accent-light);
           border-color: var(--accent);
           transform: translateY(-1px);
+
+          .nav-btn-icon {
+            filter: none;
+          }
         }
       }
     }

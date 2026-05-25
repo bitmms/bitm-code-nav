@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2026-05-25 — 顶部导航栏左侧改为图标+文字按钮
+
+### 修改
+- 文件：app/app.vue — 左侧导航栏从纯文字药丸改为图标+文字样式（哔哩哔哩、抖音、ChatGPT、iconfont），移除虎牙/GitHub/DeepSeek 文字链接，新增 header-nav-btn 样式类
+
+---
+
 ## 2026-05-25 — 顶部导航栏新增 GitHub 项目链接按钮
 
 ### 修改
