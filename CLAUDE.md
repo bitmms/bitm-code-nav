@@ -35,7 +35,7 @@ bitm-code-nav/
 │   │   ├── CategorySection.vue # 单个分类区块（标题 + 网站卡片网格）
 │   │   └── WebsiteCard.vue     # 单个网站卡片
 │   ├── composables/
-│   │   ├── useTheme.js         # 主题切换（亮/暗 + localStorage 持久化）
+│   │   ├── useClickTracker.js  # 网站点击次数统计（localStorage）
 │   │   ├── useScroll.js        # 滚动控制（返回顶部/底部）
 │   │   └── useSearch.js        # 搜索逻辑（引擎选择、搜索历史、执行搜索）
 │   ├── data/
@@ -45,8 +45,7 @@ bitm-code-nav/
 │   └── assets/
 │       ├── css/global.css      # @font-face + 全局 reset
 │       ├── font/               # HarmonyOS Sans 6 重量
-│       ├── img/bg.png          # 亮色主题背景图
-│       └── svg/                # 所有图标（logo/nav/search/tool/website）
+│       └── svg/                # 所有图标（logo/nav/search/website）
 └── public/
     ├── favicon.ico
     └── robots.txt
@@ -56,7 +55,7 @@ bitm-code-nav/
 
 ```
 app.vue
-├── #container-header  → Logo + 主题切换按钮
+├── #container-header  → Logo + 左侧图标导航按钮 + 右侧 GitHub 按钮
 ├── #content-aside     → <SideNav :website-data />
 ├── #content-main      → <NuxtPage />
 │   └── index.vue
@@ -64,26 +63,19 @@ app.vue
 │       ├── <CategorySection v-for :category-item />
 │       │   └── <WebsiteCard v-for :website-item />
 │       └── <footer>
-└── #container-tool    → 滚动切换 + 主题切换
+└── #container-tool    → 滚动切换按钮
 ```
 
 ## 数据流
 
 - 无 Pinia / Vuex，全部用 `ref()` + `computed()` 管理
 - `WebSiteData.js` 导出 `websiteConfigData` 和 `searchConfigData`，在导出前通过 `resolveAssetPaths()` 将资源路径转为 Vite 哈希 URL
-- localStorage 持久化：`nowThemeType`（主题）、`searchType`（搜索引擎）、`searchStringList`（搜索历史）
+- localStorage 持久化：`searchType`（搜索引擎）、`searchStringList`（搜索历史）、`clickCounts`（网站点击次数）
 
 ## 主题系统
 
-CSS 自定义属性模式，定义在 `app/app.vue` 的 `#container` 上：
-
-```
-#container           ← 基类设定亮色默认值（所有变量）
-#container.light     ← 仅设 --bg-image（亮色特有）
-#container.dark      ← 覆盖所有变量为暗色值
-```
-
-新增可主题化属性时：先在基类 `#container` 加默认值（亮色），再在 `#container.dark` 中覆盖。禁止在 `.light` 块中重复基类已有的值。
+项目统一使用亮色主题，CSS 自定义属性全部定义在 `app/app.vue` 的 `#container` 上。
+新增可主题化属性时直接在 `#container` 中添加变量即可。
 
 ## 关键约束
 

@@ -50,7 +50,7 @@ import { getAssetUrl } from '~/utils/assetUrl'
 ### CSS 中使用
 
 ```less
-background: url('~/assets/img/bg.png');
+background-image: url('~/assets/svg/logo/logo.svg');
 ```
 
 ### 数据文件中新增资源路径
@@ -78,36 +78,16 @@ background: url('~/assets/img/bg.png');
 
 ## 主题系统规则
 
-主题通过 CSS 自定义属性实现，所有变量定义在 `app/app.vue` 的 `#container` 上。
-
-### 变量分层
-
-```
-#container          ← 基类 = 亮色默认值（同时也是兜底，防止首屏黑闪）
-#container.light    ← 仅设 --bg-image（亮色独有）
-#container.dark     ← 覆盖为暗色值
-```
+项目统一使用亮色主题，所有 CSS 自定义属性定义在 `app/app.vue` 的 `#container` 上。
 
 ### 修改或新增主题变量
 
-1. 先在基类 `#container` 中添加/修改变量的亮色默认值
-2. 再在 `#container.dark` 中覆盖为暗色值
-3. **禁止**在 `#container.light` 中重复基类已有的值
+1. 在 `#container` 中定义或修改 CSS 变量
+2. 在需要的组件的 `<style scoped>` 中通过 `var(--变量名)` 使用
 
 ### 暗色图标处理
 
-侧边栏和分类标题图标通过 CSS 变量 `--icon-filter` 在暗色模式下反色：
-
-```less
-// 基类默认
---icon-filter: none;
-// 暗色覆盖
---icon-filter: brightness(0) invert(1);
-// 需要反色的 img 上
-img { filter: var(--icon-filter); }
-```
-
-网站 logo（WebsiteCard）和搜索引擎图标不需要暗色滤镜。
+当前项目仅有亮色主题，图标无需反色滤镜。导航栏按钮图标使用 `var(--icon-filter, none)` 以保持兼容性。
 
 ---
 
@@ -153,12 +133,10 @@ img { filter: var(--icon-filter); }
 
 ### 修改主题颜色
 
-1. 编辑 `app/app.vue` 中基类 `#container` 的 CSS 变量（亮色默认值）
-2. 编辑 `#container.dark` 中对应变量（暗色覆盖值）
-3. `npm run dev` 检查两种主题下效果
+1. 编辑 `app/app.vue` 中 `#container` 的 CSS 变量
+2. `npm run dev` 检查效果
 
 ### 添加新的 CSS 变量
 
-1. 在 `app/app.vue` 基类 `#container` 中定义变量及亮色默认值
-2. 在 `#container.dark` 中定义暗色值
-3. 在需要的组件的 `<style scoped>` 中通过 `var(--变量名)` 使用
+1. 在 `app/app.vue` 的 `#container` 中定义变量及默认值
+2. 在需要的组件的 `<style scoped>` 中通过 `var(--变量名)` 使用
