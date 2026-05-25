@@ -131,12 +131,6 @@ const _websiteConfigData = [
                 "logo": "svg/website/ai-llm-deepseek.svg"
             },
             {
-                "name": "ChatGPT",
-                "href": "https://chatgpt.com",
-                "desc": "OpenAI 旗舰对话模型",
-                "logo": "svg/website/ai-llm-chatgpt.svg"
-            },
-            {
                 "name": "文心一言",
                 "href": "https://yiyan.baidu.com",
                 "desc": "百度 AI 对话助手",
@@ -165,6 +159,12 @@ const _websiteConfigData = [
                 "href": "https://xinghuo.xfyun.cn/desk",
                 "desc": "讯飞认知大模型平台",
                 "logo": "svg/website/ai-llm-xinghuo.svg"
+            },
+            {
+                "name": "ChatGPT",
+                "href": "https://chatgpt.com",
+                "desc": "OpenAI 旗舰对话模型",
+                "logo": "svg/website/ai-llm-chatgpt.svg"
             },
             {
                 "name": "Arena AI",
