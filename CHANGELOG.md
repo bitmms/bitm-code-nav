@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2026-05-25 — 顶部导航栏新增 GitHub 项目链接按钮
+
+### 修改
+- 文件：app/app.vue — header-content 新增 GitHub 图标按钮，指向 https://github.com/bitmms，hover 时反色为 GitHub 品牌黑
+
+---
+
 ## 2026-04-30 — 清理项目 + 补充 Claude Code 工作流文件
 
 ### 删除

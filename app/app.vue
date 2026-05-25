@@ -49,6 +49,18 @@ export default {
           <a href="https://github.com" target="_blank" rel="noopener noreferrer" title="GitHub">GitHub</a>
           <a href="https://chat.deepseek.com" target="_blank" rel="noopener noreferrer" title="DeepSeek">DeepSeek</a>
         </nav>
+        <div class="header-actions">
+          <a
+            class="header-github-btn"
+            href="https://github.com/bitmms"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="GitHub @bitmms"
+            aria-label="访问 GitHub 仓库">
+            <img :src="getAssetUrl('svg/website/github.svg')" alt="GitHub" class="github-btn-icon">
+            <span class="github-btn-text">GitHub</span>
+          </a>
+        </div>
       </div>
     </header>
     <div id="container-content">
@@ -216,6 +228,53 @@ export default {
           background: var(--accent-light);
           border-color: var(--accent);
           transform: translateY(-1px);
+        }
+      }
+    }
+
+    .header-actions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+
+      .header-github-btn {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 18px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-primary);
+        text-decoration: none;
+        background: var(--bg-tertiary);
+        border: 1px solid var(--border-color);
+        transition: all var(--transition-fast);
+
+        .github-btn-icon {
+          width: 18px;
+          height: 18px;
+          filter: var(--icon-filter, none);
+        }
+
+        .github-btn-text {
+          line-height: 1;
+        }
+
+        &:hover {
+          color: #ffffff;
+          background: #24292f;
+          border-color: #24292f;
+          transform: translateY(-1px);
+          box-shadow: 0 2px 8px rgba(36, 41, 47, 0.25);
+
+          .github-btn-icon {
+            filter: brightness(0) invert(1);
+          }
+        }
+
+        &:active {
+          transform: translateY(0);
         }
       }
     }
