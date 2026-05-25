@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2026-05-25 — 修复 SearchBar 搜索建议 XSS 安全漏洞
+
+### 修改
+- 文件：app/components/SearchBar.vue — highlightMatch 先对文本做 HTML 实体转义，再用 v-html 渲染高亮，防止 localStorage 注入攻击
+
+---
+
 ## 2026-05-25 — 顶部导航栏左侧改为图标+文字按钮
 
 ### 修改

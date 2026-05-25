@@ -22,11 +22,18 @@ export default {
       toggleEngineList,
     } = useSearch(props.searchData, searchInputDom, searchWrapperDom)
 
+    const escapeHtml = (str) => {
+      const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }
+      return str.replace(/[&<>"']/g, (c) => map[c])
+    }
+
     const highlightMatch = (text) => {
+      const safeText = escapeHtml(text)
       const query = searchContent.value.trim()
-      if (!query) return text
-      const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi')
-      return text.replace(regex, '<mark>$1</mark>')
+      if (!query) return safeText
+      const safeQuery = escapeHtml(query)
+      const regex = new RegExp(`(${safeQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi')
+      return safeText.replace(regex, '<mark>$1</mark>')
     }
 
     return {
