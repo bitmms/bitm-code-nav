@@ -326,6 +326,7 @@ export default {
   flex: 1;
   overflow-y: scroll;
   scrollbar-gutter: stable;
+  scroll-behavior: smooth;
 }
 
 // =========== 浮动工具栏 ===========

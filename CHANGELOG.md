@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 2026-05-25 — 修复侧边栏锚点导航滚动不平滑
+
+### 修改
+- 文件：app/app.vue — #content-main 添加 scroll-behavior: smooth，使侧边导航点击分类时平滑滚动
+
+---
+
 ## 2026-05-25 — WebsiteCard 外部链接改用原生 a 标签
 
 ### 修改
