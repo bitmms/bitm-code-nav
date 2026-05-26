@@ -105,6 +105,12 @@ const _websiteConfigData = [
                 "href": "https://ninedata.cloud/",
                 "desc": "多云数据管理云服务",
                 "logo": "svg/website/ninedata.svg"
+            },
+            {
+                "name": "热铁盒网页托管",
+                "href": "https://host-intro.retiehe.com",
+                "desc": "发布网站就像发朋友圈一样简单",
+                "logo": "svg/website/retiehe.png"
             }
         ]
     },
