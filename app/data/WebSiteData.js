@@ -29,12 +29,6 @@ const _websiteConfigData = [
                 "logo": "svg/website/douyin.svg"
             },
             {
-                "name": "虎牙直播",
-                "href": "https://www.huya.com",
-                "desc": "游戏直播为主，弹幕互动",
-                "logo": "svg/website/huya.svg"
-            },
-            {
                 "name": "微信读书",
                 "href": "https://weread.qq.com/",
                 "desc": "腾讯电子书阅读平台",
