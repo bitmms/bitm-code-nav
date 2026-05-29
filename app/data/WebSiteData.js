@@ -413,6 +413,12 @@ const _websiteConfigData = [
                 "logo": "svg/website/icon-emoji.svg"
             },
             {
+                "name": "Pictogrammers",
+                "href": "https://pictogrammers.com/",
+                "desc": "社区驱动的纯开源图标库",
+                "logo": "svg/website/icon-p.svg"
+            },
+            {
                 "name": "免费图标",
                 "href": "https://icon-icons.com/zh",
                 "desc": "多格式免费图标下载",
